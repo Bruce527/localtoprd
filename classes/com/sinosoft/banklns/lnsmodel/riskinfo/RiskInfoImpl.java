@@ -37,9 +37,9 @@ public class RiskInfoImpl
 	{
 		String result = null;
 		if (riskName.equals("0"))
-			result = "0=璇峰厛閫夋嫨闄╃鍚?";
+			result = "0=请先选择险种名";
 		else
-			result = "0=璇烽?夋嫨鏂囨。绫诲瀷";
+			result = "0=请选择文档类型";
 		String sHost = getHost();
 		LNPStaticMsgUrlSet LNPStaticMsgUrlSet = (new LNPStaticMsgUrlDB()).executeQuery((new StringBuilder("select * from LNPStaticMsgUrl where assurancecode='")).append(riskName).append("' order by flag").toString());
 		if (LNPStaticMsgUrlSet != null)
@@ -53,13 +53,13 @@ public class RiskInfoImpl
 				if (!sHost.equals(""))
 					sURL = sURL.replace("..", sHost);
 				if (staticMsgSchema.getFlag().equals("1"))
-					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=鏉℃").toString();
+					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=条款").toString();
 				else
 				if (staticMsgSchema.getFlag().equals("2"))
-					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=璐圭巼").toString();
+					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=费率").toString();
 				else
 				if (staticMsgSchema.getFlag().equals("3"))
-					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=瑙勫垯").toString();
+					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=规则").toString();
 			}
 
 		}
@@ -68,7 +68,7 @@ public class RiskInfoImpl
 
 	public String getAllRiskType(String channel)
 	{
-		String result = "every=鎵?鏈夐櫓绉?";
+		String result = "every=所有险种";
 		String sql = (new StringBuilder("Select * From lnpcode where codetype='RiskType' and code in (select distinct riskprop from lnpriskapp where  riskcode in (select riskcode from lnpriskcomctrl where salechnl='")).append(channel).append("'))").append(" order by code").toString();
 		LNPCodeSet ldCodeSet = (new LNPCodeDB()).executeQuery(sql);
 		if (ldCodeSet != null)
@@ -82,12 +82,12 @@ public class RiskInfoImpl
 			}
 
 			String lmRiskAppSet = getAllSubRisk(channel);
-			if (lmRiskAppSet != null && !lmRiskAppSet.equals("0=璇烽?夋嫨闄╃"))
-				result = (new StringBuilder(String.valueOf(result))).append("&addition=闄勫姞闄?").toString();
+			if (lmRiskAppSet != null && !lmRiskAppSet.equals("0=请选择险种"))
+				result = (new StringBuilder(String.valueOf(result))).append("&addition=附加险").toString();
 			return result;
 		} else
 		{
-			System.out.println("鏌ヨ鎵?鏈夐櫓绉?,鏁版嵁鑾峰彇澶辫触");
+			System.out.println("查询所有险种,数据获取失败");
 			return null;
 		}
 	}
@@ -99,7 +99,7 @@ public class RiskInfoImpl
 		LNPRiskSet setLMRisk = (new LNPRiskDB()).executeQuery(sql);
 		if (setLMRisk != null)
 		{
-			String result = "0=璇烽?夋嫨闄╃";
+			String result = "0=请选择险种";
 			for (int i = 1; i <= setLMRisk.size(); i++)
 			{
 				LNPRiskSchema lmRiskSchema = setLMRisk.get(i);
@@ -111,7 +111,7 @@ public class RiskInfoImpl
 			return result;
 		} else
 		{
-			System.out.println("鏌ヨ鎵?鏈夐檮鍔犻櫓,鏁版嵁鑾峰彇澶辫触");
+			System.out.println("查询所有附加险,数据获取失败");
 			return null;
 		}
 	}
@@ -123,7 +123,7 @@ public class RiskInfoImpl
 		LNPRiskSet setLMRisk = (new LNPRiskDB()).executeQuery(sql);
 		if (setLMRisk != null)
 		{
-			String result = "0=璇烽?夋嫨闄╃";
+			String result = "0=请选择险种";
 			for (int i = 1; i <= setLMRisk.size(); i++)
 			{
 				LNPRiskSchema lmRiskSchema = setLMRisk.get(i);
@@ -135,7 +135,7 @@ public class RiskInfoImpl
 			return result;
 		} else
 		{
-			System.out.println("鏌ヨ鎵?鏈夐櫓绉?,鏁版嵁鑾峰彇澶辫触");
+			System.out.println("查询所有险种,数据获取失败");
 			return null;
 		}
 	}
@@ -147,7 +147,7 @@ public class RiskInfoImpl
 		LNPRiskSet setLMRisk = (new LNPRiskDB()).executeQuery(sql);
 		if (setLMRisk != null)
 		{
-			String result = "0=璇烽?夋嫨闄╃";
+			String result = "0=请选择险种";
 			for (int i = 1; i <= setLMRisk.size(); i++)
 			{
 				LNPRiskSchema lmRiskSchema = setLMRisk.get(i);
@@ -159,7 +159,7 @@ public class RiskInfoImpl
 			return result;
 		} else
 		{
-			System.out.println((new StringBuilder("鏌ヨ闄╃绫诲瀷")).append(riskType).append(",鏁版嵁鑾峰彇澶辫触").toString());
+			System.out.println((new StringBuilder("查询险种类型")).append(riskType).append(",数据获取失败").toString());
 			return null;
 		}
 	}
@@ -180,19 +180,19 @@ public class RiskInfoImpl
 				if (!sHost.equals(""))
 					sURL = sURL.replace("..", sHost);
 				if (staticMsgSchema.getFlag().equals("1"))
-					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=鏉℃").toString();
+					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=条款").toString();
 				else
 				if (staticMsgSchema.getFlag().equals("2"))
-					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=璐圭巼").toString();
+					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=费率").toString();
 				else
 				if (staticMsgSchema.getFlag().equals("3"))
-					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=瑙勫垯").toString();
+					result = (new StringBuilder(String.valueOf(result))).append(sURL).append("=规则").toString();
 			}
 
 			return result;
 		} else
 		{
-			System.out.println((new StringBuilder("鏌ヤ笉鍒拌闄╃鍙?:")).append(riskName).append("璇ユ枃妗ｇ被鍨?").append(documentType).append("瀵瑰簲鐨勬枃妗ｆ秷鎭?").toString());
+			System.out.println((new StringBuilder("查不到该险种号:")).append(riskName).append("该文档类型").append(documentType).append("对应的文档消息").toString());
 			return null;
 		}
 	}

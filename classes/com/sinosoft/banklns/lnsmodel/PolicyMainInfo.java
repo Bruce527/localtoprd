@@ -205,25 +205,25 @@ public class PolicyMainInfo extends BankBasicBL
 		contNo = (String)session.getAttribute("ContNo");
 		userType = null;
 		tempGI = (IGlobalInput)session.getValue("NPGI");
-		System.out.println((new StringBuilder("鑾峰彇褰撳墠鐨則empGI.LNPRole===============")).append(tempGI.LNPRole).toString());
+		System.out.println((new StringBuilder("获取当前的tempGI.LNPRole===============")).append(tempGI.LNPRole).toString());
 		if (tempGI != null && tempGI.LNPRole != null && !tempGI.LNPRole.equals(""))
 		{
-			System.out.println("杩涘叆浜?1涓?-------");
+			System.out.println("进入了1中-------");
 			userType = tempGI.LNPRole;
 		} else
 		{
-			System.out.println("杩涘叆浜?2涓?-------");
+			System.out.println("进入了2中-------");
 			alertFlag = true;
-			message = "璇ョ櫥褰曚汉鍛樻病鏈夋姇淇濅功褰曞叆鏉冮檺锛?";
+			message = "该登录人员没有投保书录入权限！";
 			return;
 		}
 		try
 		{
-			System.out.println((new StringBuilder("褰撳墠userType鐨勫?间负======")).append(userType).toString());
+			System.out.println((new StringBuilder("当前userType的值为======")).append(userType).toString());
 			initStateMap();
 			if (contNo != null && !contNo.equals(""))
 			{
-				System.out.println("褰曞叆鍚庡埛鏂扮晫闈?");
+				System.out.println("录入后刷新界面");
 				LNPContSchema tempSchema = getContByContNo(contNo);
 				if (tempSchema != null)
 				{
@@ -252,13 +252,13 @@ public class PolicyMainInfo extends BankBasicBL
 				} else
 				{
 					alertFlag = true;
-					message = "鏁版嵁搴撲腑涓嶅瓨鍦ㄨ鎶曚繚涔︼紒";
+					message = "数据库中不存在该投保书！";
 				}
 				infoSource = "modify";
 			} else
 			{
-				System.out.println("绗竴娆″垵濮嬪寲寮?濮?");
-				System.out.println("杩涘叆浜?3涓?-------");
+				System.out.println("第一次初始化开始");
+				System.out.println("进入了3中-------");
 				editFlag = true;
 				lnpcontschema = new LNPContSchema();
 				lnpcontschema.setOperator(tempGI.Operator);
@@ -274,12 +274,12 @@ public class PolicyMainInfo extends BankBasicBL
 				state = null;
 				infoSource = "add";
 			}
-			System.out.println((new StringBuilder("褰撳墠editFlag鐨勫??====")).append(editFlag).toString());
+			System.out.println((new StringBuilder("当前editFlag的值====")).append(editFlag).toString());
 		}
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			message = "璇ユ姇淇濅功鍩虹淇℃伅鏈夎锛?";
+			message = "该投保书基础信息有误！";
 		}
 		return;
 	}
@@ -290,11 +290,11 @@ public class PolicyMainInfo extends BankBasicBL
 		{
 			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 			session.setAttribute("Queryflag", null);
-			System.out.println("######################################绂诲紑缂栬緫椤甸潰######################################");
+			System.out.println("######################################离开编辑页面######################################");
 			operateDeal = new BankOperateDeal();
-			System.out.println("######################################寮?濮嬭皟鐢ㄨВ閿?######################################");
+			System.out.println("######################################开始调用解锁######################################");
 			operateDeal.turnEditPolicy(session, null, true);
-			System.out.println("######################################瑙ｉ攣缁撴潫璋冪敤######################################");
+			System.out.println("######################################解锁结束调用######################################");
 		}
 		catch (Exception exception) { }
 	}
@@ -310,7 +310,7 @@ public class PolicyMainInfo extends BankBasicBL
 		return tSSRS.GetText(1, 1);
 		Exception e;
 		e;
-		System.out.println("閿欎簡閿欎簡");
+		System.out.println("错了错了");
 		return "";
 		return "";
 	}
@@ -338,11 +338,11 @@ public class PolicyMainInfo extends BankBasicBL
 		if (!Pattern.matches("^[a-zA-Z0-9]{12}$", checkedContNo.substring(0)) && !Pattern.matches("^([M|m]{1})+([a-zA-Z0-9]{7})$", checkedContNo.substring(0)))
 		{
 			lnpcontschema.setContNo("");
-			message = "璇锋寜鐓ф纭牸寮忓綍鍏ユ姇淇濅功缂栧彿锛?";
+			message = "请按照正确格式录入投保书编号！";
 			alertFlag = true;
 			return;
 		}
-		System.out.println((new StringBuilder("閫氳繃鎶曚繚涔﹀彿鏍￠獙")).append(lnpcontschema.getContNo()).toString());
+		System.out.println((new StringBuilder("通过投保书号校验")).append(lnpcontschema.getContNo()).toString());
 		String newContno = lnpcontschema.getContNo().toUpperCase();
 		lnpcontschema.setContNo(newContno);
 		alertFlag = false;
@@ -352,11 +352,11 @@ public class PolicyMainInfo extends BankBasicBL
 
 	public boolean velidatyInfo()
 	{
-		System.out.println("椤甸潰鏍￠獙瑙勫垯寮?濮?");
+		System.out.println("页面校验规则开始");
 		if (lnpcontschema.getContNo() == null || lnpcontschema.getContNo().trim().equals(""))
 		{
 			alertFlag = true;
-			message = "鎶曚繚涔︾紪鍙蜂笉鑳戒负绌猴紒";
+			message = "投保书编号不能为空！";
 			System.out.println(message);
 			return false;
 		}
@@ -364,7 +364,7 @@ public class PolicyMainInfo extends BankBasicBL
 		{
 			System.out.println("infoSource=add------------------------");
 			alertFlag = true;
-			message = "璇ユ姇淇濅功缂栧彿鍦ㄧ郴缁熶腑宸插瓨鍦紒";
+			message = "该投保书编号在系统中已存在！";
 			return false;
 		} else
 		{
@@ -421,7 +421,7 @@ public class PolicyMainInfo extends BankBasicBL
 		vd.add(map);
 		if (ps.submitData(vd, ""))
 			break MISSING_BLOCK_LABEL_348;
-		message = "鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨澶辫触锛?";
+		message = "投保书基础信息保存失败！";
 		return false;
 label0:
 		{
@@ -435,7 +435,7 @@ label0:
 					flag = true;
 					break label0;
 				}
-				System.out.println("鎶曚繚鍗曞熀鏈俊鎭繚瀛樿鍙ユ墽琛屽け璐ワ紒");
+				System.out.println("投保单基本信息保存语句执行失败！");
 			}
 			catch (RuntimeException e)
 			{
@@ -466,14 +466,14 @@ label0:
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨澶辫触锛?";
+				message = "投保书基础信息保存失败！";
 				flag = false;
 			}
 		}
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			message = "鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨澶辫触锛?";
+			message = "投保书基础信息保存失败！";
 			flag = false;
 		}
 		return flag;
@@ -489,7 +489,7 @@ label0:
 		time = PubFun.getCurrentTime();
 		message = "";
 		operateFlag = false;
-		System.out.println("淇濆瓨寮?濮?----------------");
+		System.out.println("保存开始----------------");
 		flag = false;
 		session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		turnCurrPolicyLockFlag(session, lnpcontschema.getContNo(), "lock");
@@ -500,7 +500,7 @@ label0:
 		}
 		if (infoSource.equals("modify"))
 		{
-			System.out.println("杩愯浜唌odify-------");
+			System.out.println("运行了modify-------");
 			LNPContSchema tempSchema = getContByContNo(lnpcontschema.getContNo());
 			if (tempSchema == null)
 				infoSource = "add";
@@ -509,7 +509,7 @@ label0:
 		}
 		if (infoSource.equals("add"))
 		{
-			System.out.println("杩愯浜哸dd-------");
+			System.out.println("运行了add-------");
 			flag = addInfo();
 			policyState = new BankPolicyState();
 			policyState.savePolicyState(lnpcontschema.getContNo(), lnpcontschema.getState(), "1", date, time);
@@ -518,21 +518,21 @@ label0:
 		{
 			session.setAttribute("ContNo", lnpcontschema.getContNo());
 			session.setAttribute("CONTLOCK", "LOCKED");
-			System.out.println((new StringBuilder("---鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨鎴愬姛 session.getAttribute--contno ---")).append(session.getAttribute("ContNo")).toString());
+			System.out.println((new StringBuilder("---投保书基础信息保存成功 session.getAttribute--contno ---")).append(session.getAttribute("ContNo")).toString());
 			state = (String)stateMap.get(lnpcontschema.getState());
-			message = "鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨鎴愬姛锛?";
+			message = "投保书基础信息保存成功！";
 			operateFlag = true;
 		} else
 		{
-			System.out.println((new StringBuilder("---鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨澶辫触  ")).append(lnpcontschema.getContNo()).toString());
-			message = "鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨澶辫触锛?";
+			System.out.println((new StringBuilder("---投保书基础信息保存失败  ")).append(lnpcontschema.getContNo()).toString());
+			message = "投保书基础信息保存失败！";
 		}
 		turnCurrPolicyLockFlag(session, lnpcontschema.getContNo(), "unlock");
 		return true;
 		RuntimeException e;
 		e;
 		e.printStackTrace();
-		message = "鎶曚繚涔﹀熀纭?淇℃伅淇濆瓨澶辫触锛?";
+		message = "投保书基础信息保存失败！";
 		turnCurrPolicyLockFlag(session, lnpcontschema.getContNo(), "unlock");
 		return false;
 		Exception exception;
@@ -554,13 +554,13 @@ label0:
 	public void checkContNoExist()
 	{
 		String tempContNo = lnpcontschema.getContNo();
-		System.out.println("寮?濮嬫鏌ユ姇淇濅功鍙锋槸鍚﹀瓨鍦?");
+		System.out.println("开始检查投保书号是否存在");
 		alertFlag = false;
 		if (getContByContNo(tempContNo) != null)
 		{
 			alertFlag = true;
 			lnpcontschema.setContNo("");
-			message = "璇ユ姇淇濅功缂栧彿鍦ㄧ郴缁熶腑宸插瓨鍦紒";
+			message = "该投保书编号在系统中已存在！";
 		} else
 		{
 			alertFlag = false;
@@ -713,7 +713,7 @@ label0:
 		tempGI = (IGlobalInput)session.getValue("NPGI");
 		if (tempGI == null)
 		{
-			message = "鐧诲綍浜哄憳淇℃伅涓㈠け锛岃閲嶆柊鐧婚檰锛?";
+			message = "登录人员信息丢失，请重新登陆！";
 			alertFlag = true;
 			return null;
 		}

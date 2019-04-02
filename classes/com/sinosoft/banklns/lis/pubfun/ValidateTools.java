@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
 public class ValidateTools
 {
 
-	public static String validString1ErrorMessage = "杈撳叆閿欒锛屽彲浠ュ寘鍚腑鑻辨枃锛屾暟瀛楀強鈥?-鈥濃?淿鈥濃??#鈥濈瓑瀛楃";
-	public static String validZipCodeErrorMessage = "杈撳叆搴旇涓?6浣嶆暟瀛?";
-	public static String validTelCode2ErrorMessage = "闀垮害涓?6-19浣嶆暟瀛?";
+	public static String validString1ErrorMessage = "输入错误，可以包含中英文，数字及“-”“_”“#”等字符";
+	public static String validZipCodeErrorMessage = "输入应该为6位数字";
+	public static String validTelCode2ErrorMessage = "长度为6-19位数字";
 
 	public ValidateTools()
 	{
@@ -176,7 +176,7 @@ public class ValidateTools
 			return false;
 		if (!"".equals(aValue))
 		{
-			Pattern pattern = Pattern.compile("^(\\w|[\\u4E00-\\u9FA5]|[0-9]|[- _#锛堬級().])*$");
+			Pattern pattern = Pattern.compile("^(\\w|[\\u4E00-\\u9FA5]|[0-9]|[- _#（）().])*$");
 			Matcher isName = pattern.matcher(aValue);
 			return isName.matches();
 		} else
@@ -191,7 +191,7 @@ public class ValidateTools
 			return false;
 		if (!"".equals(aValue))
 		{
-			Pattern pattern = Pattern.compile("^(\\w|[\\u4E00-\\u9FA5]|[0-9]|[- _#锟斤拷锟斤拷().@])*$");
+			Pattern pattern = Pattern.compile("^(\\w|[\\u4E00-\\u9FA5]|[0-9]|[- _#????().@])*$");
 			Matcher isName = pattern.matcher(aValue);
 			return isName.matches();
 		} else
@@ -294,7 +294,7 @@ public class ValidateTools
 	public static String isValidIDNo(String aIDNo, String aBirthday, String aSex)
 	{
 		if (aIDNo == null || aBirthday == null || aSex == null)
-			return "闈炴硶鍙傛暟锛岃韩浠借瘉鍙锋垨鐢熸棩鏃ユ湡鎴栨?у埆涓簄ull";
+			return "非法参数，身份证号或生日日期或性别为null";
 		String tmpStr = "";
 		int tmpInt = 0;
 		String sReturn = "";
@@ -303,7 +303,7 @@ public class ValidateTools
 		aSex = aSex.trim();
 		if (aIDNo.length() != 15 && aIDNo.length() != 18)
 		{
-			sReturn = "杈撳叆鐨勮韩浠借瘉鍙蜂綅鏁伴敊璇?";
+			sReturn = "输入的身份证号位数错误";
 			return sReturn;
 		}
 		if (aIDNo.length() == 15)
@@ -312,7 +312,7 @@ public class ValidateTools
 			Matcher isNum = pattern.matcher(aIDNo);
 			if (!isNum.matches())
 			{
-				sReturn = "韬唤璇佹牸寮忛敊璇?";
+				sReturn = "身份证格式错误";
 				return sReturn;
 			}
 		}
@@ -322,15 +322,15 @@ public class ValidateTools
 			Matcher isNum = pattern.matcher(aIDNo);
 			if (!isNum.matches())
 			{
-				sReturn = "韬唤璇佹牸寮忛敊璇?";
+				sReturn = "身份证格式错误";
 				return sReturn;
 			}
 		}
 		if (!"".equals(aBirthday) && !isDate(aBirthday))
-			return "鐢熸棩杈撳叆閿欒";
+			return "生日输入错误";
 		if (!"0".equals(aSex) && !"1".equals(aSex))
 		{
-			sReturn = "杈撳叆鐨勬?у埆涓嶆槑纭?";
+			sReturn = "输入的性别不明确";
 			return sReturn;
 		}
 		if (aIDNo.length() == 15)
@@ -348,7 +348,7 @@ public class ValidateTools
 						tmpInt %= 2;
 						if (tmpInt == 0)
 						{
-							sReturn = "杈撳叆鐨勬?у埆涓庤韩浠借瘉鍙风殑淇℃伅涓嶄竴鑷?";
+							sReturn = "输入的性别与身份证号的信息不一致";
 							return sReturn;
 						}
 					} else
@@ -357,18 +357,18 @@ public class ValidateTools
 						tmpInt %= 2;
 						if (tmpInt != 0)
 						{
-							sReturn = "杈撳叆鐨勬?у埆涓庤韩浠借瘉鍙风殑淇℃伅涓嶄竴鑷?";
+							sReturn = "输入的性别与身份证号的信息不一致";
 							return sReturn;
 						}
 					}
 				} else
 				{
-					sReturn = "杈撳叆鐨勭敓鏃ヤ笌韬唤璇佸彿鐨勪俊鎭笉涓?鑷?";
+					sReturn = "输入的生日与身份证号的信息不一致";
 					return sReturn;
 				}
 			} else
 			{
-				sReturn = "杈撳叆韬唤璇佸彿涓殑鐢熸棩鏃ユ湡淇℃伅涓嶆纭?";
+				sReturn = "输入身份证号中的生日日期信息不正确";
 				return sReturn;
 			}
 		} else
@@ -386,7 +386,7 @@ public class ValidateTools
 						tmpInt %= 2;
 						if (tmpInt == 0)
 						{
-							sReturn = "杈撳叆鐨勬?у埆涓庤韩浠借瘉鍙风殑淇℃伅涓嶄竴鑷?";
+							sReturn = "输入的性别与身份证号的信息不一致";
 							return sReturn;
 						}
 					} else
@@ -395,24 +395,24 @@ public class ValidateTools
 						tmpInt %= 2;
 						if (tmpInt != 0)
 						{
-							sReturn = "杈撳叆鐨勬?у埆涓庤韩浠借瘉鍙风殑淇℃伅涓嶄竴鑷?";
+							sReturn = "输入的性别与身份证号的信息不一致";
 							return sReturn;
 						}
 					}
 				} else
 				{
-					sReturn = "杈撳叆鐨勭敓鏃ヤ笌韬唤璇佸彿鐨勪俊鎭笉涓?鑷?";
+					sReturn = "输入的生日与身份证号的信息不一致";
 					return sReturn;
 				}
 			} else
 			{
-				sReturn = "杈撳叆韬唤璇佸彿涓殑鐢熸棩鏃ユ湡淇℃伅涓嶆纭?";
+				sReturn = "输入身份证号中的生日日期信息不正确";
 				return sReturn;
 			}
 			return sReturn;
 		} else
 		{
-			sReturn = "杈撳叆鐨勮韩浠借瘉鍙风殑浣嶆暟涓嶅";
+			sReturn = "输入的身份证号的位数不对";
 			return sReturn;
 		}
 		return sReturn;

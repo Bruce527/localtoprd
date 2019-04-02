@@ -46,7 +46,7 @@ public class CodeQueryBL
 				CError tError = new CError();
 				tError.moduleName = "CodeQueryBL";
 				tError.functionName = "submitData";
-				tError.errorMessage = "鏁版嵁澶勭悊澶辫触CodeQueryBL-->dealData!";
+				tError.errorMessage = "数据处理失败CodeQueryBL-->dealData!";
 				mErrors.addOneError(tError);
 				return false;
 			}
@@ -56,7 +56,7 @@ public class CodeQueryBL
 			CError tError = new CError();
 			tError.moduleName = "CodeQueryBL";
 			tError.functionName = "submitData";
-			tError.errorMessage = "鏁版嵁澶勭悊澶辫触CodeQueryBL-->dealData!";
+			tError.errorMessage = "数据处理失败CodeQueryBL-->dealData!";
 			mErrors.addOneError(tError);
 			return false;
 		}
@@ -91,7 +91,7 @@ public class CodeQueryBL
 			CError tError = new CError();
 			tError.moduleName = "SLatncyGrpBL";
 			tError.functionName = "submitData";
-			tError.errorMessage = "鏁版嵁鏌ヨ澶辫触!";
+			tError.errorMessage = "数据查询失败!";
 			mErrors.addOneError(tError);
 			return false;
 		}

@@ -64,12 +64,12 @@ public class NBContNoSynServlet extends HttpServlet
 	private String dealRequest(String jsonReq)
 	{
 		String respCode = "000000";
-		String respInfo = "交易成功";
-		String transMsg = "保单号回传成功";
+		String respInfo = "??????";
+		String transMsg = "???????????";
 		JSONObject errorObj = new JSONObject();
 		JSONArray failContList = new JSONArray();
 		int error = 0;
-		System.out.println((new StringBuilder("请求信息: ")).append(jsonReq).toString());
+		System.out.println((new StringBuilder("???????: ")).append(jsonReq).toString());
 		JSONObject reqJson = JSONObject.fromObject(jsonReq);
 		JSONObject nbUCRTO_REC = reqJson.getJSONObject("NBUCRTO_REC");
 		String system = nbUCRTO_REC.getString("System");
@@ -82,37 +82,37 @@ public class NBContNoSynServlet extends HttpServlet
 		String mainpolNo = policy.getString("CHDRNUM");
 		String errCode = policy.getString("ERRCODE");
 		String pdesc = policy.getString("PDESC");
-		System.out.println((new StringBuilder("交易发起系统: ")).append(system).append(" 交易流水号: ").append(transNo).append(" 交易类型: ").append(transCode).append(" 交易时间: ").append(reqTime).toString());
+		System.out.println((new StringBuilder("?????????: ")).append(system).append(" ?????????: ").append(transNo).append(" ????????: ").append(transCode).append(" ???????: ").append(reqTime).toString());
 		LNPContDB ld = new LNPContDB();
 		ld.setContNo(contNo);
 		boolean info = ld.getInfo();
 		if (contNo == null || "".equals(contNo))
 		{
 			respCode = "11111";
-			transMsg = "投保单号不能为空，请检查";
+			transMsg = "??????????????????";
 			errorObj.put("PrtNo", contNo);
 			errorObj.put("ContNo", mainpolNo);
-			errorObj.put("FailDesc", "投保单号不能为空，请检查");
+			errorObj.put("FailDesc", "??????????????????");
 			failContList.add(errorObj);
 			error = 1;
 		} else
 		if (!info)
 		{
 			respCode = "11111";
-			transMsg = "此投保单号在MDES系统中不存在，请检查";
+			transMsg = "???????????MDES???в??????????";
 			errorObj.put("PrtNo", contNo);
 			errorObj.put("ContNo", mainpolNo);
-			errorObj.put("FailDesc", "此投保单号在MDES系统中不存在，请检查");
+			errorObj.put("FailDesc", "???????????MDES???в??????????");
 			failContList.add(errorObj);
 			error = 1;
 		} else
 		if ("".equals(mainpolNo) && "0".equals(errCode))
 		{
 			respCode = "11111";
-			transMsg = "交易成功时保单号不能为空，请检查";
+			transMsg = "????????????????????????";
 			errorObj.put("PrtNo", contNo);
 			errorObj.put("ContNo", mainpolNo);
-			errorObj.put("FailDesc", "交易成功时保单号不能为空，请检查");
+			errorObj.put("FailDesc", "????????????????????????");
 			failContList.add(errorObj);
 			error = 1;
 		} else
@@ -203,7 +203,7 @@ public class NBContNoSynServlet extends HttpServlet
 		operRecordSchema.setOperationDate(date);
 		operRecordSchema.setOperationTime(time);
 		operRecordSchema.setOperation(recordFlag);
-		operRecordSchema.setVarc3("已审核-发送失败");
+		operRecordSchema.setVarc3("?????-???????");
 		operRecordSchema.setVarc1((new StringBuilder(String.valueOf(date))).append(' ').append(time).toString());
 		System.out.println((new StringBuilder(String.valueOf(state))).append("<--->").append(operRecordSchema.getVarc3()).toString());
 		operRecordSchema.setVarc4(rstMsg);

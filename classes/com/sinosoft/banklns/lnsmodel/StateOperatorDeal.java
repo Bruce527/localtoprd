@@ -531,7 +531,7 @@ public class StateOperatorDeal
 					VData vd = new VData();
 					vd.add(map);
 					if (!ps.submitData(vd, ""))
-						System.out.println("-BenefitPersonInfo-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?");
+						System.out.println("-BenefitPersonInfo-???????");
 					else
 						flag = true;
 				}
@@ -796,16 +796,16 @@ public class StateOperatorDeal
 			if (!agePer.equals("-1"))
 			{
 				String ageType;
-				if (agePer.indexOf("ï¿½ï¿½") > -1)
+				if (agePer.indexOf("??") > -1)
 				{
 					ageType = "D";
-					agePer = agePer.substring(0, agePer.indexOf("ï¿½ï¿½"));
+					agePer = agePer.substring(0, agePer.indexOf("??"));
 					appntSch.setAppntAge(agePer);
 					appntSch.setAppntAgeType(ageType);
 				} else
 				{
 					ageType = "Y";
-					agePer = agePer.substring(0, agePer.indexOf("ï¿½ï¿½"));
+					agePer = agePer.substring(0, agePer.indexOf("??"));
 					appntSch.setAppntAge(agePer);
 					appntSch.setAppntAgeType(ageType);
 				}
@@ -834,16 +834,16 @@ public class StateOperatorDeal
 			if (!agePer.equals("-1"))
 			{
 				String ageType;
-				if (agePer.indexOf("ï¿½ï¿½") > -1)
+				if (agePer.indexOf("??") > -1)
 				{
 					ageType = "D";
-					agePer = agePer.substring(0, agePer.indexOf("ï¿½ï¿½"));
+					agePer = agePer.substring(0, agePer.indexOf("??"));
 					insuredSch.setAppAge(agePer);
 					insuredSch.setAppAgeType(ageType);
 				} else
 				{
 					ageType = "Y";
-					agePer = agePer.substring(0, agePer.indexOf("ï¿½ï¿½"));
+					agePer = agePer.substring(0, agePer.indexOf("??"));
 					insuredSch.setAppAge(agePer);
 					insuredSch.setAppAgeType(ageType);
 				}

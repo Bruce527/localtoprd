@@ -505,11 +505,11 @@ public class BankLNPCodeList
 		for (int i = 0; i < riskcode.length; i++)
 			riskcode[i] = (String)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get((new StringBuilder("riskcode")).append(i).toString());
 
-		System.out.println((new StringBuilder("+++++++++++++前台传入的险种代码参数为：")).append(riskcode).toString());
+		System.out.println((new StringBuilder("+++++++++++++????????????????????")).append(riskcode).toString());
 		if (riskcode[0] == null || "".equals(riskcode[0]))
 		{
 			riskcode[0] = "Defult";
-			System.out.println("重置菜单组+++++Defult++++++++++++");
+			System.out.println("???\362????+++++Defult++++++++++++");
 		}
 		L_BankBonusMode = "";
 		L_BankAnnMode = "";
@@ -591,7 +591,7 @@ public class BankLNPCodeList
 		}
 		catch (Exception e)
 		{
-			System.out.println("根据配置表自动配置年金红利选项出错, 报错信息为：");
+			System.out.println("???????\361????????????????????, ??????????");
 			e.printStackTrace();
 		}
 		return;

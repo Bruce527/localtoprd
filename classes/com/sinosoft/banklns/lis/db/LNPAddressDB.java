@@ -54,7 +54,7 @@ public class LNPAddressDB extends LNPAddressSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressDB";
 			tError.functionName = "deleteSQL";
-			tError.errorMessage = "鎿嶄綔澶辫触!";
+			tError.errorMessage = "操作失败!";
 			mErrors.addOneError(tError);
 			return false;
 		}
@@ -70,7 +70,7 @@ public class LNPAddressDB extends LNPAddressSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressDB";
 			tError.functionName = "getCount";
-			tError.errorMessage = "鎿嶄綔澶辫触!";
+			tError.errorMessage = "操作失败!";
 			mErrors.addOneError(tError);
 			return -1;
 		} else
@@ -502,7 +502,7 @@ public class LNPAddressDB extends LNPAddressSchema
 		CError tError = new CError();
 		tError.moduleName = "LNPAddressDB";
 		tError.functionName = "getInfo";
-		tError.errorMessage = "鍙栨暟澶辫触!";
+		tError.errorMessage = "取数失败!";
 		mErrors.addOneError(tError);
 		try
 		{
@@ -670,7 +670,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPAddressDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql璇彞鏈夎锛岃鏌ョ湅琛ㄥ悕鍙婂瓧娈靛悕淇℃伅!";
+					tError.errorMessage = "sql语句有误，请查看表名及字段名信息!";
 					mErrors.addOneError(tError);
 				}
 			}
@@ -813,7 +813,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPAddressDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql璇彞鏈夎锛岃鏌ョ湅琛ㄥ悕鍙婂瓧娈靛悕淇℃伅!";
+					tError.errorMessage = "sql语句有误，请查看表名及字段名信息!";
 					mErrors.addOneError(tError);
 				}
 				aLNPAddressSet.add(s1);
@@ -882,7 +882,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAddressDB";
 				tError.functionName = "update";
-				tError.errorMessage = "鏇存柊鏁版嵁澶辫触!";
+				tError.errorMessage = "更新数据失败!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try
@@ -929,7 +929,7 @@ label0:
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressDB";
 			tError.functionName = "prepareData";
-			tError.errorMessage = "鏁版嵁闆嗛潪绌猴紝绋嬪簭鍦ㄥ噯澶囨暟鎹泦涔嬪悗锛屾病鏈夊叧闂紒";
+			tError.errorMessage = "数据集非空，程序在准备数据集之后，没有关闭！";
 			mErrors.addOneError(tError);
 			return false;
 		}
@@ -982,7 +982,7 @@ label0:
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressDB";
 			tError.functionName = "hasMoreData";
-			tError.errorMessage = "鏁版嵁闆嗕负绌猴紝璇峰厛鍑嗗鏁版嵁闆嗭紒";
+			tError.errorMessage = "数据集为空，请先准备数据集！";
 			mErrors.addOneError(tError);
 			return false;
 		}
@@ -1030,7 +1030,7 @@ label0:
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressDB";
 			tError.functionName = "getData";
-			tError.errorMessage = "鏁版嵁闆嗕负绌猴紝璇峰厛鍑嗗鏁版嵁闆嗭紒";
+			tError.errorMessage = "数据集为空，请先准备数据集！";
 			mErrors.addOneError(tError);
 			return null;
 		}
@@ -1088,7 +1088,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAddressDB";
 				tError.functionName = "closeData";
-				tError.errorMessage = "鏁版嵁闆嗗凡缁忓叧闂簡锛?";
+				tError.errorMessage = "数据集已经关闭了！";
 				mErrors.addOneError(tError);
 				flag = false;
 			} else
@@ -1113,7 +1113,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAddressDB";
 				tError.functionName = "closeData";
-				tError.errorMessage = "璇彞宸茬粡鍏抽棴浜嗭紒";
+				tError.errorMessage = "语句已经关闭了！";
 				mErrors.addOneError(tError);
 				flag = false;
 			} else

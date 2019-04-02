@@ -272,7 +272,7 @@ public class RiskCheckCenterImpl
 			String sex = reLNPAppntDB.getAppntSex();
 			String reSex = tempLNPRiskRoleSchema.getRiskRoleSex();
 			if (!reSex.equals("2") && !reSex.equals(sex))
-				errorList.add("Ͷ���˵��Ա������ֵ��ض���Ҫ��");
+				errorList.add("????????????????????????");
 			String MinAppAgeFlag = tempLNPRiskRoleSchema.getMinAppAgeFlag();
 			int minappAge = tempLNPRiskRoleSchema.getMinAppAge();
 			if (MinAppAgeFlag != null && MinAppAgeFlag.equals("Y"))
@@ -280,16 +280,16 @@ public class RiskCheckCenterImpl
 				if ("Y".equals(agetype))
 				{
 					if (minappAge > age)
-						errorList.add((new StringBuilder("Ͷ���˵�����[")).append(age).append("��]С������Ҫ�����С����[").append(minappAge).append("��]��").toString());
+						errorList.add((new StringBuilder("??????????[")).append(age).append("??]��????????????��????[").append(minappAge).append("??]??").toString());
 				} else
 				if ("D".equals(agetype))
-					errorList.add((new StringBuilder("Ͷ���˵�����[")).append(age).append("��]С������Ҫ�����С����[").append(minappAge).append("��]��").toString());
+					errorList.add((new StringBuilder("??????????[")).append(age).append("??]��????????????��????[").append(minappAge).append("??]??").toString());
 			} else
 			if (MinAppAgeFlag != null && birthday != null && birthday.length() > 0 && !"Y".equals(agetype) && "D".equals(agetype))
 			{
 				String flag = tempLNPRiskRoleSchema.getMinAppAgeFlag();
 				if (flag.equals("D") && minappAge > age)
-					errorList.add((new StringBuilder("Ͷ���˵�����[")).append(age).append("��").append("]С������Ҫ�����С����[").append(minappAge).append("��").append("]��").toString());
+					errorList.add((new StringBuilder("??????????[")).append(age).append("??").append("]��????????????��????[").append(minappAge).append("??").append("]??").toString());
 			}
 			String MAXAppAgeFlag = tempLNPRiskRoleSchema.getMAXAppAgeFlag();
 			int MAXAppAge = tempLNPRiskRoleSchema.getMAXAppAge();
@@ -298,7 +298,7 @@ public class RiskCheckCenterImpl
 				if ("Y".equals(agetype))
 				{
 					if (MAXAppAge < age)
-						errorList.add((new StringBuilder("Ͷ���˵�����[")).append(age).append("��]��������Ҫ����������[").append(MAXAppAge).append("��]��").toString());
+						errorList.add((new StringBuilder("??????????[")).append(age).append("??]???????????????????[").append(MAXAppAge).append("??]??").toString());
 				} else
 				{
 					"D".equals(agetype);
@@ -306,13 +306,13 @@ public class RiskCheckCenterImpl
 			} else
 			if (MAXAppAgeFlag != null && birthday != null && birthday.length() > 0)
 				if ("Y".equals(agetype))
-					errorList.add((new StringBuilder("Ͷ���˵�����[")).append(age).append("��]��������Ҫ����������[").append(MAXAppAge).append("��]��").toString());
+					errorList.add((new StringBuilder("??????????[")).append(age).append("??]???????????????????[").append(MAXAppAge).append("??]??").toString());
 				else
 				if ("D".equals(agetype))
 				{
 					String flag = tempLNPRiskRoleSchema.getMAXAppAgeFlag();
 					if (flag.equals("D") && MAXAppAge < age)
-						errorList.add((new StringBuilder("Ͷ���˵�����[")).append(age).append("��").append("]��������Ҫ����������[").append(minappAge).append("��").append("]��").toString());
+						errorList.add((new StringBuilder("??????????[")).append(age).append("??").append("]???????????????????[").append(minappAge).append("??").append("]??").toString());
 				}
 		}
 		eeLNPRiskRoleDB = new LNPRiskRoleDB();
@@ -332,7 +332,7 @@ public class RiskCheckCenterImpl
 			String sex = reLNPInsuredDB.getSex();
 			String reSex = tempLNPRiskRoleSchema.getRiskRoleSex();
 			if (!reSex.equals("2") && !reSex.equals(sex))
-				errorList.add("�����˵��Ա������ֵ��ض���Ҫ��");
+				errorList.add("?????????????????????????");
 			String MinAppAgeFlag = tempLNPRiskRoleSchema.getMinAppAgeFlag();
 			int minappAge = tempLNPRiskRoleSchema.getMinAppAge();
 			if (MinAppAgeFlag != null && MinAppAgeFlag.equals("Y"))
@@ -340,16 +340,16 @@ public class RiskCheckCenterImpl
 				if ("Y".equals(agetype))
 				{
 					if (minappAge > age)
-						errorList.add((new StringBuilder("�����˵�����[")).append(age).append("��]С������Ҫ�����С����[").append(minappAge).append("��]��").toString());
+						errorList.add((new StringBuilder("???????????[")).append(age).append("??]��????????????��????[").append(minappAge).append("??]??").toString());
 				} else
 				if ("D".equals(agetype))
-					errorList.add((new StringBuilder("�����˵�����[")).append(age).append("��]С������Ҫ�����С����[").append(minappAge).append("��]��").toString());
+					errorList.add((new StringBuilder("???????????[")).append(age).append("??]��????????????��????[").append(minappAge).append("??]??").toString());
 			} else
 			if (MinAppAgeFlag != null && birthday != null && birthday.length() > 0 && !"Y".equals(agetype) && "D".equals(agetype))
 			{
 				String flag = tempLNPRiskRoleSchema.getMinAppAgeFlag();
 				if (flag.equals("D") && minappAge > age)
-					errorList.add((new StringBuilder("�����˵�����[")).append(age).append("��").append("]С������Ҫ�����С����[").append(minappAge).append("��").append("]��").toString());
+					errorList.add((new StringBuilder("???????????[")).append(age).append("??").append("]��????????????��????[").append(minappAge).append("??").append("]??").toString());
 			}
 			String MAXAppAgeFlag = tempLNPRiskRoleSchema.getMAXAppAgeFlag();
 			int MAXAppAge = tempLNPRiskRoleSchema.getMAXAppAge();
@@ -358,7 +358,7 @@ public class RiskCheckCenterImpl
 				if ("Y".equals(agetype))
 				{
 					if (MAXAppAge < age)
-						errorList.add((new StringBuilder("�����˵�����[")).append(age).append("��]��������Ҫ����������[").append(MAXAppAge).append("��]��").toString());
+						errorList.add((new StringBuilder("???????????[")).append(age).append("??]???????????????????[").append(MAXAppAge).append("??]??").toString());
 				} else
 				{
 					"D".equals(agetype);
@@ -366,13 +366,13 @@ public class RiskCheckCenterImpl
 			} else
 			if (MAXAppAgeFlag != null && birthday != null && birthday.length() > 0)
 				if ("Y".equals(agetype))
-					errorList.add((new StringBuilder("�����˵�����[")).append(age).append("��]��������Ҫ����������[").append(MAXAppAge).append("��]��").toString());
+					errorList.add((new StringBuilder("???????????[")).append(age).append("??]???????????????????[").append(MAXAppAge).append("??]??").toString());
 				else
 				if ("D".equals(agetype))
 				{
 					String flag = tempLNPRiskRoleSchema.getMAXAppAgeFlag();
 					if (flag.equals("D") && MAXAppAge < age)
-						errorList.add((new StringBuilder("�����˵�����[")).append(age).append("��").append("]��������Ҫ����������[").append(minappAge).append("��").append("]��").toString());
+						errorList.add((new StringBuilder("???????????[")).append(age).append("??").append("]???????????????????[").append(minappAge).append("??").append("]??").toString());
 				}
 		}
 		return errorList;
@@ -408,8 +408,8 @@ public class RiskCheckCenterImpl
 			occupationType = reLNPOccupationDB.getPaRate();
 		else
 			occupationType = reLNPOccupationDB.getPaRate();
-		if ("�ܱ�".equals(occupationType))
-			errorList.add((new StringBuilder("ϵͳ�ܱ���ǰְҵ[")).append(reLNPOccupationDB.getOccupationName()).append("]").toString());
+		if ("???".equals(occupationType))
+			errorList.add((new StringBuilder("??????????[")).append(reLNPOccupationDB.getOccupationName()).append("]").toString());
 		String sql = (new StringBuilder("select * from lnpdutypay where PayPlanCode in (select payplancode from LnpDutyPayRela where dutycode in (select dutycode from lnpriskduty where  riskcode='")).append(inPolElementSchema.getRiskCode()).append("'))").toString();
 		LNPDutyPayDB reLNPDutyPayDB = new LNPDutyPayDB();
 		LNPDutyPaySet teLNPDutyPaySet = reLNPDutyPayDB.executeQuery(sql);
@@ -418,7 +418,7 @@ public class RiskCheckCenterImpl
 			reLNPDutyPayDB = teLNPDutyPaySet.get(1).getDB();
 			String flag = reLNPDutyPayDB.getZeroFlag();
 			if ("N".equalsIgnoreCase(flag) && inPolElementSchema.getPrem() == 0.0D)
-				errorList.add("�����?4�ı��Ѳ���Ϊ0,����ɷ����뱻�����������Ƿ�ƥ��򱻱�����ְҵ�ȼ��Ƿ񳬹����ơ�");
+				errorList.add("?????4?????????0,????????????????????????????????????????????????");
 		}
 		sql = (new StringBuilder("select * from lnpdutyget where getdutycode in (select getdutycode from LnpDutygetRela where dutycode in (select dutycode from lnpriskduty where  riskcode='")).append(inPolElementSchema.getRiskCode()).append("'))").toString();
 		LNPDutyGetDB reLNPDutyGetDB = new LNPDutyGetDB();
@@ -428,7 +428,7 @@ public class RiskCheckCenterImpl
 			reLNPDutyGetDB = reLNPDutyGetSet.get(1).getDB();
 			String flag = reLNPDutyGetDB.getZeroFlag();
 			if ("N".equalsIgnoreCase(flag) && inPolElementSchema.getAmnt() == 0.0D)
-				errorList.add("�����?4�ı����Ϊ0");
+				errorList.add("?????4????????0");
 		}
 		return errorList;
 	}

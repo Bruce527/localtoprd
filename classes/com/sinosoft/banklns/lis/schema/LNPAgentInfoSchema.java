@@ -377,7 +377,7 @@ public class LNPAgentInfoSchema
 		}
 		catch (SQLException sqle)
 		{
-			System.out.println("数据库中的LNPAgentInfo表字段个数和Schema中的字段个数不一致，或者执行db.executeQuery查询时没有使用select * from tables");
+			System.out.println("??????е?LNPAgentInfo????θ?????Schema?е???θ???????\243????????db.executeQuery????\373?????select * from tables");
 			CError tError = new CError();
 			tError.moduleName = "LNPAgentInfoSchema";
 			tError.functionName = "setSchema";

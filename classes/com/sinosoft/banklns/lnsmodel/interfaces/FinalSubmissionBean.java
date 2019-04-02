@@ -286,6 +286,16 @@ public class FinalSubmissionBean extends PublicInterfaces
 				updateText(questionArea, "QUESTSET", "MTQTM");
 			else
 				updateText(questionArea, "QUESTSET", "MTQBA");
+			boolean isDoHiuTianShi = false;
+			for (int i = 1; i <= tLNPPolSet.size(); i++)
+			{
+				LNPPolSchema tempPol1 = tLNPPolSet.get(i);
+				if ("MR12BQ".equals(tempPol1.getRiskCode()) || "MR12BR".equals(tempPol1.getRiskCode()))
+					isDoHiuTianShi = true;
+			}
+
+			if (isDoHiuTianShi)
+				updateText(questionArea, "QUESTSET", "MTQB1");
 			LNPCodeSet codeSet = new LNPCodeSet();
 			LNPCodeDB db = new LNPCodeDB(con);
 			db.setCodeType("QueCodeMapping");
@@ -300,6 +310,12 @@ public class FinalSubmissionBean extends PublicInterfaces
 				Element tempElement = (Element)question.clone();
 				updateText(tempElement, "QUESTIDF", codeSet.get(i).getCodeName());
 				updateText(tempElement, "ANSWER", mappingQues(codeSet.get(i).getCodeName(), codeSet.get(i).getOtherSign(), tLNPContSchema.getContNo(), saleChannel));
+				String qid = codeSet.get(i).getCodeName();
+				if (!isDoHiuTianShi && "B04".equals(qid))
+				{
+					updateText(tempElement, "QUESTIDF", "B03");
+					updateText(tempElement, "ANSWER", "");
+				}
 				questionList.addContent(tempElement);
 			}
 

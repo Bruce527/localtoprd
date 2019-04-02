@@ -104,13 +104,13 @@ public class AppntPersonInfo
 				} else
 				{
 					infoSource = "add";
-					System.out.println("ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½");
+					System.out.println("?????????");
 				}
 			} else
 			{
 				infoSource = "undo";
 				operateResult = false;
-				message = "ä¿å•å·ã?æŠ•ä¿äººIDä¿¡æ¯ä¸¢å¤±";
+				message = "±£µ¥ºÅ¡¢Í¶±£ÈËIDĞÅÏ¢¶ªÊ§";
 			}
 			Boolean getEditFlag = (Boolean)session.getAttribute("editFlag");
 			if (getEditFlag != null && !getEditFlag.booleanValue())
@@ -127,7 +127,7 @@ public class AppntPersonInfo
 			e.printStackTrace();
 			infoSource = "undo";
 			operateResult = false;
-			message = "ä¿å•å·ã?æŠ•ä¿äººIDä¿¡æ¯ä¸¢å¤±";
+			message = "±£µ¥ºÅ¡¢Í¶±£ÈËIDĞÅÏ¢¶ªÊ§";
 		}
 		System.out.println(" -- appntpersoninfo initData end-- ");
 	}
@@ -170,7 +170,7 @@ public class AppntPersonInfo
 		if (!checkConn(connectionWithInsurance))
 		{
 			showMessageFlag = true;
-			message = "éœ?æä¾›ä¹¦é¢è¯´æ˜";
+			message = "ĞèÌá¹©ÊéÃæËµÃ÷";
 		}
 	}
 
@@ -317,7 +317,7 @@ public class AppntPersonInfo
 		} else
 		{
 			operateResult = true;
-			message = "è¯¥èŒä¸šä»£ç ä¸å­˜åœ¨ï¼?";
+			message = "¸ÃÖ°Òµ´úÂë²»´æÔÚ£¡";
 		}
 	}
 
@@ -327,13 +327,13 @@ public class AppntPersonInfo
 		operateResult = true;
 		if (connectionWithInsurance == null || connectionWithInsurance.equals("-1"))
 		{
-			message = "ä¸è¢«ä¿äººå…³ç³»ä¸èƒ½ä¸ºç©ºï¼?";
+			message = "Óë±»±£ÈË¹ØÏµ²»ÄÜÎª¿Õ£¡";
 			operateResult = false;
 			return;
 		}
 		if (infoSource.equals("undo"))
 		{
-			message = "æŠ•ä¿ä¹¦ä¿¡æ¯ä¸¢å¤±ï¼";
+			message = "Í¶±£ÊéĞÅÏ¢¶ªÊ§£¡";
 			operateResult = false;
 			return;
 		}
@@ -353,14 +353,14 @@ public class AppntPersonInfo
 		String ageType = "";
 		agePer = LNPPubFun.getAgeByBirthdayNew(appntSchema.getAppntBirthday(), contSch.getPValiDate());
 		age = agePer;
-		if (agePer.indexOf("å¤?") > -1)
+		if (agePer.indexOf("Ìì") > -1)
 		{
 			ageType = "D";
-			agePer = agePer.substring(0, agePer.indexOf("ï¼?"));
+			agePer = agePer.substring(0, agePer.indexOf("£¨"));
 		} else
 		{
 			ageType = "Y";
-			agePer = agePer.substring(0, agePer.indexOf("ï¼?"));
+			agePer = agePer.substring(0, agePer.indexOf("£¨"));
 		}
 		appntSchema.setAppntAge(agePer);
 		appntSchema.setAppntAgeType(ageType);
@@ -369,18 +369,18 @@ public class AppntPersonInfo
 			operateResult = false;
 		} else
 		{
-			System.out.println((new StringBuilder("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½---")).append(infoSource).toString());
+			System.out.println((new StringBuilder("???????---")).append(infoSource).toString());
 			if (infoSource.equals("add"))
 			{
 				if (addAppntOfNewCustomer())
 				{
-					message = "æŠ•ä¿äººä¿¡æ¯ä¿å­˜æˆåŠŸï¼";
+					message = "Í¶±£ÈËĞÅÏ¢±£´æ³É¹¦£¡";
 					operateResult = true;
 				}
 			} else
 			if (infoSource.equals("modify") && modifyappntPeople())
 			{
-				message = "æŠ•ä¿äººä¿¡æ¯ä¿å­˜æˆåŠŸï¼";
+				message = "Í¶±£ÈËĞÅÏ¢±£´æ³É¹¦£¡";
 				operateResult = true;
 			}
 		}
@@ -500,7 +500,7 @@ public class AppntPersonInfo
 		lnpContSch.setAppntIDNo(addAppntSch.getIDNo());
 		if (appntid == null || "".equals(appntid))
 		{
-			message = "æŠ•ä¿äººä¿¡æ¯ä¿å­˜é”™è¯¯ï¼";
+			message = "Í¶±£ÈËĞÅÏ¢±£´æ´íÎó£¡";
 			flag = false;
 			return false;
 		}
@@ -522,8 +522,8 @@ public class AppntPersonInfo
 		vd.add(map);
 		if (!ps.submitData(vd, ""))
 		{
-			System.out.println("-AppntPeopleInfo-æ’å…¥é”™è¯¯");
-			message = "æŠ•ä¿äººä¿¡æ¯ä¿å­˜é”™è¯¯ï¼";
+			System.out.println("-AppntPeopleInfo-²åÈë´íÎó");
+			message = "Í¶±£ÈËĞÅÏ¢±£´æ´íÎó£¡";
 			flag = false;
 		} else
 		{
@@ -544,8 +544,8 @@ public class AppntPersonInfo
 					boolean updateflag = tExeSQL.execUpdateSQL(upSQL);
 					if (!updateflag)
 					{
-						System.out.println("-AppntPeopleInfo-æ’å…¥é”™è¯¯2");
-						message = "æŠ•ä¿äººä¿¡æ¯ä¿å­˜é”™è¯¯ï¼";
+						System.out.println("-AppntPeopleInfo-²åÈë´íÎó2");
+						message = "Í¶±£ÈËĞÅÏ¢±£´æ´íÎó£¡";
 					}
 				}
 			}
@@ -606,7 +606,7 @@ public class AppntPersonInfo
 				modifylnpPersonSchema.setIDValidity(modifyAppntPeopleSchema.getIDValidity());
 				modifylnpPersonSchema.setModifyDate(date);
 				modifylnpPersonSchema.setModifyTime(time);
-				System.out.println((new StringBuilder("ï¿½Ş¸ÄµÄ¿Í»ï¿½ï¿½ï¿½Ö·id--")).append(modifylnpAddressSchema.getAddressNo()).toString());
+				System.out.println((new StringBuilder("?????????id--")).append(modifylnpAddressSchema.getAddressNo()).toString());
 				modifylnpAddressSchema.setPostalAddress(lnpAddressSchema.getPostalAddress());
 				modifylnpAddressSchema.setZipCode(lnpAddressSchema.getZipCode());
 				modifylnpAddressSchema.setPhone(lnpAddressSchema.getPhone());
@@ -641,14 +641,14 @@ public class AppntPersonInfo
 				map.put(lnpContSch, "UPDATE");
 			} else
 			{
-				message = "æ•°æ®åº“ä¸­æœªæŸ¥è¯¢åˆ°æŠ•ä¿äººä¿¡æ¯ï¼";
+				message = "Êı¾İ¿âÖĞÎ´²éÑ¯µ½Í¶±£ÈËĞÅÏ¢£¡";
 			}
 			VData vd = new VData();
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				System.out.println("-AppntredPersonInfo-ï¿½Ş¸Ä´ï¿½ï¿½ï¿½");
-				message = "Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?";
+				System.out.println("-AppntredPersonInfo-??????");
+				message = "???????????????";
 				flag = false;
 			} else
 			{
@@ -661,7 +661,7 @@ public class AppntPersonInfo
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			message = "Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?";
+			message = "???????????????";
 			flag = false;
 		}
 		System.out.println("-- modifyappntPeople end --");
@@ -670,7 +670,7 @@ public class AppntPersonInfo
 
 	private boolean afterupdateAppnt(String contno)
 	{
-		System.out.println("-----ï¿½Ğ??ï¿½ï¿½ ï¿½Ş¸Ä±ï¿½ï¿½ï¿½ï¿½Ë¹ï¿½ï¿? É¾ï¿½ï¿½Ë±ï¿½ï¿½ï¿½ï¿½Û¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿? ----");
+		System.out.println("-----?§Ò??? ?????????? ???????????????? ----");
 		boolean flag = false;
 		try
 		{
@@ -781,47 +781,47 @@ public class AppntPersonInfo
 	{
 		if (appntSchema.getAppntName() == null || appntSchema.getAppntName().equals(""))
 		{
-			message = "Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "???????????????";
 			return false;
 		}
 		if (!ValidateTools.isValidString1(appntSchema.getAppntName()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+			message = "??????????\274???????????";
 			return false;
 		}
 		if (appntSchema.getAppntSex() == null || appntSchema.getAppntSex().equals("-1") || appntSchema.getAppntSex().equals(""))
 		{
-			message = "Í¶ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "??????????????";
 			return false;
 		}
 		if (appntSchema.getAppntBirthday() == null || appntSchema.getAppntBirthday().equals(""))
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "???????????????";
 			return false;
 		}
 		if (appntSchema.getAppntAge() == 0)
 		{
-			message = "Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä²»ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "???????????????";
 			return false;
 		}
 		if (appntSchema.getMarriage() == null || appntSchema.getMarriage().equals("-1") || appntSchema.getMarriage().equals(""))
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½×´ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "?????????????";
 			return false;
 		}
 		if (appntSchema.getNativePlace() == null || appntSchema.getNativePlace().equals("-1") || appntSchema.getNativePlace().equals(""))
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "????????";
 			return false;
 		}
 		if (appntSchema.getIDType() == null || appntSchema.getIDType().equals("-1") || appntSchema.getIDType().equals(""))
 		{
-			message = "Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "??????????????";
 			return false;
 		}
 		if (appntSchema.getIDNo() == null || appntSchema.getIDNo().equals(""))
 		{
-			message = "Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "?????????????";
 			return false;
 		}
 		if (appntSchema.getIDType().equals("1"))
@@ -835,63 +835,63 @@ public class AppntPersonInfo
 		}
 		if (appntSchema.getOccupationCode() == null || appntSchema.getOccupationCode().equals(""))
 		{
-			message = "Ö°Òµï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "????????????";
 			return false;
 		}
 		if (lnpAddressSchema.getPostalAddress() == null || lnpAddressSchema.getPostalAddress().equals(""))
 		{
-			message = "ï¿½Õ·Ñµï¿½Ö·ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "?????????????";
 			return false;
 		}
 		if (lnpAddressSchema.getPhone() == null || lnpAddressSchema.getPhone().equals(""))
 		{
-			message = "ï¿½Õ·Ñµç»°ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "???´Â????????";
 			return false;
 		}
 		if (lnpAddressSchema.getZipCode() == null || lnpAddressSchema.getZipCode().equals(""))
 		{
-			message = "ï¿½Õ·ï¿½ï¿½Ê±à²»ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "????????????";
 			return false;
 		}
 		if (lnpAddressSchema.getGrpName() != null && !lnpAddressSchema.getGrpName().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getGrpName()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ë¹¤ï¿½ï¿½Î»ï¿½ï¿½";
+			message = "??????????\274????¦Ë??";
 			return false;
 		}
 		if (lnpAddressSchema.getCompanyZipCode() != null && !lnpAddressSchema.getCompanyZipCode().equals("") && !ValidateTools.isValidZipCode(lnpAddressSchema.getCompanyZipCode()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ëµ¥Î»ï¿½Ê±à£¡";
+			message = "??????????\274??¦Ë???";
 			return false;
 		}
 		if (lnpAddressSchema.getCompanyAddress() != null && !lnpAddressSchema.getCompanyAddress().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getCompanyAddress()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ëµ¥Î»ï¿½ï¿½Ö·ï¿½ï¿½";
+			message = "??????????\274??¦Ë?????";
 			return false;
 		}
 		if (lnpAddressSchema.getCompanyMail() != null && !lnpAddressSchema.getCompanyMail().equals("") && !ValidateTools.isValidString4(lnpAddressSchema.getCompanyMail()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ëµ¥Î»ï¿½ï¿½ï¿½Ê£ï¿½";
+			message = "??????????\274??¦Ë?????";
 			lnpAddressSchema.setCompanyMail("");
 			return false;
 		}
 		if (lnpAddressSchema.getHomeAddress() != null && !lnpAddressSchema.getHomeAddress().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getHomeAddress()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ï¿½×¡Ö·ï¿½ï¿½";
+			message = "??????????\274??????";
 			return false;
 		}
 		if (lnpAddressSchema.getHomeZipCode() != null && !lnpAddressSchema.getHomeZipCode().equals("") && !ValidateTools.isValidZipCode(lnpAddressSchema.getHomeZipCode()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ï¿½ï¿½Ê±à£¡";
+			message = "??????????\274?????";
 			return false;
 		}
 		if (lnpAddressSchema.getPostalAddress() != null && !lnpAddressSchema.getPostalAddress().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getPostalAddress()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ï¿½ï¿½Õ·Ñµï¿½Ö·ï¿½ï¿½";
+			message = "??????????\274?????????";
 			return false;
 		}
 		if (lnpAddressSchema.getZipCode() != null && !lnpAddressSchema.getZipCode().equals("") && !ValidateTools.isValidZipCode(lnpAddressSchema.getZipCode()))
 		{
-			message = "ï¿½ë°´ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½Ê½Â¼ï¿½ï¿½ï¿½Õ·ï¿½ï¿½Ê±à£¡";
+			message = "??????????\274????????";
 			return false;
 		} else
 		{

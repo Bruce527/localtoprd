@@ -131,7 +131,7 @@ public class EAIProxy
 			if ("test".equals(tSSRS.GetText(1, 1)))
 			{
 				returnXml = doProcessTest(doc);
-				System.out.println("接口返回报文：");
+				System.out.println("??????????");
 				System.out.println(returnXml);
 			} else
 			if ("interface".equals(tSSRS.GetText(1, 1)))
@@ -161,7 +161,7 @@ public class EAIProxy
 		if ("test".equals(tSSRS.GetText(1, 1)))
 		{
 			returnXml = doProcessTest(doc);
-			System.out.println("接口返回报文：");
+			System.out.println("??????????");
 			System.out.println(returnXml);
 		} else
 		if ("interface".equals(tSSRS.GetText(1, 1)))
@@ -172,13 +172,13 @@ public class EAIProxy
 	private String doProcessTest(org.jdom.Document doc)
 		throws Exception
 	{
-		System.out.println("进入接口交互测试方法");
-		System.out.println("传入xml的值：");
+		System.out.println("????????????????");
+		System.out.println("????xml?????");
 		System.out.println(doc);
 		XMLByJDOM tXMLByJDOM = new XMLByJDOM();
 		String rootPath = WebApplication.getInstance().getServletContextPath();
 		String returnStr = tXMLByJDOM.transformXMLToString(tXMLByJDOM.loadXMLFileByJDOM((new StringBuilder(String.valueOf(rootPath != null ? ((Object) (rootPath)) : ""))).append("returnfile").append(File.separator).append(returnFileName).append(".xml").toString()));
-		System.out.println("接口返回值：");
+		System.out.println("?????????");
 		System.out.println(returnStr);
 		return returnStr;
 	}
@@ -212,9 +212,9 @@ public class EAIProxy
 		if (!NBFlag() || !agentFlag())
 			break MISSING_BLOCK_LABEL_395;
 		json = nc.ConversionXML("dupli_out", doc);
-		System.out.println((new StringBuilder("相似客户请求：")).append(json).toString());
+		System.out.println((new StringBuilder("??????????")).append(json).toString());
 		message = callPosNB(ssrs.GetText(1, 2), json, "dupli_out");
-		System.out.println((new StringBuilder("相似客户返回：")).append(message).toString());
+		System.out.println((new StringBuilder("???????????")).append(message).toString());
 		return message;
 		if (!"aura_out".equals(returnFileName) && !"appnt_out".equals(returnFileName))
 			break MISSING_BLOCK_LABEL_375;
@@ -223,9 +223,9 @@ public class EAIProxy
 		if (!NBFlag() || !agentFlag())
 			break MISSING_BLOCK_LABEL_395;
 		String json = nc.ConversionXML("aura_out", doc);
-		System.out.println((new StringBuilder("核保请求：")).append(json).toString());
+		System.out.println((new StringBuilder("???????")).append(json).toString());
 		message = callPosNB(ssrs.GetText(1, 3), json, "aura_out");
-		System.out.println((new StringBuilder("核保返回：")).append(message).toString());
+		System.out.println((new StringBuilder("????????")).append(message).toString());
 		return message;
 		if ("issue_out".equals(returnFileName))
 			tESBEnvelopeESBHeader.setSrvOpName("NBUPLService");
@@ -311,7 +311,7 @@ public class EAIProxy
 			OutputStream outputStream = httpConnection.getOutputStream();
 			outputStream.write(reqJsonStr.getBytes());
 			outputStream.flush();
-			System.out.println((new StringBuilder("返回码：")).append(httpConnection.getResponseCode()).toString());
+			System.out.println((new StringBuilder("??????")).append(httpConnection.getResponseCode()).toString());
 			if (httpConnection.getResponseCode() != 200)
 				throw new RuntimeException((new StringBuilder("Failed : HTTP error code : ")).append(httpConnection.getResponseCode()).toString());
 			BufferedReader responseBuffer = new BufferedReader(new InputStreamReader(httpConnection.getInputStream(), "UTF-8"));
@@ -324,17 +324,17 @@ public class EAIProxy
 		catch (MalformedURLException e)
 		{
 			e.printStackTrace();
-			responseStr = "调用NB异常!";
+			responseStr = "????NB??!";
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
-			responseStr = "调用NB异常!";
+			responseStr = "????NB??!";
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			responseStr = "调用NB异常!";
+			responseStr = "????NB??!";
 		}
 		return responseStr;
 	}

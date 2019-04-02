@@ -60,11 +60,11 @@ public class ImpartDeal
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					System.out.println("-ImpartDeal-�������?");
-					message = "JAVA : ���֪��Ϣ�������";
+					System.out.println("-ImpartDeal-???????");
+					message = "JAVA : ??????????????";
 				} else
 				{
-					message = "JAVA : ���֪��Ϣ����ɹ���";
+					message = "JAVA : ???????????????";
 					flag = true;
 				}
 			}
@@ -174,7 +174,7 @@ public class ImpartDeal
 									relSet.add(relSch);
 								} else
 								{
-									errorMsg = "��ѯ��֪�����??";
+									errorMsg = "????????????";
 								}
 								if (!ValidateTools.isExistUselessChar(request.getParameter((new StringBuilder("R")).append(tSSRS1.GetText(i, 1)).toString())))
 									isExistUselessCharTag = false;
@@ -182,7 +182,7 @@ public class ImpartDeal
 
 					} else
 					{
-						errorMsg = "��ѯ��֪�����??";
+						errorMsg = "????????????";
 					}
 					System.out.println((new StringBuilder("-- relset.size --")).append(relSet.size()).toString());
 					if (relSet.size() > 0)
@@ -192,16 +192,16 @@ public class ImpartDeal
 							ImpartDeal impartDeal = new ImpartDeal();
 							flag = impartDeal.dealImpResult(relSet, operateType, contSch);
 							if (flag)
-								errorMsg = "��֪����ɹ���?";
+								errorMsg = "???????????";
 							else
-								errorMsg = "��֪����ʧ��!";
+								errorMsg = "??????????!";
 						} else
 						{
-							errorMsg = " �����˸�֪�洢��SQL�а�Ƿ��ַ�? ��";
+							errorMsg = " ?????????��??SQL?��?????? ??";
 						}
 					} else
 					{
-						errorMsg = "����д��֪���ݣ�";
+						errorMsg = "????��????????";
 					}
 					System.out.println(errorMsg);
 				}

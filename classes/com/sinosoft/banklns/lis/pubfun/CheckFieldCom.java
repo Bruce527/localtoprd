@@ -36,13 +36,13 @@ public class CheckFieldCom
 	private boolean InitData(VData InputData)
 	{
 		if (InputData == null)
-			return SetError("InitData", "浼犲叆鍙傛暟(VData)涓嶈兘涓虹┖锛?");
+			return SetError("InitData", "传入参数(VData)不能为空！");
 		mFieldCarrier = (FieldCarrier)InputData.getObjectByObjectName("FieldCarrier", 0);
 		if (mFieldCarrier == null)
-			return SetError("InitData", "浼犲叆鍙傛暟(FieldCarrier)涓嶈兘涓虹┖锛?");
+			return SetError("InitData", "传入参数(FieldCarrier)不能为空！");
 		mLNPCheckFieldSchema = (LNPCheckFieldSchema)InputData.getObjectByObjectName("LNPCheckFieldSchema", 0);
 		if (mLNPCheckFieldSchema == null)
-			return SetError("InitData", "浼犲叆鍙傛暟(LNPCheckFieldSchema)涓嶈兘涓虹┖锛?");
+			return SetError("InitData", "传入参数(LNPCheckFieldSchema)不能为空！");
 		else
 			return true;
 	}
@@ -65,11 +65,11 @@ public class CheckFieldCom
 				}
 				catch (Exception ex)
 				{
-					System.out.println((new StringBuilder("鎶涘嚭渚嬪锛?")).append(ex.toString()).toString());
+					System.out.println((new StringBuilder("抛出例外：")).append(ex.toString()).toString());
 					return SetError("SaveField", ex.toString());
 				}
 			else
-				return SetError("SaveField", (new StringBuilder("浼犲叆鍙傛暟鐨勫瓧娈?")).append(fieldName).append("灞炴?т负涓嶈兘瀛樺彇锛?").toString());
+				return SetError("SaveField", (new StringBuilder("传入参数的字段")).append(fieldName).append("属性为不能存取！").toString());
 		}
 
 		return true;

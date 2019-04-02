@@ -335,7 +335,7 @@ public class LNPCustImpartSchema
 		}
 		catch (SQLException sqle)
 		{
-			System.out.println("鏁版嵁搴撲腑鐨凩NPCustImpart琛ㄥ瓧娈典釜鏁板拰Schema涓殑瀛楁涓暟涓嶄竴鑷达紝鎴栬?呮墽琛宒b.executeQuery鏌ヨ鏃舵病鏈変娇鐢╯elect * from tables");
+			System.out.println("数据库中的LNPCustImpart表字段个数和Schema中的字段个数不一致，或者执行db.executeQuery查询时没有使用select * from tables");
 			CError tError = new CError();
 			tError.moduleName = "LNPCustImpartSchema";
 			tError.functionName = "setSchema";

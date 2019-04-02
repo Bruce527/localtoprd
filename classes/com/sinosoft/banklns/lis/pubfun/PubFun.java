@@ -522,12 +522,12 @@ public class PubFun
 		String s0 = "";
 		if (money == 0.0D)
 		{
-			ChnMoney = "é›¶å…ƒæ•?";
+			ChnMoney = "ÁãÔªÕû";
 			return ChnMoney;
 		}
 		if (money < 0.0D)
 		{
-			s0 = "è´?";
+			s0 = "¸º";
 			money *= -1D;
 		}
 		String sMoney = (new DecimalFormat("0")).format(money * 100D);
@@ -547,8 +547,8 @@ public class PubFun
 			sDot = sMoney.substring(nLen - 2, nLen);
 		}
 		String sFormatStr = formatStr(sInteger);
-		String s1 = getChnM(sFormatStr.substring(0, 4), "äº?");
-		String s2 = getChnM(sFormatStr.substring(4, 8), "ä¸?");
+		String s1 = getChnM(sFormatStr.substring(0, 4), "ÒÚ");
+		String s2 = getChnM(sFormatStr.substring(4, 8), "Íò");
 		String s3 = getChnM(sFormatStr.substring(8, 12), "");
 		String s4 = getDotM(sDot);
 		if (s1.length() > 0 && s1.substring(0, 1).equals("0"))
@@ -572,15 +572,15 @@ public class PubFun
 			s3 = "";
 			s4 = (new StringBuilder("0")).append(s4).toString();
 		}
-		ChnMoney = (new StringBuilder(String.valueOf(s0))).append(s1).append(s2).append(s3).append("å…?").append(s4).toString();
+		ChnMoney = (new StringBuilder(String.valueOf(s0))).append(s1).append(s2).append(s3).append("Ôª").append(s4).toString();
 		if (ChnMoney.substring(0, 1).equals("0"))
 			ChnMoney = ChnMoney.substring(1, ChnMoney.length());
 		for (int i = 0; i < ChnMoney.length(); i++)
 			if (ChnMoney.substring(i, i + 1).equals("0"))
-				ChnMoney = (new StringBuilder(String.valueOf(ChnMoney.substring(0, i)))).append("é›?").append(ChnMoney.substring(i + 1, ChnMoney.length())).toString();
+				ChnMoney = (new StringBuilder(String.valueOf(ChnMoney.substring(0, i)))).append("Áã").append(ChnMoney.substring(i + 1, ChnMoney.length())).toString();
 
 		if (sDot.substring(1, 2).equals("0"))
-			ChnMoney = (new StringBuilder(String.valueOf(ChnMoney))).append("æ•?").toString();
+			ChnMoney = (new StringBuilder(String.valueOf(ChnMoney))).append("Õû").toString();
 		return ChnMoney;
 	}
 
@@ -588,11 +588,11 @@ public class PubFun
 	{
 		String sMoney = "";
 		if (!sIn.substring(0, 1).equals("0"))
-			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(sIn.substring(0, 1))).append("è§?").toString();
+			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(sIn.substring(0, 1))).append("½Ç").toString();
 		else
 			sMoney = (new StringBuilder(String.valueOf(sMoney))).append("0").toString();
 		if (!sIn.substring(1, 2).equals("0"))
-			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(sIn.substring(1, 2))).append("åˆ?").toString();
+			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(sIn.substring(1, 2))).append("·Ö").toString();
 		else
 			sMoney = (new StringBuilder(String.valueOf(sMoney))).append("0").toString();
 		return sMoney;
@@ -609,7 +609,7 @@ public class PubFun
 		}
 		if (!strUnit.substring(0, 1).equals("0"))
 		{
-			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(strUnit.substring(0, 1))).append("ä»?").toString();
+			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(strUnit.substring(0, 1))).append("Çª").toString();
 		} else
 		{
 			sMoney = (new StringBuilder(String.valueOf(sMoney))).append("0").toString();
@@ -617,7 +617,7 @@ public class PubFun
 		}
 		if (!strUnit.substring(1, 2).equals("0"))
 		{
-			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(strUnit.substring(1, 2))).append("ä½?").toString();
+			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(strUnit.substring(1, 2))).append("°Û").toString();
 			flag = false;
 		} else
 		if (!flag)
@@ -627,7 +627,7 @@ public class PubFun
 		}
 		if (!strUnit.substring(2, 3).equals("0"))
 		{
-			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(strUnit.substring(2, 3))).append("æ‹?").toString();
+			sMoney = (new StringBuilder(String.valueOf(sMoney))).append(getNum(strUnit.substring(2, 3))).append("Ê°").toString();
 			flag = false;
 		} else
 		if (!flag)
@@ -669,43 +669,43 @@ public class PubFun
 		switch (iValue)
 		{
 		case 0: // '\0'
-			sNum = "é›?";
+			sNum = "Áã";
 			break;
 
 		case 1: // '\001'
-			sNum = "å£?";
+			sNum = "Ò¼";
 			break;
 
 		case 2: // '\002'
-			sNum = "è´?";
+			sNum = "·¡";
 			break;
 
 		case 3: // '\003'
-			sNum = "å?";
+			sNum = "Èþ";
 			break;
 
 		case 4: // '\004'
-			sNum = "è‚?";
+			sNum = "ËÁ";
 			break;
 
 		case 5: // '\005'
-			sNum = "ä¼?";
+			sNum = "Îé";
 			break;
 
 		case 6: // '\006'
-			sNum = "é™?";
+			sNum = "Â½";
 			break;
 
 		case 7: // '\007'
-			sNum = "æŸ?";
+			sNum = "Æâ";
 			break;
 
 		case 8: // '\b'
-			sNum = "æ?";
+			sNum = "°Æ";
 			break;
 
 		case 9: // '\t'
-			sNum = "çŽ?";
+			sNum = "¾Á";
 			break;
 		}
 		return sNum;
@@ -808,7 +808,7 @@ public class PubFun
 		strMain = strMain.trim();
 		if (strMain.length() <= strDelimiters.length())
 		{
-			System.out.println("åˆ†éš”ç¬¦ä¸²é•¿åº¦å¤§äºŽç­‰äºŽä¸»å­—ç¬¦ä¸²é•¿åº¦ï¼Œä¸èƒ½è¿›è¡Œæ‹†åˆ†ï¼");
+			System.out.println("·Ö¸ô·û´®³¤¶È´óÓÚµÈÓÚÖ÷×Ö·û´®³¤¶È£¬²»ÄÜ½øÐÐ²ð·Ö£¡");
 			return null;
 		}
 		intIndex = strMain.indexOf(strDelimiters);
@@ -1109,9 +1109,9 @@ public class PubFun
 					{
 						String SubriskFlag = riskSSRS.GetText(i, 2);
 						if ("M".equals(SubriskFlag))
-							SubriskFlag = "ä¸»çº¦";
+							SubriskFlag = "Ö÷Ô¼";
 						else
-							SubriskFlag = "é™„çº¦";
+							SubriskFlag = "¸½Ô¼";
 						riskFlagDataHashMap.put(riskSSRS.GetText(i, 1), SubriskFlag);
 					}
 

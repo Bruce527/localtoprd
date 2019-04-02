@@ -248,7 +248,7 @@ public class LNPFAndIImpOptionSchema
 		}
 		catch (SQLException sqle)
 		{
-			System.out.println("ï¿½ï¿½Ý¿ï¿½ï¿½Ðµï¿½LNPFAndIImpOptionï¿½ï¿½ï¿½Ö¶Î¸ï¿½ï¿½ï¿½ï¿½Schemaï¿½Ðµï¿½ï¿½Ö¶Î¸ï¿½ï¿½ï¿½Ò»ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½db.executeQueryï¿½ï¿½Ñ¯Ê±Ã»ï¿½ï¿½Ê¹ï¿½ï¿½select * from tables");
+			System.out.println("?????§Ö?LNPFAndIImpOption????¦È????Schema?§Ö???¦È?????\243????????db.executeQuery????\373?????select * from tables");
 			CError tError = new CError();
 			tError.moduleName = "LNPFAndIImpOptionSchema";
 			tError.functionName = "setSchema";

@@ -354,7 +354,7 @@ public class RiskImpl
 		List result = new ArrayList();
 		LNPCodeSchema temp = new LNPCodeSchema();
 		temp.setCode("");
-		temp.setCodeName("��������");
+		temp.setCodeName("????????");
 		result.add(temp);
 		result.addAll(list);
 		return result;

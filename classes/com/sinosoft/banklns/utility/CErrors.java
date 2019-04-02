@@ -200,7 +200,7 @@ public class CErrors
 
 	public String getErrContent()
 	{
-		content = (new StringBuilder("????????? ")).append(vErrors.size()).append(" ?????\n").toString();
+		content = (new StringBuilder("��һ������ ")).append(vErrors.size()).append(" �����\n").toString();
 		String forbitContent = "";
 		String needSelectContent = "";
 		String allowContent = "";
@@ -209,25 +209,25 @@ public class CErrors
 		{
 			CError tError = (CError)vErrors.get(i);
 			if (tError.errorType.equals("1"))
-				forbitContent = (new StringBuilder(String.valueOf(forbitContent))).append("  ").append("?????????").append(tError.errorNo).append("??").append(tError.errorMessage).append("\n").toString();
+				forbitContent = (new StringBuilder(String.valueOf(forbitContent))).append("  ").append("���������?").append(tError.errorNo).append("��").append(tError.errorMessage).append("\n").toString();
 			else
 			if (tError.errorType.equals("3"))
-				needSelectContent = (new StringBuilder(String.valueOf(needSelectContent))).append("  ").append("?????????").append(tError.errorNo).append("??").append(tError.errorMessage).append("\n").toString();
+				needSelectContent = (new StringBuilder(String.valueOf(needSelectContent))).append("  ").append("���������?").append(tError.errorNo).append("��").append(tError.errorMessage).append("\n").toString();
 			else
 			if (tError.errorType.equals("2"))
-				allowContent = (new StringBuilder(String.valueOf(allowContent))).append("  ").append("?????????").append(tError.errorNo).append("??").append(tError.errorMessage).append("\n").toString();
+				allowContent = (new StringBuilder(String.valueOf(allowContent))).append("  ").append("���������?").append(tError.errorNo).append("��").append(tError.errorMessage).append("\n").toString();
 			else
-				unknowContent = (new StringBuilder(String.valueOf(unknowContent))).append("  ").append("????????????????").append(tError.errorMessage).append("\n").toString();
+				unknowContent = (new StringBuilder(String.valueOf(unknowContent))).append("  ").append("��������룺�������").append(tError.errorMessage).append("\n").toString();
 		}
 
 		if (!forbitContent.equals(""))
-			content = (new StringBuilder(String.valueOf(content))).append("???????????:\n").append(forbitContent).toString();
+			content = (new StringBuilder(String.valueOf(content))).append("���ش�������:\n").append(forbitContent).toString();
 		if (!needSelectContent.equals(""))
-			content = (new StringBuilder(String.valueOf(content))).append("??????????????:\n").append(needSelectContent).toString();
+			content = (new StringBuilder(String.valueOf(content))).append("��Ҫѡ��Ĵ�������?:\n").append(needSelectContent).toString();
 		if (!allowContent.equals(""))
-			content = (new StringBuilder(String.valueOf(content))).append("???????????????:\n").append(allowContent).toString();
+			content = (new StringBuilder(String.valueOf(content))).append("������ֵĴ�������?:\n").append(allowContent).toString();
 		if (!unknowContent.equals(""))
-			content = (new StringBuilder(String.valueOf(content))).append("???????????:\n").append(unknowContent).toString();
+			content = (new StringBuilder(String.valueOf(content))).append("�����������?:\n").append(unknowContent).toString();
 		return content;
 	}
 
@@ -235,18 +235,18 @@ public class CErrors
 	{
 		if (cerrors.getErrType().equals("0"))
 		{
-			content = "??????";
+			content = "����ɹ�?";
 			flag = "Success";
 		} else
 		{
 			String ErrorContent = cerrors.getErrContent();
 			if (cerrors.getErrType().equals("2"))
 			{
-				content = (new StringBuilder("?????????????")).append(PubFun.changForHTML(ErrorContent)).toString();
+				content = (new StringBuilder("����ɹ������ǣ�?")).append(PubFun.changForHTML(ErrorContent)).toString();
 				flag = "Success";
 			} else
 			{
-				content = (new StringBuilder("??????????????")).append(PubFun.changForHTML(ErrorContent)).toString();
+				content = (new StringBuilder("����ʧ�ܣ�ԭ���ǣ�")).append(PubFun.changForHTML(ErrorContent)).toString();
 				flag = "Fail";
 			}
 		}
@@ -257,18 +257,18 @@ public class CErrors
 		String type = (String)v.get(0);
 		if (type.equals("0"))
 		{
-			content = "??????";
+			content = "����ɹ�?";
 			flag = "Success";
 			if (v.size() > 1)
 				result = (String)v.get(1);
 		} else
 		if (type.equals("2"))
 		{
-			content = (new StringBuilder("?????????????")).append(PubFun.changForHTML((String)v.get(1))).toString();
+			content = (new StringBuilder("����ɹ������ǣ�?")).append(PubFun.changForHTML((String)v.get(1))).toString();
 			flag = "Success";
 		} else
 		{
-			content = (new StringBuilder("??????????????")).append(PubFun.changForHTML((String)v.get(1))).toString();
+			content = (new StringBuilder("����ʧ�ܣ�ԭ���ǣ�")).append(PubFun.changForHTML((String)v.get(1))).toString();
 			flag = "Fail";
 		}
 	}

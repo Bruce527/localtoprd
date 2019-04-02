@@ -282,10 +282,10 @@ public class LNPCodeList
 	public List getLoanNameList()
 	{
 		loanNameList = new ArrayList();
-		loanNameList.add(new SelectItem(new String("姹借溅璐锋"), "姹借溅璐锋"));
-		loanNameList.add(new SelectItem(new String("淇＄敤璐锋"), "淇＄敤璐锋"));
-		loanNameList.add(new SelectItem(new String("涓汉鍊熻捶"), "涓汉鍊熻捶"));
-		loanNameList.add(new SelectItem(new String("鍏朵粬鑷畾涔?"), "鍏朵粬鑷畾涔?"));
+		loanNameList.add(new SelectItem(new String("汽车贷款"), "汽车贷款"));
+		loanNameList.add(new SelectItem(new String("信用贷款"), "信用贷款"));
+		loanNameList.add(new SelectItem(new String("个人借贷"), "个人借贷"));
+		loanNameList.add(new SelectItem(new String("其他自定义"), "其他自定义"));
 		return loanNameList;
 	}
 
@@ -297,9 +297,9 @@ public class LNPCodeList
 	public List getSchoolType()
 	{
 		schoolType = new ArrayList();
-		schoolType.add(new SelectItem(new String("c0"), "鍏珛"));
-		schoolType.add(new SelectItem(new String("c1"), "绉佺珛"));
-		schoolType.add(new SelectItem(new String("c2"), "澧冨"));
+		schoolType.add(new SelectItem(new String("c0"), "公立"));
+		schoolType.add(new SelectItem(new String("c1"), "私立"));
+		schoolType.add(new SelectItem(new String("c2"), "境外"));
 		return schoolType;
 	}
 
@@ -312,9 +312,9 @@ public class LNPCodeList
 	{
 		burialType = new ArrayList();
 		burialType.add(new SelectItem(new String("f0"), ""));
-		burialType.add(new SelectItem(new String("f1"), "1绾?"));
-		burialType.add(new SelectItem(new String("f2"), "2绾?"));
-		burialType.add(new SelectItem(new String("f3"), "3绾?"));
+		burialType.add(new SelectItem(new String("f1"), "1级"));
+		burialType.add(new SelectItem(new String("f2"), "2级"));
+		burialType.add(new SelectItem(new String("f3"), "3级"));
 		return burialType;
 	}
 
@@ -326,8 +326,8 @@ public class LNPCodeList
 	public List getSexList()
 	{
 		sexList = new ArrayList();
-		sexList.add(new SelectItem(new String("0"), "鐢?"));
-		sexList.add(new SelectItem(new String("1"), "濂?"));
+		sexList.add(new SelectItem(new String("0"), "男"));
+		sexList.add(new SelectItem(new String("1"), "女"));
 		return sexList;
 	}
 
@@ -620,10 +620,10 @@ public class LNPCodeList
 	public List getFeeNameList()
 	{
 		feeNameList = new ArrayList();
-		feeNameList.add(new SelectItem(new String("鏃呮父璐圭敤"), "鏃呮父璐圭敤"));
-		feeNameList.add(new SelectItem(new String("缁撳璐圭敤"), "缁撳璐圭敤"));
-		feeNameList.add(new SelectItem(new String("淇濋櫓璐?"), "淇濋櫓璐?"));
-		feeNameList.add(new SelectItem(new String("鍏朵粬鑷畾涔?"), "鍏朵粬鑷畾涔?"));
+		feeNameList.add(new SelectItem(new String("旅游费用"), "旅游费用"));
+		feeNameList.add(new SelectItem(new String("结婚费用"), "结婚费用"));
+		feeNameList.add(new SelectItem(new String("保险费"), "保险费"));
+		feeNameList.add(new SelectItem(new String("其他自定义"), "其他自定义"));
 		return feeNameList;
 	}
 
@@ -635,10 +635,10 @@ public class LNPCodeList
 	public List getHospitalStageList()
 	{
 		hospitalStageList = new ArrayList();
-		hospitalStageList.add(new SelectItem("h0", "涓夌骇鐢茬瓑"));
-		hospitalStageList.add(new SelectItem("h1", "涓夌骇涔欑瓑"));
-		hospitalStageList.add(new SelectItem("h2", "浜岀骇鐢茬瓑"));
-		hospitalStageList.add(new SelectItem("h3", "浜岀骇涔欑瓑"));
+		hospitalStageList.add(new SelectItem("h0", "三级甲等"));
+		hospitalStageList.add(new SelectItem("h1", "三级乙等"));
+		hospitalStageList.add(new SelectItem("h2", "二级甲等"));
+		hospitalStageList.add(new SelectItem("h3", "二级乙等"));
 		return hospitalStageList;
 	}
 
@@ -650,8 +650,8 @@ public class LNPCodeList
 	public List getHosRoomStageList()
 	{
 		hosRoomStageList = new ArrayList();
-		hosRoomStageList.add(new SelectItem("h0", "鍗曚汉闂?"));
-		hosRoomStageList.add(new SelectItem("h1", "澶氫汉闂?"));
+		hosRoomStageList.add(new SelectItem("h0", "单人间"));
+		hosRoomStageList.add(new SelectItem("h1", "多人间"));
 		return hosRoomStageList;
 	}
 
@@ -684,9 +684,9 @@ public class LNPCodeList
 	public List getIncomeDataList()
 	{
 		incomeDataList = new ArrayList();
-		incomeDataList.add(new SelectItem(new String("绉熸埧鏀跺叆"), "绉熸埧鏀跺叆"));
-		incomeDataList.add(new SelectItem(new String("瀛愬コ濂夊吇閲?"), "瀛愬コ濂夊吇閲?"));
-		incomeDataList.add(new SelectItem(new String("鍏朵粬鑷畾涔?"), "鍏朵粬鑷畾涔?"));
+		incomeDataList.add(new SelectItem(new String("租房收入"), "租房收入"));
+		incomeDataList.add(new SelectItem(new String("子女奉养金"), "子女奉养金"));
+		incomeDataList.add(new SelectItem(new String("其他自定义"), "其他自定义"));
 		return incomeDataList;
 	}
 
@@ -698,11 +698,11 @@ public class LNPCodeList
 	public List getInvestDataList()
 	{
 		investDataList = new ArrayList();
-		investDataList.add(new SelectItem(new String("鍌ㄨ搫"), "鍌ㄨ搫"));
-		investDataList.add(new SelectItem(new String("鎶曡祫鎬ф埧鍦颁骇"), "鎶曡祫鎬ф埧鍦颁骇"));
-		investDataList.add(new SelectItem(new String("鑲＄エ"), "鑲＄エ"));
-		investDataList.add(new SelectItem(new String("鍩洪噾"), "鍩洪噾"));
-		investDataList.add(new SelectItem(new String("鍏朵粬鑷畾涔?"), "鍏朵粬鑷畾涔?"));
+		investDataList.add(new SelectItem(new String("储蓄"), "储蓄"));
+		investDataList.add(new SelectItem(new String("投资性房地产"), "投资性房地产"));
+		investDataList.add(new SelectItem(new String("股票"), "股票"));
+		investDataList.add(new SelectItem(new String("基金"), "基金"));
+		investDataList.add(new SelectItem(new String("其他自定义"), "其他自定义"));
 		return investDataList;
 	}
 
@@ -714,9 +714,9 @@ public class LNPCodeList
 	public List getInsuranceList()
 	{
 		insuranceList = new ArrayList();
-		insuranceList.add(new SelectItem(new String("0"), "缁堣韩"));
-		insuranceList.add(new SelectItem(new String("1"), "鍏昏??"));
-		insuranceList.add(new SelectItem(new String("2"), "瀹氭湡"));
+		insuranceList.add(new SelectItem(new String("0"), "终身"));
+		insuranceList.add(new SelectItem(new String("1"), "养老"));
+		insuranceList.add(new SelectItem(new String("2"), "定期"));
 		return insuranceList;
 	}
 
@@ -728,11 +728,11 @@ public class LNPCodeList
 	public List getTfeeNameList()
 	{
 		tfeeNameList = new ArrayList();
-		tfeeNameList.add(new SelectItem(new String("閬椾骇澶勭疆"), "閬椾骇澶勭疆"));
-		tfeeNameList.add(new SelectItem(new String("鎶ょ悊璐圭敤"), "鎶ょ悊璐圭敤"));
-		tfeeNameList.add(new SelectItem(new String("鍖荤枟璐圭敤"), "鍖荤枟璐圭敤"));
-		tfeeNameList.add(new SelectItem(new String("鏃呮父璐圭敤"), "鏃呮父璐圭敤"));
-		tfeeNameList.add(new SelectItem(new String("鍏朵粬鑷畾涔?"), "鍏朵粬鑷畾涔?"));
+		tfeeNameList.add(new SelectItem(new String("遗产处置"), "遗产处置"));
+		tfeeNameList.add(new SelectItem(new String("护理费用"), "护理费用"));
+		tfeeNameList.add(new SelectItem(new String("医疗费用"), "医疗费用"));
+		tfeeNameList.add(new SelectItem(new String("旅游费用"), "旅游费用"));
+		tfeeNameList.add(new SelectItem(new String("其他自定义"), "其他自定义"));
 		return tfeeNameList;
 	}
 
@@ -744,8 +744,8 @@ public class LNPCodeList
 	public List getPayYearTypeList()
 	{
 		payYearTypeList = new ArrayList();
-		payYearTypeList.add(new SelectItem(new String("a"), "浜よ垂骞存湡 (骞?)"));
-		payYearTypeList.add(new SelectItem(new String("b"), "缂磋嚦骞撮緞 (宀?)"));
+		payYearTypeList.add(new SelectItem(new String("a"), "交费年期 (年)"));
+		payYearTypeList.add(new SelectItem(new String("b"), "缴至年龄 (岁)"));
 		return payYearTypeList;
 	}
 

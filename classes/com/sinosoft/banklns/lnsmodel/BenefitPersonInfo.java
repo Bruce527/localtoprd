@@ -110,7 +110,7 @@ public class BenefitPersonInfo
 		operateResult = true;
 		if (!checkScBnfExist(contNo))
 		{
-			message = "è¯·å…ˆå¡«å†™ç”Ÿå­˜å—ç›Šäººä¿¡æ?";
+			message = "ÇëÏÈÌîÐ´Éú´æÊÜÒæÈËÐÅÏ¢";
 			operateResult = false;
 			return;
 		}
@@ -140,7 +140,7 @@ public class BenefitPersonInfo
 			infoSource = "modify";
 			if (modifySgBnf())
 			{
-				message = "èº«æ•…å—ç›Šäººæ›´æ–°æˆåŠŸï¼";
+				message = "Éí¹ÊÊÜÒæÈË¸üÐÂ³É¹¦£¡";
 				contOrder();
 			} else
 			{
@@ -154,7 +154,7 @@ public class BenefitPersonInfo
 			infoSource = "add";
 			if (addSgBnf())
 			{
-				message = "èº«æ•…å—ç›Šäººä¿å­˜æˆåŠŸï¼";
+				message = "Éí¹ÊÊÜÒæÈË±£´æ³É¹¦£¡";
 				contOrder();
 			}
 		}
@@ -212,12 +212,12 @@ public class BenefitPersonInfo
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				System.out.println("-BenefitPersonInfo-åˆ é™¤é”™è¯¯");
-				message = "èº«æ•…å—ç›Šäººä¿¡æ¯åˆ é™¤å¤±è´¥ï¼";
+				System.out.println("-BenefitPersonInfo-É¾³ý´íÎó");
+				message = "Éí¹ÊÊÜÒæÈËÐÅÏ¢É¾³ýÊ§°Ü£¡";
 				operateResult = false;
 			} else
 			{
-				message = "èº«æ•…å—ç›Šäººä¿¡æ¯åˆ é™¤æˆåŠŸï¼";
+				message = "Éí¹ÊÊÜÒæÈËÐÅÏ¢É¾³ý³É¹¦£¡";
 				operateResult = true;
 				removeNodeFromList(bnfremoveid);
 				contOrder();
@@ -243,7 +243,7 @@ public class BenefitPersonInfo
 					vd.add(map);
 					if (!ps.submitData(vd, ""))
 					{
-						message = "æŠ•ä¿ä¹¦èµ„æ–™ç»´æŠ¤å¤±è´¥ï¼";
+						message = "Í¶±£Êé×ÊÁÏÎ¬»¤Ê§°Ü£¡";
 						operateResult = false;
 					}
 				}
@@ -262,7 +262,7 @@ public class BenefitPersonInfo
 		int sum = getBnfRateSumFun(bnfOrder);
 		if (sum != -1 && sum + bnfRate > 100)
 		{
-			message = "åŒä¸€å—ç›Šé¡ºåºå—ç›Šæ¯”ä¾‹ä¹‹å’Œä¸èƒ½å¤§äºŽ100";
+			message = "Í¬Ò»ÊÜÒæË³ÐòÊÜÒæ±ÈÀýÖ®ºÍ²»ÄÜ´óÓÚ100";
 			operateResult = false;
 			return false;
 		}
@@ -296,7 +296,7 @@ public class BenefitPersonInfo
 			bnfSgSchema.setInsuredId(contSch.getInsuredId());
 			break MISSING_BLOCK_LABEL_85;
 		}
-		message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê§ï¿½ï¿½";
+		message = "??????????????";
 		return null;
 		try
 		{
@@ -327,18 +327,18 @@ public class BenefitPersonInfo
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				System.out.println("-BenefitPersonInfo-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?");
-				message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+				System.out.println("-BenefitPersonInfo-???????");
+				message = "???????????????????";
 				operateResult = false;
 			} else
 			{
-				message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½";
+				message = "????????????????????";
 				operateResult = true;
 			}
 		}
 		catch (RuntimeException e)
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+			message = "???????????????????";
 			operateResult = false;
 			e.printStackTrace();
 		}
@@ -357,7 +357,7 @@ public class BenefitPersonInfo
 			int sum = getBnfRateSumFun(bnfOrder);
 			if (sum != -1 && (double)(sum + bnfRate) - modifySch.getBenefitRate() > 100D)
 			{
-				message = "Í¬Ò»ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½Í²ï¿½ï¿½Ü´ï¿½ï¿½ï¿?100";
+				message = "?????????????????????????100";
 				operateResult = false;
 				return false;
 			}
@@ -376,10 +376,10 @@ public class BenefitPersonInfo
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿?";
+				message = "????????????????";
 			} else
 			{
-				message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½Â³É¹ï¿½ï¿½ï¿?";
+				message = "???????????\263????";
 				modifyFLag = false;
 				reSetSgInfo();
 				flag = true;
@@ -388,7 +388,7 @@ public class BenefitPersonInfo
 			}
 		} else
 		{
-			message = "ï¿½ï¿½Ý¿ï¿½ï¿½Ð²ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿?";
+			message = "?????§Ó?????????????";
 		}
 		System.out.println((new StringBuilder("message : ")).append(message).toString());
 		initData();
@@ -525,16 +525,16 @@ public class BenefitPersonInfo
 		LNPPersonSchema lnpPerson = pf.getLnpPersonByCustomerId(contSch.getInsuredId());
 		if (!sex.equals(lnpPerson.getSex()) || !idType.equals(lnpPerson.getIDType()) || !bnfSgSchema.getIDNo().equals(lnpPerson.getIDNo()) || !bnfSgSchema.getBnfName().equals(lnpPerson.getName()) || !bnfSgSchema.getBnfBirthday().equals(lnpPerson.getBirthday()))
 			break MISSING_BLOCK_LABEL_176;
-		message = "ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿?";
+		message = "????????????????????????";
 		return false;
 		try
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿?";
+			message = "????????????????????????";
 		}
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½";
+			message = "????????????????????";
 			return false;
 		}
 		return false;
@@ -684,34 +684,34 @@ public class BenefitPersonInfo
 		message = "";
 		if (bnfSgSchema.getBnfName() == null || bnfSgSchema.getBnfName().trim().equals(""))
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "????????????????";
 			return false;
 		}
 		if (!ValidateTools.isValidString1(bnfSgSchema.getBnfName()))
 		{
-			message = (new StringBuilder("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")).append(ValidateTools.validString1ErrorMessage).toString();
+			message = (new StringBuilder("??????????")).append(ValidateTools.validString1ErrorMessage).toString();
 			return false;
 		}
 		if (bnfSgSchema.getBnfSex() == null || bnfSgSchema.getBnfSex().equals("") || bnfSgSchema.getBnfSex().equals("-1"))
 		{
-			message = "ï¿½Ô±ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "?????????";
 			return false;
 		}
 		if (bnfSgSchema.getBnfBirthday() == null || bnfSgSchema.getBnfBirthday().trim().equals(""))
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "???????????????";
 			return false;
 		}
 		if (!ValidateTools.isValidString1(bnfSgSchema.getBnfBirthday()))
 			return false;
 		if (bnfSgSchema.getIDType() == null || bnfSgSchema.getIDType().equals("") || bnfSgSchema.getIDType().equals("-1"))
 		{
-			message = "Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "??????????????";
 			return false;
 		}
 		if (bnfSgSchema.getIDNo() == null || bnfSgSchema.getIDNo().trim().equals(""))
 		{
-			message = "Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½Õ£ï¿½";
+			message = "?????????????";
 			return false;
 		}
 		if (bnfSgSchema.getIDType().equals("1"))
@@ -727,7 +727,7 @@ public class BenefitPersonInfo
 		{
 			if (bnfSgSchema.getIDValidity() == null || "".equals(bnfSgSchema.getIDValidity().trim()))
 			{
-				message = "Ö¤ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½";
+				message = "?????§¹???????????";
 				return false;
 			}
 			if (!ValidateTools.isValidString1(bnfSgSchema.getIDValidity()))
@@ -735,7 +735,7 @@ public class BenefitPersonInfo
 		}
 		if (bnfSgSchema.getBenefitRate() < 0.0D || bnfSgSchema.getBenefitRate() > 100D)
 		{
-			message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Î§Î?1-100";
+			message = "?????????§Õ??¦¶?1-100";
 			return false;
 		} else
 		{
@@ -766,7 +766,7 @@ public class BenefitPersonInfo
 		if (!checkConn(connectionWithInsurance_sg))
 		{
 			showMessageFlag = true;
-			message = "ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½";
+			message = "???????????";
 		}
 	}
 

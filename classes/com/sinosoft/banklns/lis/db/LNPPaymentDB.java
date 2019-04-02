@@ -45,7 +45,7 @@ public class LNPPaymentDB extends LNPPaymentSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPPaymentDB";
 			tError.functionName = "insert";
-			tError.errorMessage = "����ʧ��!";
+			tError.errorMessage = "???????!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -63,7 +63,7 @@ public class LNPPaymentDB extends LNPPaymentSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPPaymentDB";
 			tError.functionName = "update";
-			tError.errorMessage = "����ʧ��!";
+			tError.errorMessage = "???????!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -81,7 +81,7 @@ public class LNPPaymentDB extends LNPPaymentSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPPaymentDB";
 			tError.functionName = "deleteSQL";
-			tError.errorMessage = "����ʧ��!";
+			tError.errorMessage = "???????!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -99,7 +99,7 @@ public class LNPPaymentDB extends LNPPaymentSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPPaymentDB";
 			tError.functionName = "delete";
-			tError.errorMessage = "����ʧ��!";
+			tError.errorMessage = "???????!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -118,7 +118,7 @@ public class LNPPaymentDB extends LNPPaymentSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPPaymentDB";
 			tError.functionName = "getCount";
-			tError.errorMessage = "����ʧ��!";
+			tError.errorMessage = "???????!";
 			mErrors.addOneError(tError);
 			return -1;
 		} else
@@ -151,7 +151,7 @@ public class LNPPaymentDB extends LNPPaymentSchema
 		CError tError = new CError();
 		tError.moduleName = "LNPPaymentDB";
 		tError.functionName = "getInfo";
-		tError.errorMessage = "ȡ��ʧ��!";
+		tError.errorMessage = "??????!";
 		mErrors.addOneError(tError);
 		try
 		{
@@ -189,7 +189,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPPaymentDB";
 				tError.functionName = "getInfo";
-				tError.errorMessage = "δ�ҵ�������!";
+				tError.errorMessage = "��?????????!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try
@@ -324,7 +324,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPPaymentDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql���������鿴�����ֶ�����Ϣ!";
+					tError.errorMessage = "sql??????????????????????!";
 					mErrors.addOneError(tError);
 				}
 			}
@@ -467,7 +467,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPPaymentDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql���������鿴�����ֶ�����Ϣ!";
+					tError.errorMessage = "sql??????????????????????!";
 					mErrors.addOneError(tError);
 				}
 				aLNPPaymentSet.add(s1);
@@ -536,7 +536,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPPaymentDB";
 				tError.functionName = "update";
-				tError.errorMessage = "�������ʧ��?!";
+				tError.errorMessage = "??????????!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try

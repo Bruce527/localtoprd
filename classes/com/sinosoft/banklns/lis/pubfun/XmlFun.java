@@ -166,7 +166,7 @@ public class XmlFun
 
 	public static void main(String args[])
 	{
-		System.out.println(getChinaLength("娴嬭瘯TSR3浜?200408鏈堝簲浠樹剑閲?"));
+		System.out.println(getChinaLength("测试TSR3人200408月应付佣金"));
 	}
 
 }

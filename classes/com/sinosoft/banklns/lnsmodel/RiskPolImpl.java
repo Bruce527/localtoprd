@@ -76,7 +76,7 @@ public class RiskPolImpl
 
 	private boolean afterupdateRisk(String contno)
 	{
-		System.out.println("----- ɾ����޸����ֹ�� ɾ��˱����۶�������? ----");
+		System.out.println("----- ????????????? ???????????????? ----");
 		boolean flag = false;
 		try
 		{

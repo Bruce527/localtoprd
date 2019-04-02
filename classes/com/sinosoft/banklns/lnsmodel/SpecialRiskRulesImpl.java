@@ -22,7 +22,7 @@ public class SpecialRiskRulesImpl
 		String msg = "";
 		if (age == null || age.equals("") || degree == null || degree.equals("") || value == null || value.equals(""))
 		{
-			msg = "����д����Ͷ�ʱ��շѡ�����Ͷ�ʿ�ʼ���䡢����Ͷ���������?";
+			msg = "????��???????????????????????????????????????";
 			result.add(msg);
 		} else
 		{
@@ -32,17 +32,17 @@ public class SpecialRiskRulesImpl
 			int ivalue = Integer.parseInt(value);
 			if (iage < iappage)
 			{
-				msg = "����Ͷ�ʿ�ʼ������СΪͶ���˵�ǰ���䣡";
+				msg = "???????????????��????????????";
 				result.add(msg);
 			}
 			if (ivalue < 2000)
 			{
-				msg = "����Ͷ�ʱ��շ�ÿ������2000Ԫ��";
+				msg = "???????????\377??????2000???";
 				result.add(msg);
 			}
 			if (ivalue % 1000 != 0)
 			{
-				msg = "����Ͷ�ʱ��շ���1000Ϊ��λ��ӣ�?";
+				msg = "?????????????1000???��????";
 				result.add(msg);
 			}
 		}
@@ -55,7 +55,7 @@ public class SpecialRiskRulesImpl
 		String msg = "";
 		if (age == null || age.equals("") || degree == null || degree.equals("") || value == null || value.equals(""))
 		{
-			msg = "����д������ȡ��������ȡ��ʼ���䡢������ȡ������";
+			msg = "????��?????????��????????????????????????????";
 			result.add(msg);
 		} else
 		{
@@ -65,7 +65,7 @@ public class SpecialRiskRulesImpl
 			int tvalue = Integer.parseInt(value);
 			if (tage < tappage)
 			{
-				msg = "������ȡ��ʼ������СΪͶ���˵�ǰ���䣡";
+				msg = "????????????????��????????????";
 				result.add(msg);
 			}
 		}
@@ -79,7 +79,7 @@ public class SpecialRiskRulesImpl
 		String msg = "";
 		if (age == null || age.equals("") || protagonist.equals("0") && exponent.equals("0") && balance.equals("0") && solidity.equals("0") && prevent.equals("0"))
 		{
-			msg = "����д�ʻ�����ĸ���?";
+			msg = "????��???????????";
 			result.add(msg);
 		} else
 		{
@@ -100,7 +100,7 @@ public class SpecialRiskRulesImpl
 					String accAge = acc[0];
 					if (!age.equals(accAge))
 						continue;
-					msg = "�����˴������Ѿ�������ʻ����벻Ҫ�ظ����䣡��?";
+					msg = "????????????????????????????????????";
 					result.add(msg);
 					break;
 				}
@@ -108,17 +108,17 @@ public class SpecialRiskRulesImpl
 			} else
 			if (aage != aappage)
 			{
-				msg = "�ʻ������һ�������д��";
+				msg = "????????????????��??";
 				result.add(msg);
 			}
 			if (aage < aappage)
 			{
-				msg = "�ʻ�����������СΪͶ���˵�ǰ���䣡";
+				msg = "?????????????��????????????";
 				result.add(msg);
 			}
 			if (a != 100)
 			{
-				msg = "�������ʻ��ĺ�ӦΪ100%��";
+				msg = "??????????????100%??";
 				result.add(msg);
 			}
 		}

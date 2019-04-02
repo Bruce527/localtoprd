@@ -32,7 +32,7 @@ public class BankStateOperateDealNew extends BankStateOperateDeal
 		boolean flag = false;
 		if (contNo != null)
 		{
-			System.out.println("保单号不为空~什么都没做");
+			System.out.println("??????????~?\364??\373??");
 		} else
 		{
 			boolean tempFlag = false;
