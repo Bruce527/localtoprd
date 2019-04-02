@@ -84,13 +84,13 @@ public class SuggestToInsuranceQuery
 		tempGI = (IGlobalInput)session.getValue("NPGI");
 		if (tempGI == null)
 		{
-			message = "??\274????????????????\265?\275??";
+			message = "��¼��Ա��Ϣ��ʧ�������µ�½��";
 			alertFlag = true;
 			return;
 		}
 		if (tempGI.OperType == null || tempGI.OperType.equals(""))
 		{
-			message = "?????\275???\373?��???????????";
+			message = "��ǰ��½��Աû�н������ѯȨ�ޣ�?";
 			alertFlag = true;
 			return;
 		} else
@@ -107,7 +107,7 @@ public class SuggestToInsuranceQuery
 		stiBeanList = new ArrayList();
 		if (tempGI == null)
 		{
-			message = "?\365?\274???\373?��???????????";
+			message = "�õ�¼��Աû�н������ѯȨ�ޣ�?";
 			alertFlag = true;
 			return;
 		}
@@ -169,7 +169,7 @@ public class SuggestToInsuranceQuery
 					if (ssrs_p != null && ssrs_p.MaxRow > 0 && ssrs_p.GetText(1, 1) != null && !"".equals(ssrs_p.GetText(1, 1)) && !"NULL".equals(ssrs_p.GetText(1, 1).toUpperCase()))
 					{
 						String temoprem = ssrs_p.GetText(1, 1);
-						prem = (new StringBuilder(String.valueOf(formatMoney.format(Double.parseDouble(temoprem))))).append(" ?").toString();
+						prem = (new StringBuilder(String.valueOf(formatMoney.format(Double.parseDouble(temoprem))))).append(" Ԫ").toString();
 					}
 					temp.setPrem(prem);
 					stiBeanList.add(temp);
@@ -177,7 +177,7 @@ public class SuggestToInsuranceQuery
 
 			} else
 			{
-				message = " \373?��?????????";
+				message = " û�з������Ľ��?";
 				alertFlag = true;
 				if (stiBeanList != null)
 					stiBeanList.clear();
@@ -273,7 +273,7 @@ public class SuggestToInsuranceQuery
 	{
 		if (stiBean.getInsuredIDNo() != null && !"".equals(stiBean.getInsuredIDNo()) && !ValidateTools.isValidString2(stiBean.getInsuredIDNo()))
 		{
-			message = " ????????????????????????????��??";
+			message = " ������֤���Ÿ�ʽ����ȷ����������д��";
 			return false;
 		} else
 		{
@@ -324,13 +324,13 @@ public class SuggestToInsuranceQuery
 		if (tempGI == null)
 		{
 			alertFlag = true;
-			message = " ?????????????";
+			message = " Ͷ����ű���ʧ�ܣ�?";
 			return;
 		}
 		System.out.println((new StringBuilder("bean do sugNo : ")).append(sugNo).toString());
 		System.out.println((new StringBuilder("bean do sugInsuredNo : ")).append(sugInsuredNo).toString());
 		System.out.println((new StringBuilder("bean do sugAppntNo : ")).append(sugAppntNo).toString());
-		System.out.println("1. ?��?????");
+		System.out.println("1. �йػ���Ϣ");
 		lnpContSchema.setContNo(contNo);
 		lnpContSchema.setProposalContNo(lnpContSchema.getContNo());
 		lnpContSchema.setGrpContNo(LNPPubFun.getSysInfo("grpcontno"));
@@ -358,7 +358,7 @@ public class SuggestToInsuranceQuery
 		lnpContSchema.setMakeTime(time);
 		lnpContSchema.setPSignDate(date);
 		lnpContSchema.setPValiDate(countPValidate(date));
-		System.out.println("2.?��?????????");
+		System.out.println("2.�йر�������Ϣ");
 		lnpInsuredSchema.setGrpContNo(lnpContSchema.getGrpContNo());
 		lnpInsuredSchema.setContNo(contNo);
 		lnpInsuredSchema.setProposalContNo(contNo);
@@ -488,7 +488,7 @@ public class SuggestToInsuranceQuery
 			}
 		}
 		lnpInsuredSchema.setAddressNo(lnpInsAddressSchema.getAddressNo());
-		System.out.println("3.?��?????????");
+		System.out.println("3.�й�Ͷ������Ϣ");
 		lnpAppntSchema.setGrpContNo(lnpContSchema.getGrpContNo());
 		lnpAppntSchema.setContNo(contNo);
 		lnpAppntSchema.setProposalContNo(contNo);
@@ -620,7 +620,7 @@ public class SuggestToInsuranceQuery
 		lnpContSchema.setAppntBirthday(lnpAppntSchema.getAppntBirthday() == null ? "" : lnpAppntSchema.getAppntBirthday());
 		lnpContSchema.setAppntIDType(lnpAppntSchema.getIDType() == null ? "" : lnpAppntSchema.getIDType());
 		lnpContSchema.setAppntIDNo(lnpAppntSchema.getIDNo() == null ? "" : lnpAppntSchema.getIDNo());
-		System.out.println("4.?��????????");
+		System.out.println("4.�й�������Ϣ");
 		String lsMainPolSQL = (new StringBuilder("select riskcode from lspol where  polno = mainpolno and contno='")).append(sugNo).append("' ").toString();
 		if (sugInsuredNo != null && !"".equals(sugInsuredNo))
 			lsMainPolSQL = (new StringBuilder(String.valueOf(lsMainPolSQL))).append(" and insuredno='").append(sugInsuredNo).append("' ").toString();
@@ -742,7 +742,7 @@ public class SuggestToInsuranceQuery
 
 			}
 		}
-		System.out.println("5.?????????????......");
+		System.out.println("5.����Ͷ������ݿ�?......");
 		map.put(lnpContSchema, "INSERT");
 		map.put(lnpInsuredSchema, "INSERT");
 		map.put(lnpInsPersonSchema, "INSERT");
@@ -754,9 +754,9 @@ public class SuggestToInsuranceQuery
 		vd.add(map);
 		if (!ps.submitData(vd, ""))
 		{
-			System.out.println("---SuggestToInsurance---??????????");
+			System.out.println("---SuggestToInsurance---������ݴ���?");
 			alertFlag = true;
-			message = " ???????????�g?????";
+			message = " ������תͶ���鱣�����?";
 		}
 		System.out.println("---doSuggestToInsurance End---");
 	}
@@ -779,7 +779,7 @@ public class SuggestToInsuranceQuery
 		if (sugNo == null || "" == sugNo)
 		{
 			alertFlag = true;
-			message = " ???????????�g????????????????????????? ";
+			message = " ������תͶ���鱣�������ȷ�Ͻ�������Ϣ�Ƿ�����? ";
 			return false;
 		} else
 		{
@@ -861,13 +861,13 @@ public class SuggestToInsuranceQuery
 		if (alertFlag)
 		{
 			contNo = "";
-			message = " ????��????????????????";
+			message = " ����д��Ӧ�����Ͷ�����ţ�?";
 			return;
 		}
 		if (!Pattern.matches("^[0-9]{10}", checkedContNo.substring(2)))
 		{
 			contNo = "";
-			message = " ??????????\274??????????";
+			message = " �밴����ȷ��ʽ¼��Ͷ�����ţ�";
 			alertFlag = true;
 			return;
 		}
@@ -886,7 +886,7 @@ public class SuggestToInsuranceQuery
 		{
 			alertFlag = true;
 			contNo = "";
-			message = "?????????????????????";
+			message = "��Ͷ��������ϵͳ���Ѵ��ڣ�";
 		} else
 		{
 			alertFlag = false;

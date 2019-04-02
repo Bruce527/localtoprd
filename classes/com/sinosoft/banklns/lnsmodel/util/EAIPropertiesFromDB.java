@@ -56,12 +56,10 @@ public class EAIPropertiesFromDB
 			sql = "select sysvarvalue from lnpsysvar where sysvar='SoapAddress'";
 			tSSRS = tExeSQL.execSQL(sql);
 			SoapAddress = tSSRS.GetText(1, 1);
-			SoapAddress = "http://eai-a-sit.metlifechina.local/esbwebentry/ESBWebEntry.asmx";
-			System.out.println(SoapAddress);
 			sql = "select sysvarvalue from lnpsysvar where sysvar='SoapAction'";
 			tSSRS = tExeSQL.execSQL(sql);
 			SoapAction = tSSRS.GetText(1, 1);
-			break MISSING_BLOCK_LABEL_256;
+			break MISSING_BLOCK_LABEL_242;
 		}
 		catch (Exception e)
 		{
@@ -76,7 +74,7 @@ public class EAIPropertiesFromDB
 		{
 			e.printStackTrace();
 		}
-		break MISSING_BLOCK_LABEL_281;
+		break MISSING_BLOCK_LABEL_267;
 		Exception exception;
 		exception;
 		try

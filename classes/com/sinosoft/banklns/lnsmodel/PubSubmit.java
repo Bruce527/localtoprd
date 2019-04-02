@@ -94,10 +94,10 @@ _L6:
 		className = (new StringBuilder("com.sinosoft.banklns.lis.db.")).append(className.substring(className.lastIndexOf(".") + 1, className.lastIndexOf("S"))).append("DB").toString();
 		String tSQL = (String)o;
 		ExeSQL tExeSQL = new ExeSQL(conn);
-		System.out.println((new StringBuilder("Ö´ĞĞSQLÓï¾ä:")).append(tSQL).toString());
+		System.out.println((new StringBuilder("æ‰§è¡ŒSQLè¯­å¥:")).append(tSQL).toString());
 		if (tExeSQL.execUpdateSQL(tSQL))
 			continue; /* Loop/switch isn't completed */
-		CError.buildErr(this, "Ö´ĞĞ¸üĞÂÓï¾äÊ§°Ü");
+		CError.buildErr(this, "æ‰§è¡Œæ›´æ–°è¯­å¥å¤±è´¥");
 		conn.rollback();
 		conn.close();
 		return false;
@@ -107,10 +107,10 @@ _L7:
 		className = (new StringBuilder("com.sinosoft.banklns.lis.db.")).append(className.substring(className.lastIndexOf(".") + 1, className.lastIndexOf("S"))).append("DB").toString();
 		String tSQL = (String)o;
 		ExeSQL tExeSQL = new ExeSQL(conn);
-		System.out.println((new StringBuilder("Ö´ĞĞSQLÓï¾ä:")).append(tSQL).toString());
+		System.out.println((new StringBuilder("æ‰§è¡ŒSQLè¯­å¥:")).append(tSQL).toString());
 		if (tExeSQL.execUpdateSQL(tSQL))
 			continue; /* Loop/switch isn't completed */
-		CError.buildErr(this, "Ö´ĞĞÉ¾³ıÓï¾äÊ§°Ü");
+		CError.buildErr(this, "æ‰§è¡Œåˆ é™¤è¯­å¥å¤±è´¥");
 		conn.rollback();
 		conn.close();
 		return false;
@@ -119,10 +119,10 @@ _L8:
 		className = (new StringBuilder("com.sinosoft.banklns.lis.db.")).append(className.substring(className.lastIndexOf(".") + 1, className.lastIndexOf("S"))).append("DB").toString();
 		String tSQL = (String)o;
 		ExeSQL tExeSQL = new ExeSQL(conn);
-		System.out.println((new StringBuilder("Ö´ĞĞSQLÓï¾ä:")).append(tSQL).toString());
+		System.out.println((new StringBuilder("æ‰§è¡ŒSQLè¯­å¥:")).append(tSQL).toString());
 		if (tExeSQL.execUpdateSQL(tSQL))
 			continue; /* Loop/switch isn't completed */
-		CError.buildErr(this, (new StringBuilder("Ö´ĞĞ²åÈëÓï¾äÊ§°ÜÔ­Òò£º")).append(tExeSQL.mErrors.getError(0).errorMessage).toString());
+		CError.buildErr(this, (new StringBuilder("æ‰§è¡Œæ’å…¥è¯­å¥å¤±è´¥åŸå› ï¼?")).append(tExeSQL.mErrors.getError(0).errorMessage).toString());
 		conn.rollback();
 		conn.close();
 		return false;
@@ -155,7 +155,7 @@ _L10:
 		Boolean b = (Boolean)m.invoke(DBObject, null);
 		if (b.booleanValue())
 			continue; /* Loop/switch isn't completed */
-		CError.buildErr(this, "Ö´ĞĞ²åÈëÓï¾äÊ§°Ü");
+		CError.buildErr(this, "æ‰§è¡Œæ’å…¥è¯­å¥å¤±è´¥");
 		try
 		{
 			conn.rollback();
@@ -171,7 +171,7 @@ _L11:
 		Boolean b = (Boolean)m.invoke(DBObject, null);
 		if (b.booleanValue())
 			continue; /* Loop/switch isn't completed */
-		CError.buildErr(this, "Ö´ĞĞ¸üĞÂÓï¾äÊ§°Ü");
+		CError.buildErr(this, "æ‰§è¡Œæ›´æ–°è¯­å¥å¤±è´¥");
 		try
 		{
 			conn.rollback();
@@ -186,7 +186,7 @@ _L11:
 		Boolean b = (Boolean)m.invoke(DBObject, null);
 		if (b.booleanValue())
 			continue; /* Loop/switch isn't completed */
-		CError.buildErr(this, "Ö´ĞĞÉ¾³ıÓï¾äÊ§°Ü");
+		CError.buildErr(this, "æ‰§è¡Œåˆ é™¤è¯­å¥å¤±è´¥");
 		try
 		{
 			conn.rollback();
@@ -201,7 +201,7 @@ _L11:
 		Boolean b = (Boolean)m.invoke(DBObject, null);
 		if (b.booleanValue())
 			break MISSING_BLOCK_LABEL_1417;
-		CError.buildErr(this, "Ö´ĞĞÉ¾³ı£¬²åÈëÓï¾äÊ§°Ü");
+		CError.buildErr(this, "æ‰§è¡Œåˆ é™¤ï¼Œæ’å…¥è¯­å¥å¤±è´?");
 		try
 		{
 			conn.rollback();
@@ -216,7 +216,7 @@ _L11:
 			Boolean b = (Boolean)m.invoke(DBObject, null);
 			if (b.booleanValue())
 				continue; /* Loop/switch isn't completed */
-			CError.buildErr(this, "Ö´ĞĞ²åÈëÓï¾äÊ§°Ü");
+			CError.buildErr(this, "æ‰§è¡Œæ’å…¥è¯­å¥å¤±è´¥");
 			try
 			{
 				conn.rollback();

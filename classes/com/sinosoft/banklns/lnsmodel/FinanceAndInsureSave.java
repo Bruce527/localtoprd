@@ -34,11 +34,11 @@ public class FinanceAndInsureSave
 		vd.add(map);
 		if (ps.submitData(vd, ""))
 		{
-			message = " ?????????????????????";
+			message = " ���񼰱��վ����֪����ɹ���";
 			flag = true;
 		} else
 		{
-			message = " ?????????????????????";
+			message = " ���񼰱��վ����֪����ʧ�ܣ�?";
 			flag = false;
 		}
 		System.out.println((new StringBuilder("message:")).append(message).toString());
@@ -199,10 +199,10 @@ public class FinanceAndInsureSave
 				if (isExistUselessCharTag)
 					flag = saveImpResultWithMMap(map);
 				else
-					message = " ??????????????��??SQL?��?????? ??";
+					message = " ���񼰱��վ����֪�洢��SQL�а�Ƿ��ַ�? ��";
 			} else
 			{
-				message = " ??????????????????????";
+				message = " ��ѯ���񼰱��վ����֪�����?";
 			}
 		}
 		catch (Exception e)

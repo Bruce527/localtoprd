@@ -43,7 +43,7 @@ public class LNPContDBSet extends LNPContSet
 			CError tError = new CError();
 			tError.moduleName = "LNPContDBSet";
 			tError.functionName = "deleteSQL";
-			tError.errorMessage = "ÓÐÎó!";
+			tError.errorMessage = "ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½!";
 			mErrors.addOneError(tError);
 			return false;
 		}

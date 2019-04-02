@@ -40,7 +40,6 @@ public class XMLSaveThread extends Thread
 			System.out.println((new StringBuilder("foldName:")).append(foldName).toString());
 			System.out.println((new StringBuilder("EAIPropertiesFromDB.XMLSavePath:")).append(EAIPropertiesFromDB.XMLSavePath).toString());
 			String savePath = (new StringBuilder(String.valueOf(EAIPropertiesFromDB.XMLSavePath))).append(File.separator).append(foldName).append(File.separator).append(PubFun.getCurrentDate().replace("-", "")).append(File.separator).toString();
-			savePath = (new StringBuilder("C:/mdes_file_folder/lnp_tran")).append(File.separator).append(foldName).append(File.separator).append(PubFun.getCurrentDate().replace("-", "")).append(File.separator).toString();
 			System.out.println((new StringBuilder("savePath:")).append(savePath).toString());
 			String saveFilePath = (new StringBuilder(String.valueOf(savePath))).append(fileName).toString();
 			System.out.println((new StringBuilder("保存接口的XML文件路径为--------------------")).append(saveFilePath).toString());

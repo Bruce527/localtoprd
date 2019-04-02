@@ -12,6 +12,9 @@ import com.sinosoft.banklns.lis.vschema.LNPInsuredSet;
 import com.sinosoft.banklns.lis.vschema.LNPPersonSet;
 import com.sinosoft.banklns.utility.ExeSQL;
 import com.sinosoft.banklns.utility.SSRS;
+import com.sinosoft.map.lis.db.MSysVarDB;
+import com.sinosoft.map.lis.db.MUserDB;
+import com.sinosoft.map.lis.schema.MSysVarSchema;
 import java.io.PrintStream;
 import java.util.List;
 import org.jdom.Element;
@@ -158,22 +161,45 @@ public class CheckUser extends PublicInterfaces
 		{
 			Element msgBody = getSendBody();
 			String company = mappingCode(tLNPContSchema.getManageCom(), "BankSigned");
-			Namespace msp = Namespace.getNamespace("http://www.csc.smart/msp/schemas/MSPContext");
-			List msgList = msgBody.getChildren();
-			Element mspContent = (Element)msgList.get(0);
-			Element userId = mspContent.getChild("UserId", msp);
-			userId.setText(userName);
-			Element uerPassword = mspContent.getChild("UserPassword", msp);
-			uerPassword.setText(password);
-			Element reqps = mspContent.getChild("RequestParameters", msp);
-			Element requestParameter = reqps.getChild("RequestParameter", msp);
-			requestParameter.setAttribute("name", "BRANCH").setAttribute("value", company);
-			Element app = msgBody.getChild("APPCLIENTLIST");
-			updateText(app, "CNTBRANCH", company);
-			updateText(app, "TTMPRCNO", tLNPContSchema.getContNo());
-			Element clientList = app.getChild("CLIENTLIST");
-			Element client = clientList.getChild("CLIENTINFO");
-			clientList.removeContent();
+			Element client = null;
+			Element clientList = null;
+			if (NBFlag() && agentFlag())
+			{
+				updateText(msgBody, "BRANCH", company);
+				updateText(msgBody, "COMMITFLAG", "Y");
+				updateText(msgBody, "COMPANY", "2");
+				updateText(msgBody, "IGNOREDRIVERHELD", "Y");
+				updateText(msgBody, "LANGUAGE", "S");
+				updateText(msgBody, "OBJECTID", "CLT");
+				updateText(msgBody, "PASSWORD", password);
+				updateText(msgBody, "USRPRF", userName);
+				updateText(msgBody, "VERBID", "VAL");
+				updateText(msgBody, "XSUPPRESSRCLRSC", "N");
+				Element app = msgBody.getChild("AppClientList");
+				updateText(app, "CNTBRANCH", company);
+				updateText(app, "TTMPRCNO", tLNPContSchema.getContNo());
+				clientList = app.getChild("ClientList");
+				client = clientList.getChild("ClientInfo");
+				clientList.removeContent();
+			} else
+			{
+				Namespace msp = Namespace.getNamespace("http://www.csc.smart/msp/schemas/MSPContext");
+				List msgList = msgBody.getChildren();
+				Element mspContent = (Element)msgList.get(0);
+				Element userId = mspContent.getChild("UserId", msp);
+				userId.setText(userName);
+				Element uerPassword = mspContent.getChild("UserPassword", msp);
+				uerPassword.setText(password);
+				Element reqps = mspContent.getChild("RequestParameters", msp);
+				Element requestParameter = reqps.getChild("RequestParameter", msp);
+				requestParameter.setAttribute("name", "BRANCH").setAttribute("value", company);
+				Element app = msgBody.getChild("APPCLIENTLIST");
+				updateText(app, "CNTBRANCH", company);
+				updateText(app, "TTMPRCNO", tLNPContSchema.getContNo());
+				clientList = app.getChild("CLIENTLIST");
+				client = clientList.getChild("CLIENTINFO");
+				clientList.removeContent();
+			}
 			Element tempClient_app = (Element)client.clone();
 			updateText(tempClient_app, "SEQNO", "01");
 			updateText(tempClient_app, "LSURNAME", tLNPAppntSchema.getAppntName());
@@ -199,6 +225,31 @@ public class CheckUser extends PublicInterfaces
 			return false;
 		}
 		return true;
+	}
+
+	private boolean agentFlag()
+	{
+		ExeSQL exeSql = new ExeSQL();
+		String sql_lnpCode = "SELECT code FROM lnpcode where codetype = 'agentCode'";
+		SSRS ssr1 = exeSql.execSQL(sql_lnpCode);
+		if (ssr1.getMaxRow() > 0)
+		{
+			MUserDB mUser = new MUserDB();
+			mUser.setUserCode(ssr1.GetText(1, 1));
+			boolean mUserFlag = mUser.getInfo();
+			String sql_laagent = (new StringBuilder("SELECT 'X' FROM LAAGENT WHERE AGENTCODE = '")).append(ssr1.GetText(1, 1)).append("'").toString();
+			SSRS ssr2 = exeSql.execSQL(sql_laagent);
+			if (mUserFlag || ssr2.getMaxRow() > 0)
+				return true;
+		}
+		return false;
+	}
+
+	private boolean NBFlag()
+	{
+		MSysVarDB msy = new MSysVarDB();
+		msy.setVarType("NBSwitch");
+		return msy.getInfo() && "Y".equalsIgnoreCase(msy.getSchema().getVarValue());
 	}
 
 	protected boolean getInputData(String tContNo)
@@ -251,7 +302,7 @@ public class CheckUser extends PublicInterfaces
 	{
 		CheckUser cal = new CheckUser();
 		String tContNo = "123213213123";
-		tContNo = "201805311336";
-		cal.calInterfaces(tContNo);
+		tContNo = "201707071123";
+		cal.dealSend();
 	}
 }

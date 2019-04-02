@@ -34,8 +34,8 @@ public class LNPValidator
 		System.out.println((new StringBuilder("password=")).append(password).toString());
 		if (!ValidateTools.isValidString1(password))
 		{
-			System.out.println("该值输入错误，可以包含中英文，数字及“-”“_”“#”等字符");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "该值输入错误，可以包含中英文，数字及“-”“_”“#”等字符", "该值输入错误，可以包含中英文，数字及“-”“_”“#”等字符");
+			System.out.println("璇ュ?艰緭鍏ラ敊璇紝鍙互鍖呭惈涓嫳鏂囷紝鏁板瓧鍙娾??-鈥濃?淿鈥濃??#鈥濈瓑瀛楃");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "璇ュ?艰緭鍏ラ敊璇紝鍙互鍖呭惈涓嫳鏂囷紝鏁板瓧鍙娾??-鈥濃?淿鈥濃??#鈥濈瓑瀛楃", "璇ュ?艰緭鍏ラ敊璇紝鍙互鍖呭惈涓嫳鏂囷紝鏁板瓧鍙娾??-鈥濃?淿鈥濃??#鈥濈瓑瀛楃");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -49,8 +49,8 @@ public class LNPValidator
 		int age = ((Integer)obj).intValue();
 		if (age < 18)
 		{
-			System.out.println("客户年龄小于18");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "客户年龄小于18", "客户年龄不得小于18");
+			System.out.println("瀹㈡埛骞撮緞灏忎簬18");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "瀹㈡埛骞撮緞灏忎簬18", "瀹㈡埛骞撮緞涓嶅緱灏忎簬18");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -65,8 +65,8 @@ public class LNPValidator
 		String tempDate = DateConvert.dateToStr(date);
 		if (!"".equals(tempDate) && !ValidateTools.isValidDate(tempDate))
 		{
-			System.out.println("输入的有效日期大于当前的时间");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "输入的有效日期大于当前的时间", "输入的有效日期大于当前的时间");
+			System.out.println("杈撳叆鐨勬湁鏁堟棩鏈熷ぇ浜庡綋鍓嶇殑鏃堕棿");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "杈撳叆鐨勬湁鏁堟棩鏈熷ぇ浜庡綋鍓嶇殑鏃堕棿", "杈撳叆鐨勬湁鏁堟棩鏈熷ぇ浜庡綋鍓嶇殑鏃堕棿");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -80,8 +80,8 @@ public class LNPValidator
 		String temp = (String)obj;
 		if (!"".equals(temp) && !ValidateTools.isValidString1(temp))
 		{
-			System.out.println("字符串由英文，中文和数字及-_#.组成");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "字符串由英文，中文和数字及-_#.组成", "字符串由英文，中文和数字及-_#.组成");
+			System.out.println("瀛楃涓茬敱鑻辨枃锛屼腑鏂囧拰鏁板瓧鍙?-_#.缁勬垚");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "瀛楃涓茬敱鑻辨枃锛屼腑鏂囧拰鏁板瓧鍙?-_#.缁勬垚", "瀛楃涓茬敱鑻辨枃锛屼腑鏂囧拰鏁板瓧鍙?-_#.缁勬垚");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -95,8 +95,8 @@ public class LNPValidator
 		String temp = (String)obj;
 		if (!"".equals(temp) && !ValidateTools.isValidString2(temp))
 		{
-			System.out.println("字符串由英文和数字组成");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "字符串由英文和数字组成", "字符串由英文和数字组成");
+			System.out.println("瀛楃涓茬敱鑻辨枃鍜屾暟瀛楃粍鎴?");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "瀛楃涓茬敱鑻辨枃鍜屾暟瀛楃粍鎴?", "瀛楃涓茬敱鑻辨枃鍜屾暟瀛楃粍鎴?");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -110,8 +110,8 @@ public class LNPValidator
 		String temp = (String)obj;
 		if (!"".equals(temp) && !ValidateTools.isValidEMail(temp))
 		{
-			System.out.println("E-mail地址错误，正确如***@***.***");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail地址错误，正确如***@***.***", "E-mail地址错误，正确如***@***.***");
+			System.out.println("E-mail鍦板潃閿欒锛屾纭***@***.***");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail鍦板潃閿欒锛屾纭***@***.***", "E-mail鍦板潃閿欒锛屾纭***@***.***");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -125,8 +125,8 @@ public class LNPValidator
 		String temp = (String)obj;
 		if (!isValidTelCode2(temp))
 		{
-			System.out.println("电话号码长度为7-18位数字");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "电话号码长度为7-18位数字", "电话号码长度为7-18位数字");
+			System.out.println("鐢佃瘽鍙风爜闀垮害涓?7-18浣嶆暟瀛?");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "鐢佃瘽鍙风爜闀垮害涓?7-18浣嶆暟瀛?", "鐢佃瘽鍙风爜闀垮害涓?7-18浣嶆暟瀛?");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -140,8 +140,8 @@ public class LNPValidator
 		double temp = ((Double)obj).doubleValue();
 		if (!ValidateTools.isNumeric(String.valueOf(temp)))
 		{
-			System.out.println("客户年收入录入错误,只能为数字");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "客户年收入录入错误,只能为数字", "客户年收入录入错误,只能为数字");
+			System.out.println("瀹㈡埛骞存敹鍏ュ綍鍏ラ敊璇?,鍙兘涓烘暟瀛?");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "瀹㈡埛骞存敹鍏ュ綍鍏ラ敊璇?,鍙兘涓烘暟瀛?", "瀹㈡埛骞存敹鍏ュ綍鍏ラ敊璇?,鍙兘涓烘暟瀛?");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -155,8 +155,8 @@ public class LNPValidator
 		String temp = (String)obj;
 		if (!ValidateTools.isValidZipCode(temp))
 		{
-			System.out.println("邮编输入应该为6位数字");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "邮编输入应该为6位数字", "邮编输入应该为6位数字");
+			System.out.println("閭紪杈撳叆搴旇涓?6浣嶆暟瀛?");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "閭紪杈撳叆搴旇涓?6浣嶆暟瀛?", "閭紪杈撳叆搴旇涓?6浣嶆暟瀛?");
 			throw new ValidatorException(message);
 		} else
 		{
@@ -170,8 +170,8 @@ public class LNPValidator
 		String temp = (String)obj;
 		if (!isValidTelCode1(temp))
 		{
-			System.out.println("移动电话应该为11位数字");
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "移动电话应该为11位数字", "移动电话应该为11位数字");
+			System.out.println("绉诲姩鐢佃瘽搴旇涓?11浣嶆暟瀛?");
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "绉诲姩鐢佃瘽搴旇涓?11浣嶆暟瀛?", "绉诲姩鐢佃瘽搴旇涓?11浣嶆暟瀛?");
 			throw new ValidatorException(message);
 		} else
 		{

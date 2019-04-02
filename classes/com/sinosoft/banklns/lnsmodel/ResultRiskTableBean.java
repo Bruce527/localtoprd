@@ -229,9 +229,9 @@ public class ResultRiskTableBean
 					LNPRiskSchema tempLNPRiskSchema = riskImpl.getRiskInfo(tempLNPPolSchema.getRiskCode());
 					if (tempLNPRiskSchema != null)
 					{
-						polinfo[1] = (new StringBuilder("??")).append(tempLNPRiskSchema.getRiskCode()).append("??").append(tempLNPRiskSchema.getRiskShortName()).toString();
+						polinfo[1] = (new StringBuilder("��")).append(tempLNPRiskSchema.getRiskCode()).append("��").append(tempLNPRiskSchema.getRiskShortName()).toString();
 						if ("CIR(B)".equalsIgnoreCase(tempLNPRiskSchema.getRiskCode()))
-							polinfo[1] = (new StringBuilder("??CIR10")).append(tempLNPPolSchema.getStandbyFlag3()).append("??").append(tempLNPRiskSchema.getRiskShortName()).toString();
+							polinfo[1] = (new StringBuilder("��CIR10")).append(tempLNPPolSchema.getStandbyFlag3()).append("��").append(tempLNPRiskSchema.getRiskShortName()).toString();
 					} else
 					{
 						polinfo[1] = "";
@@ -240,10 +240,10 @@ public class ResultRiskTableBean
 					double mult = tempLNPPolSchema.getMult();
 					if (mult > 0.0D)
 					{
-						polinfo[2] = (new StringBuilder(String.valueOf(getFormatString(mult)))).append("??").toString();
+						polinfo[2] = (new StringBuilder(String.valueOf(getFormatString(mult)))).append("��").toString();
 					} else
 					{
-						String amntStr = (new StringBuilder(String.valueOf(formatMoneyInt.format(Math.floor(amnt))))).append("?").toString();
+						String amntStr = (new StringBuilder(String.valueOf(formatMoneyInt.format(Math.floor(amnt))))).append("Ԫ").toString();
 						polinfo[2] = amntStr;
 					}
 					int payintv = tempLNPPolSchema.getPayIntv();
@@ -252,30 +252,30 @@ public class ResultRiskTableBean
 					String insuYearFlag = tempLNPPolSchema.getInsuYearFlag();
 					String insuStr = "";
 					if (insuyear > 104)
-						insuStr = "????";
+						insuStr = "����";
 					else
 					if ("A".equals(insuYearFlag) && insuyear <= 104)
-						insuStr = (new StringBuilder("??")).append(insuyear).append("????").toString();
+						insuStr = (new StringBuilder("��")).append(insuyear).append("����").toString();
 					else
-						insuStr = (new StringBuilder(String.valueOf(insuyear))).append("??").toString();
+						insuStr = (new StringBuilder(String.valueOf(insuyear))).append("��").toString();
 					polinfo[4] = insuStr;
 					String PayEndYearStr = "";
 					int PayEndYear = tempLNPPolSchema.getPayEndYear();
 					String PayEndYearFlag = tempLNPPolSchema.getPayEndYearFlag();
 					if ("A".equals(PayEndYearFlag))
-						PayEndYearStr = (new StringBuilder("??")).append(PayEndYear).append("????").toString();
+						PayEndYearStr = (new StringBuilder("��")).append(PayEndYear).append("����").toString();
 					else
 					if (PayEndYear == 1000)
 					{
 						PayEndYear = 1;
-						PayEndYearStr = (new StringBuilder(String.valueOf(PayEndYear))).append("??").toString();
+						PayEndYearStr = (new StringBuilder(String.valueOf(PayEndYear))).append("��").toString();
 					} else
 					{
-						PayEndYearStr = (new StringBuilder(String.valueOf(PayEndYear))).append("??").toString();
+						PayEndYearStr = (new StringBuilder(String.valueOf(PayEndYear))).append("��").toString();
 					}
 					polinfo[5] = PayEndYearStr;
 					double prem = tempLNPPolSchema.getSumPrem();
-					polinfo[6] = (new StringBuilder(String.valueOf(formatMoney.format(prem)))).append("?").toString();
+					polinfo[6] = (new StringBuilder(String.valueOf(formatMoney.format(prem)))).append("Ԫ").toString();
 					polinfo[7] = serialNo;
 					list.add(polinfo);
 				}
@@ -288,7 +288,7 @@ public class ResultRiskTableBean
 
 	private boolean afterupdateRisk(String contno)
 	{
-		System.out.println("-----?��??? ????????????? ???????????????? ----");
+		System.out.println("-----��??�� ɾ����޸����ֹ�� ɾ��˱����۶�������? ----");
 		boolean flag = false;
 		try
 		{

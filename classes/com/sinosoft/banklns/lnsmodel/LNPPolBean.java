@@ -72,57 +72,57 @@ public class LNPPolBean
 		if ("Z".equals(vRiskType))
 		{
 			if ("A".equals(schema.getPremToAmnt()) && !"106".equals(schema.getPayLocation()))
-				schema.setInsuYearFlag((new StringBuilder("÷¡")).append(schema.getPayLocation()).append("ÀÍ").toString());
+				schema.setInsuYearFlag((new StringBuilder("Ëá?")).append(schema.getPayLocation()).append("Â≤?").toString());
 			if ("A".equals(schema.getPremToAmnt()) && "106".equals(schema.getPayLocation()))
-				schema.setInsuYearFlag("÷’…Ì");
+				schema.setInsuYearFlag("ÁªàË∫´");
 			if ("Y".equals(schema.getPremToAmnt()))
-				schema.setInsuYearFlag((new StringBuilder("±£’œ")).append(schema.getPayLocation()).append("ƒÍ").toString());
+				schema.setInsuYearFlag((new StringBuilder("‰øùÈöú")).append(schema.getPayLocation()).append("Âπ?").toString());
 			if ("A".equals(schema.getAcciYearFlag()))
-				schema.setPayEndYearFlag((new StringBuilder("÷¡")).append(schema.getPayMode()).append("ÀÍ").toString());
+				schema.setPayEndYearFlag((new StringBuilder("Ëá?")).append(schema.getPayMode()).append("Â≤?").toString());
 			if ("Y".equals(schema.getAcciYearFlag()) && "1000".equals(schema.getPayMode()))
-				schema.setPayEndYearFlag("ıªΩª");
+				schema.setPayEndYearFlag("Ë∂∏‰∫§");
 			if ("Y".equals(schema.getAcciYearFlag()) && !"1000".equals(schema.getPayMode()))
-				schema.setPayEndYearFlag((new StringBuilder("Ω…∑—")).append(schema.getPayMode()).append("ƒÍ").toString());
+				schema.setPayEndYearFlag((new StringBuilder("Áº¥Ë¥π")).append(schema.getPayMode()).append("Âπ?").toString());
 		} else
 		if ("N".equals(vRiskType))
 		{
 			if ("A".equals(schema.getPremToAmnt()) && !schema.getPayLocation().equals(String.valueOf(SpecialProductFun.getRiskPro(schema.getRiskCode()))))
-				schema.setInsuYearFlag((new StringBuilder("÷¡")).append(schema.getPayLocation()).append("ÀÍ").toString());
+				schema.setInsuYearFlag((new StringBuilder("Ëá?")).append(schema.getPayLocation()).append("Â≤?").toString());
 			if ("A".equals(schema.getPremToAmnt()) && schema.getPayLocation().equals(String.valueOf(SpecialProductFun.getRiskPro(schema.getRiskCode()))))
-				schema.setInsuYearFlag("÷’…Ì");
+				schema.setInsuYearFlag("ÁªàË∫´");
 			if ("Y".equals(schema.getPremToAmnt()))
-				schema.setInsuYearFlag((new StringBuilder("±£’œ")).append(schema.getPayLocation()).append("ƒÍ").toString());
+				schema.setInsuYearFlag((new StringBuilder("‰øùÈöú")).append(schema.getPayLocation()).append("Âπ?").toString());
 			if ("A".equals(schema.getAcciYearFlag()))
-				schema.setPayEndYearFlag((new StringBuilder("÷¡")).append(schema.getPayMode()).append("ÀÍ").toString());
+				schema.setPayEndYearFlag((new StringBuilder("Ëá?")).append(schema.getPayMode()).append("Â≤?").toString());
 			if ("Y".equals(schema.getAcciYearFlag()) && "1000".equals(schema.getPayMode()))
-				schema.setPayEndYearFlag("ıªΩª");
+				schema.setPayEndYearFlag("Ë∂∏‰∫§");
 			if ("Y".equals(schema.getAcciYearFlag()) && !"1000".equals(schema.getPayMode()))
-				schema.setPayEndYearFlag((new StringBuilder("Ω…∑—")).append(schema.getPayMode()).append("ƒÍ").toString());
+				schema.setPayEndYearFlag((new StringBuilder("Áº¥Ë¥π")).append(schema.getPayMode()).append("Âπ?").toString());
 		} else
 		{
 			if ("A".equals(schema.getInsuYearFlag()) && schema.getInsuYear() != SpecialProductFun.getRiskPro(schema.getRiskCode()))
-				schema.setInsuYearFlag((new StringBuilder("÷¡")).append(schema.getInsuYear()).append("ÀÍ").toString());
+				schema.setInsuYearFlag((new StringBuilder("Ëá?")).append(schema.getInsuYear()).append("Â≤?").toString());
 			if ("A".equals(schema.getInsuYearFlag()) && schema.getInsuYear() == SpecialProductFun.getRiskPro(schema.getRiskCode()))
-				schema.setInsuYearFlag("÷’…Ì");
+				schema.setInsuYearFlag("ÁªàË∫´");
 			if ("Y".equals(schema.getInsuYearFlag()))
-				schema.setInsuYearFlag((new StringBuilder("±£’œ")).append(schema.getInsuYear()).append("ƒÍ").toString());
+				schema.setInsuYearFlag((new StringBuilder("‰øùÈöú")).append(schema.getInsuYear()).append("Âπ?").toString());
 			if ("A".equals(schema.getPayEndYearFlag()))
-				schema.setPayEndYearFlag((new StringBuilder("÷¡")).append(schema.getPayEndYear()).append("ÀÍ").toString());
+				schema.setPayEndYearFlag((new StringBuilder("Ëá?")).append(schema.getPayEndYear()).append("Â≤?").toString());
 			if ("Y".equals(schema.getPayEndYearFlag()) && schema.getPayEndYear() == 1000)
-				schema.setPayEndYearFlag("ıªΩª");
+				schema.setPayEndYearFlag("Ë∂∏‰∫§");
 			if ("Y".equals(schema.getPayEndYearFlag()) && schema.getPayEndYear() != 1000)
-				schema.setPayEndYearFlag((new StringBuilder("Ω…∑—")).append(schema.getPayEndYear()).append("ƒÍ").toString());
+				schema.setPayEndYearFlag((new StringBuilder("Áº¥Ë¥π")).append(schema.getPayEndYear()).append("Âπ?").toString());
 		}
 		if (schema.getPayIntv() == 1)
-			schema.setRemark("ƒÍΩª");
+			schema.setRemark("Âπ¥‰∫§");
 		if (schema.getPayIntv() == 2)
-			schema.setRemark("∞ÎƒÍΩª");
+			schema.setRemark("ÂçäÂπ¥‰∫?");
 		if (schema.getPayIntv() == 3)
-			schema.setRemark("ºæΩª");
+			schema.setRemark("Â≠£‰∫§");
 		if (schema.getPayIntv() == 4)
-			schema.setRemark("‘¬Ωª");
+			schema.setRemark("Êúà‰∫§");
 		if (schema.getPayIntv() == 5)
-			schema.setRemark("“ª¥Œ–‘");
+			schema.setRemark("‰∏?Ê¨°Ê??");
 		this.schema = schema;
 	}
 

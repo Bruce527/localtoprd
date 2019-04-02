@@ -36,15 +36,15 @@ public class Rest
 				contNo = contnojson.getString("CONTNO");
 				if (contNo != null)
 				{
-					System.out.println((new StringBuilder("输入报文：")).append(jsonObject).toString());
-					System.out.println((new StringBuilder("---------同步投保单：")).append(contNo).toString());
+					System.out.println((new StringBuilder("杈撳叆鎶ユ枃锛?")).append(jsonObject).toString());
+					System.out.println((new StringBuilder("---------鍚屾鎶曚繚鍗曪細")).append(contNo).toString());
 					if (!"".equals(contNo))
 					{
 						policyNo = getPlicyNoByCont(contNo);
 						if ("".equals(policyNo) || policyNo == null)
 						{
 							status = -1;
-							describtionString = (new StringBuilder(String.valueOf(contNo))).append("未查询到保单号！").toString();
+							describtionString = (new StringBuilder(String.valueOf(contNo))).append("鏈煡璇㈠埌淇濆崟鍙凤紒").toString();
 						} else
 						{
 							status = 0;
@@ -52,17 +52,17 @@ public class Rest
 					} else
 					{
 						status = -2;
-						describtionString = "投保单号为空！";
+						describtionString = "鎶曚繚鍗曞彿涓虹┖锛?";
 					}
 				} else
 				{
 					status = -3;
-					describtionString = "输入报文格式有误！";
+					describtionString = "杈撳叆鎶ユ枃鏍煎紡鏈夎锛?";
 				}
 			} else
 			{
 				status = -3;
-				describtionString = "输入报文格式有误！";
+				describtionString = "杈撳叆鎶ユ枃鏍煎紡鏈夎锛?";
 			}
 			returnJson.put("MDES_RETURN_STATUS", Integer.valueOf(status));
 			if (status != 0)
@@ -76,10 +76,10 @@ public class Rest
 		}
 		catch (Exception e)
 		{
-			System.out.println("文件错误！");
+			System.out.println("鏂囦欢閿欒锛?");
 			e.printStackTrace();
 		}
-		System.out.println((new StringBuilder("返回报文")).append(returnJson.toJSONString()).toString());
+		System.out.println((new StringBuilder("杩斿洖鎶ユ枃")).append(returnJson.toJSONString()).toString());
 		return returnJson.toJSONString();
 	}
 

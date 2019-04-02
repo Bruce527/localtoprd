@@ -5,7 +5,7 @@
   http://www.opensymphony.com/quartz/xml/job_scheduling_data_1_5.xsd"
   version="1.5">  
 
-
+<!--
   <job>
     <job-detail>
       <name>Modify Order Records Job</name>
@@ -71,4 +71,5 @@
      </cron>
     </trigger>
   </job>
+  -->
 </quartz>

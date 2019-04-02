@@ -22,7 +22,6 @@ public class JdbcUrl
 
 	public JdbcUrl()
 	{
-		WebApplication.getInstance().initConnection();
 		Map dbinfo = WebApplication.getInstance().get_jdbcurl();
 		DBType = (String)dbinfo.get("dbType");
 		DBName = (String)dbinfo.get("dbName");
@@ -158,7 +157,7 @@ public class JdbcUrl
 			sUrl.append("/");
 			sUrl.append(DBName);
 		}
-		System.out.println((new StringBuilder(" ˝æ›ø‚url:")).append(sUrl.toString()).toString());
+		System.out.println((new StringBuilder("Êï∞ÊçÆÂ∫ìurl:")).append(sUrl.toString()).toString());
 		return sUrl.toString();
 	}
 }

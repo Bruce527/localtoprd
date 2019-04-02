@@ -52,15 +52,15 @@ public class BankSysInfo extends BankBasicBL
 		tSSRS = exeSQL.execSQL(sql);
 		if (tSSRS == null || tSSRS.getMaxRow() < 1)
 		{
-			message = "??????????!";
-			ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "??????????!");
+			message = "查询无返回结果!";
+			ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "查询无返回结果!");
 			System.out.println(message);
 			break MISSING_BLOCK_LABEL_399;
 		}
 		if (tSSRS.MaxRow == 200)
 		{
-			message = "?????\274????200??????????200????";
-			ECPubFun.addErrorMessage("com.sinosoft.map.international.resource.programresource", "?????\274????200??????????200????");
+			message = "查询记录多于200条，仅显示前200条！";
+			ECPubFun.addErrorMessage("com.sinosoft.map.international.resource.programresource", "查询记录多于200条，仅显示前200条！");
 			System.out.println(message);
 		}
 		for (int i = 1; i <= tSSRS.MaxRow; i++)
@@ -76,7 +76,7 @@ public class BankSysInfo extends BankBasicBL
 		return;
 		try
 		{
-			buildError("?????????????!");
+			buildError("全局投保书信息缺失!");
 			break MISSING_BLOCK_LABEL_399;
 		}
 		catch (Exception e)

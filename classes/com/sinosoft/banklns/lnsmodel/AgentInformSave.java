@@ -194,20 +194,20 @@ public class AgentInformSave
 					vd.add(map);
 					if (ps.submitData(vd, ""))
 					{
-						message = " 代理人告知保存成功！";
+						message = " 浠ｇ悊浜哄憡鐭ヤ繚瀛樻垚鍔燂紒";
 						flag = true;
 					} else
 					{
-						message = " 代理人告知保存失败！";
+						message = " 浠ｇ悊浜哄憡鐭ヤ繚瀛樺け璐ワ紒";
 						flag = false;
 					}
 				} else
 				{
-					message = " 代理人告知存储的SQL中包含非法字符 ！";
+					message = " 浠ｇ悊浜哄憡鐭ュ瓨鍌ㄧ殑SQL涓寘鍚潪娉曞瓧绗? 锛?";
 				}
 			} else
 			{
-				message = " 查询代理人告知问题出错！";
+				message = " 鏌ヨ浠ｇ悊浜哄憡鐭ラ棶棰樺嚭閿欙紒";
 			}
 		}
 		catch (Exception e)

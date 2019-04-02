@@ -89,7 +89,7 @@ _L1:
 		CError tError = new CError();
 		tError.moduleName = "DBConn";
 		tError.functionName = "createConnection";
-		tError.errorMessage = "目前暂不支持此种类型的数据库!";
+		tError.errorMessage = "鐩墠鏆備笉�?寔姝ょ绫诲�?�鐨勬暟鎹�?!";
 		mErrors.addOneError(tError);
 		return false;
 		tError;

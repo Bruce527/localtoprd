@@ -44,7 +44,7 @@ public class CRSInfoDBSet extends CRSInfoSet
 			CError tError = new CError();
 			tError.moduleName = "CRSInfoDBSet";
 			tError.functionName = "deleteSQL";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "����ʧ��!";
 			mErrors.addOneError(tError);
 			return false;
 		}

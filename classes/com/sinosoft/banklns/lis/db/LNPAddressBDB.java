@@ -45,7 +45,7 @@ public class LNPAddressBDB extends LNPAddressBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressBDB";
 			tError.functionName = "insert";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "操作失败!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -63,7 +63,7 @@ public class LNPAddressBDB extends LNPAddressBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressBDB";
 			tError.functionName = "update";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "操作失败!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -81,7 +81,7 @@ public class LNPAddressBDB extends LNPAddressBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressBDB";
 			tError.functionName = "deleteSQL";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "操作失败!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -99,7 +99,7 @@ public class LNPAddressBDB extends LNPAddressBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressBDB";
 			tError.functionName = "delete";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "操作失败!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -118,7 +118,7 @@ public class LNPAddressBDB extends LNPAddressBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAddressBDB";
 			tError.functionName = "getCount";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "操作失败!";
 			mErrors.addOneError(tError);
 			return -1;
 		} else
@@ -151,7 +151,7 @@ public class LNPAddressBDB extends LNPAddressBSchema
 		CError tError = new CError();
 		tError.moduleName = "LNPAddressBDB";
 		tError.functionName = "getInfo";
-		tError.errorMessage = "??????!";
+		tError.errorMessage = "取数失败!";
 		mErrors.addOneError(tError);
 		try
 		{
@@ -189,7 +189,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAddressBDB";
 				tError.functionName = "getInfo";
-				tError.errorMessage = "δ??????????!";
+				tError.errorMessage = "未找到相关数据!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try
@@ -324,7 +324,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPAddressBDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql????????????????????????!";
+					tError.errorMessage = "sql语句有误，请查看表名及字段名信息!";
 					mErrors.addOneError(tError);
 				}
 			}
@@ -467,7 +467,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPAddressBDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql????????????????????????!";
+					tError.errorMessage = "sql语句有误，请查看表名及字段名信息!";
 					mErrors.addOneError(tError);
 				}
 				aLNPAddressBSet.add(s1);
@@ -536,7 +536,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAddressBDB";
 				tError.functionName = "update";
-				tError.errorMessage = "???????????!";
+				tError.errorMessage = "更新数据失败!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try

@@ -62,7 +62,7 @@ public class NPUWBean extends PublicInterfaces
 		modelFileName = "aura_in.xml";
 		sendFileName = "aura_in";
 		returnFileName = "aura_out";
-		defaultErrorMessage = "�˱�����У��ʧ�ܣ�";
+		defaultErrorMessage = "???????��??????";
 		super.initObject();
 	}
 
@@ -165,7 +165,7 @@ _L4:
 		JVM INSTR swap ;
 		String.valueOf();
 		StringBuilder();
-		" ����:";
+		" ????:";
 		append();
 		cDec.getChild("ZNPRDCODE").getText();
 		append();
@@ -607,11 +607,11 @@ _L2:
 		tLNPContDB.setContNo(tContNo);
 		if (tLNPContDB.getInfo())
 			break MISSING_BLOCK_LABEL_64;
-		message = "��ȡͶ������Ϣʧ�ܣ�";
+		message = "???????????????";
 		return valiPassFlag = false;
 		String msg;
 		tLNPContSchema = tLNPContDB.getSchema();
-		msg = "�����ơ�������Ϣ�����ֵ���Ϣ�";
+		msg = "??????????????????????????";
 		if (!turnNullToString(tLNPContSchema.getManageCom()).equals("") && !turnNullToString(tLNPContSchema.getPValiDate()).equals("") && !turnNullToString(tLNPContSchema.getPSignDate()).equals(""))
 			break MISSING_BLOCK_LABEL_148;
 		message = msg;
@@ -619,12 +619,12 @@ _L2:
 		tLNPPolSet = (new LNPPolDB(con)).executeQuery((new StringBuilder("select * from LNPPol where contno='")).append(tContNo).append("'").toString());
 		if (tLNPPolSet.size() > 0)
 			break MISSING_BLOCK_LABEL_212;
-		message = "������д������Ϣ��";
+		message = "??????��?????????";
 		return valiPassFlag = false;
 		int i;
 		tLNPPolSet2 = tLNPPolSet;
 		tLNPPolSet = (new LNPPolDB(con)).executeQuery((new StringBuilder("select * from lnppol where contno='")).append(tContNo).append("' and (RiskVersion is null or RiskVersion='')").toString());
-		msg = "�����ơ�Ͷ������С�������Ϣ�����ֵ���Ϣ�";
+		msg = "???????????????��????????????????????";
 		i = 1;
 		  goto _L1
 _L3:
@@ -646,10 +646,10 @@ _L2:
 		tAppntAddressSchema = (new LNPAddressDB(con)).executeQuery((new StringBuilder("select * from lnpaddress a where  exists(select 1 from lnpappnt b where a.customerid=b.appntid  and b.contno='")).append(tContNo).append("')").toString()).get(1);
 		if (tLNPAppntSchema != null && tAppntAddressSchema != null)
 			break MISSING_BLOCK_LABEL_596;
-		message = "ȱʧͶ������Ϣ��";
+		message = "????????????";
 		return valiPassFlag = false;
 		String msg;
-		msg = "�����ơ��ͻ���Ϣ���С�Ͷ������Ϣ�����ֵ���Ϣ�";
+		msg = "????????????????��?????????????????????";
 		LNPAppntSchema tSchema = tLNPAppntSchema;
 		if (!turnNullToString(tSchema.getAppntName()).equals("") && !turnNullToString(Integer.valueOf(tSchema.getAppntAge())).equals("") && !turnNullToString(tSchema.getAppntSex()).equals("") && !turnNullToString(tSchema.getAppntBirthday()).equals("") && !turnNullToString(tAppntAddressSchema.getCompanyAddress()).equals("") && !turnNullToString(tAppntAddressSchema.getCompanyZipCode()).equals("") && !turnNullToString(tSchema.getNativePlace()).equals("") && !turnNullToString(tSchema.getIDType()).equals("") && !turnNullToString(tSchema.getIDNo()).equals("") && !turnNullToString(tSchema.getIDValidity()).equals("") && !turnNullToString(tSchema.getRelationToInsured()).equals(""))
 			break MISSING_BLOCK_LABEL_825;
@@ -659,9 +659,9 @@ _L2:
 		tInsurAddressSchema = (new LNPAddressDB(con)).executeQuery((new StringBuilder("select * from lnpaddress a where  exists(select 1 from lnpinsured b where a.customerid=b.insuredid  and b.contno='")).append(tContNo).append("')").toString()).get(1);
 		if (tLNPInsuredSchema != null && tInsurAddressSchema != null)
 			break MISSING_BLOCK_LABEL_942;
-		message = "ȱʧ��������Ϣ��";
+		message = "?????????????";
 		return valiPassFlag = false;
-		msg = "�����ơ��ͻ���Ϣ���С���������Ϣ�����ֵ���Ϣ�";
+		msg = "????????????????��??????????????????????";
 		LNPInsuredSchema tSchema = tLNPInsuredSchema;
 		if (!turnNullToString(tSchema.getName()).equals("") && !turnNullToString(Integer.valueOf(tSchema.getAppAge())).equals("") && !turnNullToString(tSchema.getSex()).equals("") && !turnNullToString(tSchema.getBirthday()).equals("") && !turnNullToString(tInsurAddressSchema.getCompanyAddress()).equals("") && !turnNullToString(tInsurAddressSchema.getCompanyZipCode()).equals("") && !turnNullToString(tSchema.getNativePlace()).equals("") && !turnNullToString(tSchema.getIDType()).equals("") && !turnNullToString(tSchema.getIDNo()).equals("") && !turnNullToString(tSchema.getIDValidity()).equals(""))
 			break MISSING_BLOCK_LABEL_1153;
@@ -671,7 +671,7 @@ _L2:
 		if (tLNPInsuredSchema.getInsuredPeoples() <= 0 || tLNPBnfSet.size() <= 0) goto _L5; else goto _L4
 _L4:
 		int i;
-		msg = "�����ơ��ͻ���Ϣ���С���������Ϣ�����ֵ���Ϣ�";
+		msg = "????????????????��??????????????????????";
 		i = 1;
 		  goto _L6
 _L7:
@@ -689,35 +689,35 @@ _L5:
 		if (!tLNPPaymentDB.getInfo())
 			break MISSING_BLOCK_LABEL_1419;
 		tLNPPaymentSchema = tLNPPaymentDB.getSchema();
-		String msg = "�����ơ���֪����Ȩ���С��ո�����Ϣ�����ֵ���Ϣ�";
+		String msg = "??????????????????��?????????????????????";
 		LNPPaymentSchema tSchema = tLNPPaymentSchema;
 		if (!turnNullToString(tSchema.getPayMent1()).equals("") && !turnNullToString(tSchema.getPayMent2()).equals(""))
 			break MISSING_BLOCK_LABEL_1433;
 		message = msg;
 		return valiPassFlag = false;
-		message = "������д�ո�����Ϣ��";
+		message = "??????��??????????";
 		return valiPassFlag = false;
 		LNPBonusInfoDB tLNPBonusInfoDB = new LNPBonusInfoDB(con);
 		tLNPBonusInfoDB.setContNo(tContNo);
 		if (!tLNPBonusInfoDB.getInfo())
 			break MISSING_BLOCK_LABEL_1529;
 		tLNPBonusInfoSchema = tLNPBonusInfoDB.getSchema();
-		String msg = "�����ơ�Ͷ������С�����������ֵ���Ϣ�";
+		String msg = "???????????????��???????????????????";
 		LNPBonusInfoSchema tSchema = tLNPBonusInfoSchema;
 		if (!turnNullToString(tSchema.getBonusWay()).equals("") && !turnNullToString(tSchema.getP2()).equals(""))
 			break MISSING_BLOCK_LABEL_1543;
 		message = msg;
 		return valiPassFlag = false;
-		message = "������д������Ϣ��";
+		message = "??????��?????????";
 		return valiPassFlag = false;
 		tLNPAgentInfoSet = (new LNPAgentInfoDB(con)).executeQuery((new StringBuilder("select * from lnpagentinfo where contno='")).append(tContNo).append("'").toString());
 		if (tLNPAgentInfoSet.size() > 0)
 			break MISSING_BLOCK_LABEL_1607;
-		message = "�������ô����ˣ�";
+		message = "???????\364??????";
 		return valiPassFlag = false;
 		try
 		{
-			String msg = "�����ơ���֪����Ȩ���С������˸�֪�����ֵ���Ϣ�";
+			String msg = "??????????????????��?????????????????????";
 			LNPAgentInfoSchema lnpagentinfoschema = tLNPAgentInfoSet.get(1);
 			tLNPInvestmentInfoSchema = (new LNPInvestmentInfoDB(con)).executeQuery((new StringBuilder("select * from LNPInvestmentInfo where contno='")).append(tContNo).append("'").toString()).get(1);
 			tLNpInvestmentAccountInfoSet = (new LNPInvestmentAccountInfoDB(con)).executeQuery((new StringBuilder("select * from LNPInvestmentAccountInfo where contno='")).append(tContNo).append("'").toString());

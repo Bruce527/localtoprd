@@ -55,7 +55,7 @@ public class LNPAppntDB extends LNPAppntSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAppntDB";
 			tError.functionName = "deleteSQL";
-			tError.errorMessage = "操作失败!";
+			tError.errorMessage = "鎿嶄綔澶辫触!";
 			mErrors.addOneError(tError);
 			return false;
 		}
@@ -71,7 +71,7 @@ public class LNPAppntDB extends LNPAppntSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPAppntDB";
 			tError.functionName = "getCount";
-			tError.errorMessage = "操作失败!";
+			tError.errorMessage = "鎿嶄綔澶辫触!";
 			mErrors.addOneError(tError);
 			return -1;
 		} else
@@ -384,11 +384,11 @@ public class LNPAppntDB extends LNPAppntSchema
 				pstmt.setString(5, getAppntNo());
 			if (getAppntId() == null || getAppntId().equals("null"))
 			{
-				System.out.println("appntid为空");
+				System.out.println("appntid涓虹┖");
 				pstmt.setNull(6, 12);
 			} else
 			{
-				System.out.println((new StringBuilder("appntid不为空--")).append(getAppntId()).toString());
+				System.out.println((new StringBuilder("appntid涓嶄负绌?--")).append(getAppntId()).toString());
 				pstmt.setString(6, getAppntId());
 			}
 			if (getRelationToInsured() == null || getRelationToInsured().equals("null"))
@@ -608,7 +608,7 @@ public class LNPAppntDB extends LNPAppntSchema
 		CError tError = new CError();
 		tError.moduleName = "LNPAppntDB";
 		tError.functionName = "getInfo";
-		tError.errorMessage = "取数失败!";
+		tError.errorMessage = "鍙栨暟澶辫触!";
 		mErrors.addOneError(tError);
 		try
 		{
@@ -776,7 +776,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPAppntDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql语句有误，请查看表名及字段名信息!";
+					tError.errorMessage = "sql璇彞鏈夎锛岃鏌ョ湅琛ㄥ悕鍙婂瓧娈靛悕淇℃伅!";
 					mErrors.addOneError(tError);
 				}
 			}
@@ -919,7 +919,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPAppntDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql语句有误，请查看表名及字段名信息!";
+					tError.errorMessage = "sql璇彞鏈夎锛岃鏌ョ湅琛ㄥ悕鍙婂瓧娈靛悕淇℃伅!";
 					mErrors.addOneError(tError);
 				}
 				aLNPAppntSet.add(s1);
@@ -988,7 +988,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAppntDB";
 				tError.functionName = "update";
-				tError.errorMessage = "更新数据失败!";
+				tError.errorMessage = "鏇存柊鏁版嵁澶辫触!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try
@@ -1035,7 +1035,7 @@ label0:
 			CError tError = new CError();
 			tError.moduleName = "LNPAppntDB";
 			tError.functionName = "prepareData";
-			tError.errorMessage = "数据集非空，程序在准备数据集之后，没有关闭！";
+			tError.errorMessage = "鏁版嵁闆嗛潪绌猴紝绋嬪簭鍦ㄥ噯澶囨暟鎹泦涔嬪悗锛屾病鏈夊叧闂紒";
 			mErrors.addOneError(tError);
 			return false;
 		}
@@ -1088,7 +1088,7 @@ label0:
 			CError tError = new CError();
 			tError.moduleName = "LNPAppntDB";
 			tError.functionName = "hasMoreData";
-			tError.errorMessage = "数据集为空，请先准备数据集！";
+			tError.errorMessage = "鏁版嵁闆嗕负绌猴紝璇峰厛鍑嗗鏁版嵁闆嗭紒";
 			mErrors.addOneError(tError);
 			return false;
 		}
@@ -1136,7 +1136,7 @@ label0:
 			CError tError = new CError();
 			tError.moduleName = "LNPAppntDB";
 			tError.functionName = "getData";
-			tError.errorMessage = "数据集为空，请先准备数据集！";
+			tError.errorMessage = "鏁版嵁闆嗕负绌猴紝璇峰厛鍑嗗鏁版嵁闆嗭紒";
 			mErrors.addOneError(tError);
 			return null;
 		}
@@ -1194,7 +1194,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAppntDB";
 				tError.functionName = "closeData";
-				tError.errorMessage = "数据集已经关闭了！";
+				tError.errorMessage = "鏁版嵁闆嗗凡缁忓叧闂簡锛?";
 				mErrors.addOneError(tError);
 				flag = false;
 			} else
@@ -1219,7 +1219,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPAppntDB";
 				tError.functionName = "closeData";
-				tError.errorMessage = "语句已经关闭了！";
+				tError.errorMessage = "璇彞宸茬粡鍏抽棴浜嗭紒";
 				mErrors.addOneError(tError);
 				flag = false;
 			} else

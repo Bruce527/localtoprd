@@ -5,6 +5,7 @@
 
 package com.sinosoft.banklns.lnsmodel;
 
+import com.mq.MqService;
 import com.sinosoft.banklns.lis.BankBasicBL;
 import com.sinosoft.banklns.lis.bean.BankLNPContBean;
 import com.sinosoft.banklns.lis.db.LNPContDB;
@@ -16,13 +17,19 @@ import com.sinosoft.banklns.lnsmodel.interfaces.CalPrem;
 import com.sinosoft.banklns.lnsmodel.interfaces.CheckUser;
 import com.sinosoft.banklns.lnsmodel.interfaces.FinalSubmissionBean;
 import com.sinosoft.banklns.lnsmodel.interfaces.NPUWBean;
+import com.sinosoft.banklns.lnsmodel.interfaces.XMLSaveThread;
+import com.sinosoft.banklns.lnsmodel.webservice.NBConversion;
 import com.sinosoft.banklns.utility.*;
+import com.sinosoft.map.lis.db.MSysVarDB;
+import com.sinosoft.map.lis.db.MUserDB;
+import com.sinosoft.map.lis.schema.MSysVarSchema;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import org.jdom.Document;
 
 // Referenced classes of package com.sinosoft.banklns.lnsmodel:
 //			BankStateOperateDealNew, PolicyMainInfo, BankPolicyState, BankStateOperateDealIface, 
@@ -79,6 +86,7 @@ public class BankOperateDeal extends BankBasicBL
 		BankOperateDeal operateDeal = new BankOperateDeal();
 		String rst = "";
 		rst = (new StringBuilder(String.valueOf(rst))).append(operateDeal.detailErMsg("110100")).toString();
+		operateDeal.send();
 		System.out.println(rst);
 	}
 
@@ -424,7 +432,13 @@ label0:
 			List tList = new ArrayList();
 			NPUWBean tNPUWBean = new NPUWBean();
 			FinalSubmissionBean submitBean = new FinalSubmissionBean();
+			boolean mqPreFlag;
 			RuntimeException e;
+			FinalSubmissionBean fb;
+			boolean mqFlag;
+			String msg;
+			String conversionXML;
+			MqService m;
 			Exception exception;
 			boolean flag1;
 			PolicyMainInfo mainInfo;
@@ -451,16 +465,46 @@ label0:
 		policyState = new BankPolicyState();
 		try
 		{
-			if (!submitBean.calInterfaces(contNo))
+			mqPreFlag = false;
+			if (NBFlag() && agentFlag())
 			{
-				message = submitBean.getMessage();
-				if (message == null || "".equals(message))
-					message = "发送保单失败！";
-				submitBean.rollbakData();
-				buildMsg(message);
-				submitSuccFlag = flag = false;
+				fb = new FinalSubmissionBean();
+				fb.initObject();
+				mqPreFlag = fb.getInputData(contNo);
+				mqPreFlag = mqPreFlag && fb.dealSend();
+				mqFlag = false;
+				msg = "";
+				if (mqPreFlag)
+				{
+					saveXML(contNo, fb.doc, "issue_in");
+					conversionXML = (new NBConversion()).ConversionXML("issue_out", fb.doc);
+					System.out.println(conversionXML);
+					m = new MqService();
+					mqFlag = m.sendMsg(conversionXML);
+					System.out.println(mqFlag);
+				}
+				if (!mqFlag)
+				{
+					message = msg;
+					if (message == null || "".equals(message))
+						message = "发送保单失败！";
+					buildMsg(message);
+					submitSuccFlag = flag = false;
+				}
+				valiPassFlag = mqFlag;
+			} else
+			{
+				if (!submitBean.calInterfaces(contNo))
+				{
+					message = submitBean.getMessage();
+					if (message == null || "".equals(message))
+						message = "发送保单失败！";
+					submitBean.rollbakData();
+					buildMsg(message);
+					submitSuccFlag = flag = false;
+				}
+				valiPassFlag = submitBean.isValiPassFlag();
 			}
-			valiPassFlag = submitBean.isValiPassFlag();
 			System.out.println((new StringBuilder("-->校验成功标志:")).append(valiPassFlag).append("计算成功标志").append(flag).toString());
 			if (flag)
 				tList = stateOperateDeal.infoOprate(state, editState, "modify", "91");
@@ -512,6 +556,31 @@ label0:
 		vData.add(mMap);
 		saveAllMsg(vData);
 		throw exception;
+	}
+
+	private boolean agentFlag()
+	{
+		ExeSQL exeSql = new ExeSQL();
+		String sql_lnpCode = "SELECT code FROM lnpcode where codetype = 'agentCode'";
+		SSRS ssr1 = exeSql.execSQL(sql_lnpCode);
+		if (ssr1.getMaxRow() > 0)
+		{
+			MUserDB mUser = new MUserDB();
+			mUser.setUserCode(ssr1.GetText(1, 1));
+			boolean mUserFlag = mUser.getInfo();
+			String sql_laagent = (new StringBuilder("SELECT 'X' FROM LAAGENT WHERE AGENTCODE = '")).append(ssr1.GetText(1, 1)).append("'").toString();
+			SSRS ssr2 = exeSql.execSQL(sql_laagent);
+			if (mUserFlag || ssr2.getMaxRow() > 0)
+				return true;
+		}
+		return false;
+	}
+
+	private boolean NBFlag()
+	{
+		MSysVarDB msy = new MSysVarDB();
+		msy.setVarType("NBSwitch");
+		return msy.getInfo() && "Y".equalsIgnoreCase(msy.getSchema().getVarValue());
 	}
 
 	public boolean cancel()
@@ -1252,6 +1321,25 @@ label0:
 	public void setInsuDeclarationFlag2(boolean insuDeclarationFlag2)
 	{
 		this.insuDeclarationFlag2 = insuDeclarationFlag2;
+	}
+
+	private boolean saveXML(String contNo, Document returnDoc, String fileName)
+	{
+		try
+		{
+			saveCreatedXMLFile(returnDoc, fileName, contNo);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	private void saveCreatedXMLFile(Document doc2, String string, String tContNo2)
+	{
+		(new XMLSaveThread(doc2, string, tContNo2)).start();
 	}
 
 	static 

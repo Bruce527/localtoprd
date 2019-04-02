@@ -110,7 +110,7 @@ public class BankInsuredItem extends BankBasicBL
 		{
 			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 			System.out.println("---------------- start init policy msg -----------------------------");
-			System.out.println((new StringBuilder("投保事项获取的contNo是--------")).append(contNo).toString());
+			System.out.println((new StringBuilder("鎶曚繚浜嬮」鑾峰彇鐨刢ontNo鏄?--------")).append(contNo).toString());
 			lnpList = new ArrayList();
 			cbtlnpList = new ArrayList();
 			ymclnpList = new ArrayList();
@@ -158,7 +158,7 @@ public class BankInsuredItem extends BankBasicBL
 				Boolean getEditFlag = (Boolean)session.getAttribute("Queryflag");
 				BankOperateDeal stateDeal = new BankOperateDeal();
 				Boolean operateFlag = Boolean.valueOf(stateDeal.isEidtSheet(contSchema.getState(), "02", tempGI.LNPRole, contNo));
-				System.out.println((new StringBuilder("当前的getEditFlag的值 ====")).append(operateFlag).toString());
+				System.out.println((new StringBuilder("褰撳墠鐨刧etEditFlag鐨勫?? ====")).append(operateFlag).toString());
 				if (getEditFlag == null)
 				{
 					if (operateFlag.booleanValue())
@@ -173,10 +173,10 @@ public class BankInsuredItem extends BankBasicBL
 				investSchema = getInvestmentSchemaByContNo(contNo);
 				if (contSchema != null && polsetinfo != null && polsetinfo.size() > 0)
 				{
-					System.out.println("此时说明contSchema与polsetinfo已经不为空了");
+					System.out.println("姝ゆ椂璇存槑contSchema涓巔olsetinfo宸茬粡涓嶄负绌轰簡");
 					if (polsetinfo.get(1).getKindCode().equals("01"))
 					{
-						System.out.println("传统险种时进入-------------");
+						System.out.println("浼犵粺闄╃鏃惰繘鍏?-------------");
 						poltype = "01";
 						for (int i = 0; i < polsetinfo.size(); i++)
 						{
@@ -193,11 +193,11 @@ public class BankInsuredItem extends BankBasicBL
 									years[i] = (new StringBuilder("T")).append(polsetinfo.get(i + 1).getInsuYear()).toString();
 								else
 								if (polsetinfo.get(i + 1).getInsuYearFlag().equals("A") && polsetinfo.get(i + 1).getInsuYear() == SpecialProductFun.getRiskPro(polsetinfo.get(i + 1).getRiskCode()))
-									years[i] = "终身";
+									years[i] = "缁堣韩";
 								else
 								if (polsetinfo.get(i + 1).getInsuYearFlag().equals("Y"))
 									years[i] = (new StringBuilder(String.valueOf(polsetinfo.get(i + 1).getInsuYear()))).toString();
-								System.out.println("结束保障期");
+								System.out.println("缁撴潫淇濋殰鏈?");
 								if (turnNullToString(polsetinfo.get(i + 1).getPayEndYearFlag()).equals("") || polsetinfo.get(i + 1).getPayEndYear() < 0)
 									payyears[i] = "";
 								else
@@ -209,7 +209,7 @@ public class BankInsuredItem extends BankBasicBL
 								else
 								if (polsetinfo.get(i + 1).getPayEndYearFlag().equals("Y") && polsetinfo.get(i + 1).getPayEndYear() != 1000)
 									payyears[i] = (new StringBuilder(String.valueOf(polsetinfo.get(i + 1).getPayEndYear()))).toString();
-								System.out.println("结束缴费期");
+								System.out.println("缁撴潫缂磋垂鏈?");
 								type[i] = polsetinfo.get(i + 1).getUWCode();
 								if (type[i].equals("01"))
 									money[i] = polsetinfo.get(i + 1).getAmnt() >= 0.0D ? decimalFormat.format(polsetinfo.get(i + 1).getAmnt()) : null;
@@ -245,7 +245,7 @@ public class BankInsuredItem extends BankBasicBL
 					}
 					if (polsetinfo.get(1).getKindCode().equals("02"))
 					{
-						System.out.println("VUL险时进入--------------");
+						System.out.println("VUL闄╂椂杩涘叆--------------");
 						poltype = "02";
 						vulriskcode = polsetinfo.get(1).getRiskCode();
 						if (editFlag)
@@ -255,11 +255,11 @@ public class BankInsuredItem extends BankBasicBL
 						List vulbean = getInvestList(vulriskcode, contNo);
 						if (vulbean == null)
 						{
-							System.out.println("当前投资信息表中无数据，调用findAccountCode方法查询riskcode数据");
+							System.out.println("褰撳墠鎶曡祫淇℃伅琛ㄤ腑鏃犳暟鎹紝璋冪敤findAccountCode鏂规硶鏌ヨriskcode鏁版嵁");
 							findAccountCode();
 						} else
 						{
-							System.out.println("当前投资信息表中有数据----------");
+							System.out.println("褰撳墠鎶曡祫淇℃伅琛ㄤ腑鏈夋暟鎹?----------");
 							vulinvestmentList = vulbean;
 							vulsize = vulinvestmentList.size();
 						}
@@ -282,7 +282,7 @@ public class BankInsuredItem extends BankBasicBL
 					}
 					if (polsetinfo.get(1).getKindCode().equals("03"))
 					{
-						System.out.println("组合险时进入---------------");
+						System.out.println("缁勫悎闄╂椂杩涘叆---------------");
 						poltype = "03";
 						for (int i = 0; i < polsetinfo.size(); i++)
 							if (!polsetinfo.get(i + 1).getRiskVersion().equals("") && polsetinfo.get(i + 1).getRiskVersion() != null)
@@ -300,7 +300,7 @@ public class BankInsuredItem extends BankBasicBL
 										if (polsetinfo.get(i + 1).getPremToAmnt().equals("A") && !polsetinfo.get(i + 1).getPayLocation().equals("106"))
 											combinationyears[i] = (new StringBuilder("T")).append(polsetinfo.get(i + 1).getPayLocation()).toString();
 										if (polsetinfo.get(i + 1).getPremToAmnt().equals("A") && polsetinfo.get(i + 1).getPayLocation().equals("106"))
-											combinationyears[i] = "终身";
+											combinationyears[i] = "缁堣韩";
 										if (polsetinfo.get(i + 1).getPremToAmnt().equals("Y"))
 											combinationyears[i] = polsetinfo.get(i + 1).getPayLocation();
 									}
@@ -317,7 +317,7 @@ public class BankInsuredItem extends BankBasicBL
 											combinationpayyears[i] = polsetinfo.get(i + 1).getPayMode();
 									}
 									combinationtype[i] = polsetinfo.get(i + 1).getUWCode();
-									System.out.println((new StringBuilder("初始化组合险==================保额或者保费标志位---------------")).append(combinationtype[i]).toString());
+									System.out.println((new StringBuilder("鍒濆鍖栫粍鍚堥櫓==================淇濋鎴栬?呬繚璐规爣蹇椾綅---------------")).append(combinationtype[i]).toString());
 									if (combinationtype[i] == null || "".equals(combinationtype[i]))
 									{
 										if (polsetinfo.get(i + 1).getRemark() == null || "".equals(polsetinfo.get(i + 1).getRemark()))
@@ -326,24 +326,24 @@ public class BankInsuredItem extends BankBasicBL
 											combinationmoney[i] = polsetinfo.get(i + 1).getRemark();
 									} else
 									{
-										System.out.println((new StringBuilder("初始化组合险==================保额或者保费标志位---------------")).append(combinationtype[i]).toString());
+										System.out.println((new StringBuilder("鍒濆鍖栫粍鍚堥櫓==================淇濋鎴栬?呬繚璐规爣蹇椾綅---------------")).append(combinationtype[i]).toString());
 										if (combinationtype[i].equals("01"))
 										{
-											System.out.println("此时为保额的值++++++++++");
+											System.out.println("姝ゆ椂涓轰繚棰濈殑鍊?++++++++++");
 											combinationmoney[i] = polsetinfo.get(i + 1).getAmnt() >= 0.0D ? decimalFormat.format(polsetinfo.get(i + 1).getAmnt()) : null;
-											System.out.println((new StringBuilder("此时保额======")).append(combinationmoney[i]).toString());
+											System.out.println((new StringBuilder("姝ゆ椂淇濋======")).append(combinationmoney[i]).toString());
 										} else
 										if (combinationtype[i].equals("02"))
 										{
-											System.out.println("此时为保费的值++++++++++");
+											System.out.println("姝ゆ椂涓轰繚璐圭殑鍊?++++++++++");
 											combinationmoney[i] = polsetinfo.get(i + 1).getPrem() >= 0.0D ? decimalFormat.format(polsetinfo.get(i + 1).getPrem()) : null;
-											System.out.println((new StringBuilder("此时保费======")).append(combinationmoney[i]).toString());
+											System.out.println((new StringBuilder("姝ゆ椂淇濊垂======")).append(combinationmoney[i]).toString());
 										} else
 										{
-											System.out.println("取的是现在的money值--------");
+											System.out.println("鍙栫殑鏄幇鍦ㄧ殑money鍊?--------");
 											combinationmoney[i] = null;
 										}
-										System.out.println((new StringBuilder("初始化组合险==================保额或者保费---------------")).append(combinationmoney[i]).toString());
+										System.out.println((new StringBuilder("鍒濆鍖栫粍鍚堥櫓==================淇濋鎴栬?呬繚璐?---------------")).append(combinationmoney[i]).toString());
 									}
 								} else
 								if (i != 1)
@@ -360,7 +360,7 @@ public class BankInsuredItem extends BankBasicBL
 										if (polsetinfo.get(i + 1).getPremToAmnt().equals("A") && !polsetinfo.get(i + 1).getPayLocation().equals("106"))
 											combinationyears[i - 1] = (new StringBuilder("T")).append(polsetinfo.get(i + 1).getPayLocation()).toString();
 										if (polsetinfo.get(i + 1).getPremToAmnt().equals("A") && polsetinfo.get(i + 1).getPayLocation().equals("106"))
-											combinationyears[i - 1] = "终身";
+											combinationyears[i - 1] = "缁堣韩";
 										if (polsetinfo.get(i + 1).getPremToAmnt().equals("Y"))
 											combinationyears[i - 1] = polsetinfo.get(i + 1).getPayLocation();
 									}
@@ -377,31 +377,31 @@ public class BankInsuredItem extends BankBasicBL
 											combinationpayyears[i - 1] = polsetinfo.get(i + 1).getPayMode();
 									}
 									combinationtype[i - 1] = polsetinfo.get(i + 1).getUWCode();
-									System.out.println((new StringBuilder("初始化组合险附险==================保额或者保费标志位---------------")).append(combinationtype[i - 1]).toString());
+									System.out.println((new StringBuilder("鍒濆鍖栫粍鍚堥櫓闄勯櫓==================淇濋鎴栬?呬繚璐规爣蹇椾綅---------------")).append(combinationtype[i - 1]).toString());
 									if (combinationtype[i - 1] == null || "".equals(combinationtype[i - 1]))
 									{
 										if (polsetinfo.get(i + 1).getRemark() == null || "".equals(polsetinfo.get(i + 1).getRemark()))
 											combinationmoney[i - 1] = null;
 									} else
 									{
-										System.out.println((new StringBuilder("初始化组合险附险==================保额或者保费标志位---------------")).append(combinationtype[i - 1]).toString());
+										System.out.println((new StringBuilder("鍒濆鍖栫粍鍚堥櫓闄勯櫓==================淇濋鎴栬?呬繚璐规爣蹇椾綅---------------")).append(combinationtype[i - 1]).toString());
 										if (combinationtype[i - 1].equals("01"))
 										{
-											System.out.println("此时为保额的值++++++++++");
+											System.out.println("姝ゆ椂涓轰繚棰濈殑鍊?++++++++++");
 											combinationmoney[i - 1] = polsetinfo.get(i + 1).getAmnt() >= 0.0D ? decimalFormat.format(polsetinfo.get(i + 1).getAmnt()) : null;
-											System.out.println((new StringBuilder("此时保额======")).append(combinationmoney[i - 1]).toString());
+											System.out.println((new StringBuilder("姝ゆ椂淇濋======")).append(combinationmoney[i - 1]).toString());
 										} else
 										if (combinationtype[i - 1].equals("02"))
 										{
-											System.out.println("此时为保费的值++++++++++");
+											System.out.println("姝ゆ椂涓轰繚璐圭殑鍊?++++++++++");
 											combinationmoney[i - 1] = polsetinfo.get(i + 1).getPrem() >= 0.0D ? decimalFormat.format(polsetinfo.get(i + 1).getPrem()) : null;
-											System.out.println((new StringBuilder("此时保费======")).append(combinationmoney[i - 1]).toString());
+											System.out.println((new StringBuilder("姝ゆ椂淇濊垂======")).append(combinationmoney[i - 1]).toString());
 										} else
 										{
-											System.out.println("取的是现在的money值--------");
+											System.out.println("鍙栫殑鏄幇鍦ㄧ殑money鍊?--------");
 											combinationmoney[i - 1] = null;
 										}
-										System.out.println((new StringBuilder("初始化组合险附险==================保额或者保费---------------")).append(combinationmoney[i - 1]).toString());
+										System.out.println((new StringBuilder("鍒濆鍖栫粍鍚堥櫓闄勯櫓==================淇濋鎴栬?呬繚璐?---------------")).append(combinationmoney[i - 1]).toString());
 									}
 								}
 
@@ -426,7 +426,7 @@ public class BankInsuredItem extends BankBasicBL
 					} else
 					if (polsetinfo.get(1).getKindCode().equals("04"))
 					{
-						System.out.println("年金转换险时进入---------------");
+						System.out.println("骞撮噾杞崲闄╂椂杩涘叆---------------");
 						poltype = "04";
 						session.setAttribute("saleChannel", polsetinfo.get(1).getUWTime());
 						for (int i = 1; i <= polsetinfo.size(); i++)
@@ -443,11 +443,11 @@ public class BankInsuredItem extends BankBasicBL
 									yearmoneychangeyears = (new StringBuilder("T")).append(polsetinfo.get(i).getPayLocation()).toString();
 								else
 								if (polsetinfo.get(i).getPremToAmnt().equals("A") && Integer.parseInt(polsetinfo.get(i).getPayLocation()) == SpecialProductFun.getRiskPro(polsetinfo.get(i).getRiskCode()))
-									yearmoneychangeyears = "终身";
+									yearmoneychangeyears = "缁堣韩";
 								else
 								if (polsetinfo.get(i).getPremToAmnt().equals("Y"))
 									yearmoneychangeyears = (new StringBuilder(String.valueOf(polsetinfo.get(i).getPayLocation()))).toString();
-								System.out.println("结束保障期");
+								System.out.println("缁撴潫淇濋殰鏈?");
 								if (turnNullToString(polsetinfo.get(i).getAcciYearFlag()).equals("") || turnNullToString(polsetinfo.get(i).getPayMode()).equals(""))
 									yearmoneychangepayyears = "";
 								else
@@ -459,7 +459,7 @@ public class BankInsuredItem extends BankBasicBL
 								else
 								if (polsetinfo.get(i).getAcciYearFlag().equals("Y") && !polsetinfo.get(i).getPayMode().equals("1000"))
 									yearmoneychangepayyears = polsetinfo.get(i).getPayMode();
-								System.out.println("结束缴费期");
+								System.out.println("缁撴潫缂磋垂鏈?");
 								if (polsetinfo.get(i).getRemark() == null || "".equals(polsetinfo.get(i).getRemark()))
 									yearmoneychangemoney = null;
 								else
@@ -493,7 +493,7 @@ public class BankInsuredItem extends BankBasicBL
 				{
 					infoSource = "add";
 				}
-				System.out.println((new StringBuilder("当前是否可编辑的状态======")).append(editFlag).toString());
+				System.out.println((new StringBuilder("褰撳墠鏄惁鍙紪杈戠殑鐘舵??======")).append(editFlag).toString());
 				session.setAttribute("RelFlag", Boolean.valueOf(editFlag));
 				System.out.println("-------------------start init union others policy ------------------------------");
 				relationDeal = new BankRelationContNo();
@@ -502,21 +502,21 @@ public class BankInsuredItem extends BankBasicBL
 			{
 				infoSource = "undo";
 				editFlag = false;
-				buildError("全局投保书信息缺失!");
+				buildError("鍏ㄥ眬鎶曚繚涔︿俊鎭己澶?!");
 			}
 		}
 		catch (RuntimeException e)
 		{
 			turnCurrPolicyLockFlag(null, contNo, "unlock");
 			e.printStackTrace();
-			message = "投保事项初始化错误！";
+			message = "鎶曚繚浜嬮」鍒濆鍖栭敊璇紒";
 			operateResult = false;
 		}
 	}
 
 	public void getRiskType()
 	{
-		System.out.println((new StringBuilder("当前risktype的值=====")).append(poltype).toString());
+		System.out.println((new StringBuilder("褰撳墠risktype鐨勫??=====")).append(poltype).toString());
 		poltype = radiotype;
 	}
 
@@ -547,13 +547,13 @@ public class BankInsuredItem extends BankBasicBL
 	public void deldata()
 	{
 		message = new String();
-		System.out.println("清除列表信息");
+		System.out.println("娓呴櫎鍒楄〃淇℃伅");
 		type = new String[30];
 		lnpList.clear();
 		cbtlnpList.clear();
 		vulinvestmentList.clear();
 		vulsize = vulinvestmentList.size();
-		System.out.println("转换险种，进行数据删除操作--------------");
+		System.out.println("杞崲闄╃锛岃繘琛屾暟鎹垹闄ゆ搷浣?--------------");
 		contSchema = getMyLNPContByContNo(contNo);
 		LNPPolSet polsetbase = getPolByContNo(contNo);
 		investSchema = getInvestmentSchemaByContNo(contNo);
@@ -569,8 +569,8 @@ public class BankInsuredItem extends BankBasicBL
 		if (polsetbase.size() > 0 && !polsetbase.get(1).getKindCode().equals(poltype))
 			if (stateList.size() > 0)
 			{
-				System.out.println((new StringBuilder("当前险种类型：")).append(poltype).append("库中类型:").append(polsetbase.get(1).getKindCode()).toString());
-				System.out.println("------------------------------------------------因为险种切换,将回滚保单状态值02待审核状态---------");
+				System.out.println((new StringBuilder("褰撳墠闄╃绫诲瀷锛?")).append(poltype).append("搴撲腑绫诲瀷:").append(polsetbase.get(1).getKindCode()).toString());
+				System.out.println("------------------------------------------------鍥犱负闄╃鍒囨崲,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 				contSchema.setState((String)stateList.get(0));
 				contSchema.setEditstate((String)stateList.get(1));
 			} else
@@ -578,9 +578,9 @@ public class BankInsuredItem extends BankBasicBL
 			{
 				String editState = stateOperate.updateEditStateUNDone(contSchema.getEditstate(), 2);
 				contSchema.setEditstate(editState);
-				System.out.println((new StringBuilder("cureditsate:")).append(editState).append("<------------------------------------------------因为险种切换,state=01 时，editsate=11xxxxxx 时转换险种时需要editstate=10xxxxxx---------").toString());
+				System.out.println((new StringBuilder("cureditsate:")).append(editState).append("<------------------------------------------------鍥犱负闄╃鍒囨崲,state=01 鏃讹紝editsate=11xxxxxx 鏃惰浆鎹㈤櫓绉嶆椂闇?瑕乪ditstate=10xxxxxx---------").toString());
 			}
-		System.out.println((new StringBuilder("单状态state :")).append(contSchema.getState()).append("|代理人权限类型editstate:").append(contSchema.getEditstate()).toString());
+		System.out.println((new StringBuilder("鍗曠姸鎬乻tate :")).append(contSchema.getState()).append("|浠ｇ悊浜烘潈闄愮被鍨媏ditstate:").append(contSchema.getEditstate()).toString());
 		PubSubmit ps = new PubSubmit();
 		MMap map = new MMap();
 		map.put(contSchema, "UPDATE");
@@ -592,21 +592,21 @@ public class BankInsuredItem extends BankBasicBL
 		vd.add(map);
 		if (!ps.submitData(vd, ""))
 		{
-			message = "转换投保事项险种类型时删除原数据库中的险种信息失败！";
+			message = "杞崲鎶曚繚浜嬮」闄╃绫诲瀷鏃跺垹闄ゅ師鏁版嵁搴撲腑鐨勯櫓绉嶄俊鎭け璐ワ紒";
 			operateResult = false;
-			System.out.println("转换投保事项险种类型时删除原数据库中的险种信息失败！");
+			System.out.println("杞崲鎶曚繚浜嬮」闄╃绫诲瀷鏃跺垹闄ゅ師鏁版嵁搴撲腑鐨勯櫓绉嶄俊鎭け璐ワ紒");
 		} else
 		{
 			sumprem = "";
-			message = "转换投保事项险种类型时删除原数据库中的险种信息成功！";
+			message = "杞崲鎶曚繚浜嬮」闄╃绫诲瀷鏃跺垹闄ゅ師鏁版嵁搴撲腑鐨勯櫓绉嶄俊鎭垚鍔燂紒";
 			operateResult = true;
-			System.out.println("转换投保事项险种类型时删除原数据库中的险种信息成功！");
+			System.out.println("杞崲鎶曚繚浜嬮」闄╃绫诲瀷鏃跺垹闄ゅ師鏁版嵁搴撲腑鐨勯櫓绉嶄俊鎭垚鍔燂紒");
 		}
 	}
 
 	public void findAccountCode()
 	{
-		System.out.println("开始查找基金信息");
+		System.out.println("寮?濮嬫煡鎵惧熀閲戜俊鎭?");
 		String sql = (new StringBuilder("select FundAccountCode,FundAccountName from MRiskFundAccount where RiskCode='")).append(vulriskcode).append("'").toString();
 		ExeSQL tExeSQL = new ExeSQL();
 		SSRS tSRS = tExeSQL.execSQL(sql);
@@ -624,7 +624,7 @@ public class BankInsuredItem extends BankBasicBL
 
 		} else
 		{
-			System.out.println("当前险种无基金数据");
+			System.out.println("褰撳墠闄╃鏃犲熀閲戞暟鎹?");
 			vulinvestmentList.clear();
 		}
 		vulsize = vulinvestmentList.size();
@@ -650,15 +650,15 @@ public class BankInsuredItem extends BankBasicBL
 			return vulBeanList;
 		} else
 		{
-			System.out.println("投资表中无信息返回null");
+			System.out.println("鎶曡祫琛ㄤ腑鏃犱俊鎭繑鍥瀗ull");
 			return null;
 		}
 	}
 
 	public void checkrate()
 	{
-		System.out.println("开始校验投资百分比");
-		System.out.println((new StringBuilder("vulinvestmentList的size()==========")).append(vulinvestmentList.size()).toString());
+		System.out.println("寮?濮嬫牎楠屾姇璧勭櫨鍒嗘瘮");
+		System.out.println((new StringBuilder("vulinvestmentList鐨剆ize()==========")).append(vulinvestmentList.size()).toString());
 		double value = 0.0D;
 		for (int i = 0; i < vulinvestmentList.size(); i++)
 			value += Double.valueOf(((LNPVulBean)vulinvestmentList.get(i)).getAccountRate()).doubleValue();
@@ -672,12 +672,12 @@ public class BankInsuredItem extends BankBasicBL
 
 	public void savePol()
 	{
-		System.out.println("调用 savePol()方法-------");
-		System.out.println((new StringBuilder("险种类型  1-传统险，2-VUL，3-组合险，4-年险===")).append(poltype).toString());
-		System.out.println((new StringBuilder("本次投保事项操作动作infoSource====")).append(infoSource).toString());
+		System.out.println("璋冪敤 savePol()鏂规硶-------");
+		System.out.println((new StringBuilder("闄╃绫诲瀷  1-浼犵粺闄╋紝2-VUL锛?3-缁勫悎闄╋紝4-骞撮櫓===")).append(poltype).toString());
+		System.out.println((new StringBuilder("鏈鎶曚繚浜嬮」鎿嶄綔鍔ㄤ綔infoSource====")).append(infoSource).toString());
 		operateResult = true;
 		contSchema = getMyLNPContByContNo(contNo);
-		System.out.println("开始清除关联组----------");
+		System.out.println("寮?濮嬫竻闄ゅ叧鑱旂粍----------");
 		if (contSchema != null && contSchema.getAgentCode1() != null && !contSchema.getAgentCode1().equals(""))
 		{
 			String sql = (new StringBuilder("select count(*) from lnpcont where agentcode1='")).append(contSchema.getAgentCode1()).append("'").toString();
@@ -694,21 +694,21 @@ public class BankInsuredItem extends BankBasicBL
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					message = "清除关联组失败！";
+					message = "娓呴櫎鍏宠仈缁勫け璐ワ紒";
 					operateResult = false;
-					System.out.println("清除关联组失败！");
+					System.out.println("娓呴櫎鍏宠仈缁勫け璐ワ紒");
 				} else
 				{
-					message = "清除关联组成功！";
+					message = "娓呴櫎鍏宠仈缁勬垚鍔燂紒";
 					operateResult = true;
-					System.out.println("清除关联组成功！");
+					System.out.println("娓呴櫎鍏宠仈缁勬垚鍔燂紒");
 				}
 			}
 		} else
 		{
-			System.out.println("此时不需要清除关联组");
+			System.out.println("姝ゆ椂涓嶉渶瑕佹竻闄ゅ叧鑱旂粍");
 		}
-		System.out.println("开始保存险种信息");
+		System.out.println("寮?濮嬩繚瀛橀櫓绉嶄俊鎭?");
 		if (!editFlag)
 			break MISSING_BLOCK_LABEL_451;
 		if (!"undo".equals(infoSource) && contSchema != null && infoSource != null && !"".equals(infoSource))
@@ -718,23 +718,23 @@ public class BankInsuredItem extends BankBasicBL
 		return;
 		if ("add".equals(infoSource))
 		{
-			System.out.println("进入新增信息接口------------------");
+			System.out.println("杩涘叆鏂板淇℃伅鎺ュ彛------------------");
 			if (addInsuredItem())
 				operateResult = true;
 		}
 		if ("modify".equals(infoSource))
 		{
-			System.out.println("进入修改信息接口------------------");
+			System.out.println("杩涘叆淇敼淇℃伅鎺ュ彛------------------");
 			if (modifyInsuredItem())
 				operateResult = true;
 		}
 		break MISSING_BLOCK_LABEL_512;
-		System.out.println("此时保单不可编辑，不对数据库进行操作");
+		System.out.println("姝ゆ椂淇濆崟涓嶅彲缂栬緫锛屼笉瀵规暟鎹簱杩涜鎿嶄綔");
 		break MISSING_BLOCK_LABEL_512;
 		RuntimeException e;
 		e;
 		e.printStackTrace();
-		message = "投保事项信息保存失败！";
+		message = "鎶曚繚浜嬮」淇℃伅淇濆瓨澶辫触锛?";
 		operateResult = false;
 		turnCurrPolicyLockFlag(null, contNo, "unlock");
 		break MISSING_BLOCK_LABEL_524;
@@ -772,7 +772,7 @@ public class BankInsuredItem extends BankBasicBL
 			flag = saveTypeFour();
 		if (poltype.equals(""))
 		{
-			message = "请选择险种！";
+			message = "璇烽?夋嫨闄╃锛?";
 			flag = false;
 		}
 		return flag;
@@ -780,7 +780,7 @@ public class BankInsuredItem extends BankBasicBL
 
 	private LNPContSchema getMyLNPContByContNo(String contNo2)
 	{
-		System.out.println("开始初始化lnpcont信息");
+		System.out.println("寮?濮嬪垵濮嬪寲lnpcont淇℃伅");
 		PolicyMainInfo mainInfo = new PolicyMainInfo();
 		LNPContSchema aLNPContSchema = mainInfo.getContByContNo(contNo2);
 		return aLNPContSchema;
@@ -806,11 +806,11 @@ public class BankInsuredItem extends BankBasicBL
 
 	private LNPBonusInfoSchema getBonusSchemaByContNo(String contNo)
 	{
-		System.out.println("开始获取红利信息");
+		System.out.println("寮?濮嬭幏鍙栫孩鍒╀俊鎭?");
 		LNPBonusInfoDB db = new LNPBonusInfoDB();
 		db.setContNo(contNo);
 		LNPBonusInfoSet infoset = db.query();
-		System.out.println((new StringBuilder("红利信息的size()===")).append(infoset.size()).toString());
+		System.out.println((new StringBuilder("绾㈠埄淇℃伅鐨剆ize()===")).append(infoset.size()).toString());
 		if (infoset.size() > 0)
 		{
 			infoset.get(1);
@@ -823,7 +823,7 @@ public class BankInsuredItem extends BankBasicBL
 
 	private LNPInvestmentInfoSchema getInvestmentSchemaByContNo(String contNo)
 	{
-		System.out.println("开始获取月月加信息");
+		System.out.println("寮?濮嬭幏鍙栨湀鏈堝姞淇℃伅");
 		LNPInvestmentInfoDB db = new LNPInvestmentInfoDB();
 		db.setContNo(contNo);
 		LNPInvestmentInfoSet infoset = db.query();
@@ -839,7 +839,7 @@ public class BankInsuredItem extends BankBasicBL
 
 	private LNPInvestmentAccountInfoSet getAccountSetByContNo(String contNumber)
 	{
-		System.out.println("开始获取投资信息");
+		System.out.println("寮?濮嬭幏鍙栨姇璧勪俊鎭?");
 		LNPInvestmentAccountInfoDB db = new LNPInvestmentAccountInfoDB();
 		db.setContNo(contNo);
 		LNPInvestmentAccountInfoSet accountSet = db.query();
@@ -866,7 +866,7 @@ public class BankInsuredItem extends BankBasicBL
 				polSchema = new LNPPolSchema();
 				polSchema.setKindCode(poltype);
 				polSchema.setRiskCode(riskcode[i]);
-				if (years[i].startsWith("终身"))
+				if (years[i].startsWith("缁堣韩"))
 				{
 					polSchema.setInsuYear(SpecialProductFun.getRiskPro(polSchema.getRiskCode()));
 					polSchema.setInsuYearFlag("A");
@@ -912,7 +912,7 @@ public class BankInsuredItem extends BankBasicBL
 					polSchema.setPayEndYearFlag("");
 				}
 				polSchema.setUWCode(type[i]);
-				System.out.println((new StringBuilder("当前的type[i]值======")).append(type[i]).toString());
+				System.out.println((new StringBuilder("褰撳墠鐨則ype[i]鍊?======")).append(type[i]).toString());
 				if (type[i].equals("01"))
 				{
 					if (money[i] == null || money[i].equals(""))
@@ -981,7 +981,7 @@ public class BankInsuredItem extends BankBasicBL
 				polsetpage.add(polSchema);
 			} else
 			{
-				System.out.println((new StringBuilder("riskcode[")).append(i).append("]没有数据").toString());
+				System.out.println((new StringBuilder("riskcode[")).append(i).append("]娌℃湁鏁版嵁").toString());
 			}
 
 		LNPInvestmentAccountInfoSet delInvestSet = (new LNPInvestmentAccountInfoDB()).executeQuery((new StringBuilder("select * from LNPInvestmentAccountInfo where ContNo='")).append(contNo).append("'").toString());
@@ -992,7 +992,7 @@ public class BankInsuredItem extends BankBasicBL
 			SSRS ssrs = exeSQL.execSQL((new StringBuilder("select FundAccountCode,FundAccountName,p1 from MRiskFundAccount where RiskCode=ltrim(rtrim('")).append(mRiskCode).append("'))").toString());
 			if (ssrs.MaxRow > 0)
 			{
-				System.out.println("-------------------->当前传统险主险存在对应基金账户信息<-------------------");
+				System.out.println("-------------------->褰撳墠浼犵粺闄╀富闄╁瓨鍦ㄥ搴斿熀閲戣处鎴蜂俊鎭?<-------------------");
 				for (int i = 1; i <= ssrs.MaxRow; i++)
 				{
 					LNPInvestmentAccountInfoSchema investSchema = new LNPInvestmentAccountInfoSchema();
@@ -1037,19 +1037,19 @@ public class BankInsuredItem extends BankBasicBL
 			String editState = stateOperate.updateEditStateUNDone(contSchema.getEditstate(), 2);
 			contSchema.setEditstate(editState);
 		}
-		System.out.println((new StringBuilder("xboy---------------------------------------------传统险，当前state|editstate：")).append(contSchema.getState()).append("| ").append(contSchema.getEditstate()).toString());
+		System.out.println((new StringBuilder("xboy---------------------------------------------浼犵粺闄╋紝褰撳墠state|editstate锛?")).append(contSchema.getState()).append("| ").append(contSchema.getEditstate()).toString());
 		if (polsetpage.size() != 0 && !polsetpage.get(1).getRiskCode().equals("") && polsetpage.size() != polsetbase.size())
 		{
 			List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 			if (stateList.size() > 0)
 			{
-				System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+				System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 				changeStateflag = true;
 				contSchema.setState((String)stateList.get(0));
 				contSchema.setEditstate((String)stateList.get(1));
 			} else
 			{
-				System.out.println("当前操作不需要进行状态回滚");
+				System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 			}
 			contSchema.setInputOperator(tempGI.Operator);
 			contSchema.setModifyDate(date);
@@ -1068,8 +1068,8 @@ public class BankInsuredItem extends BankBasicBL
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "投保事项信息保存错误！";
-				System.out.println("投保事项保存失败");
+				message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+				System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 				flagone = false;
 			} else
 			{
@@ -1080,13 +1080,13 @@ public class BankInsuredItem extends BankBasicBL
 					policyState = new BankPolicyState();
 					if (changeStateflag)
 						policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-					message = "投保事项信息保存成功！";
-					System.out.println("保存成功");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+					System.out.println("淇濆瓨鎴愬姛");
 				}
 				catch (Exception e)
 				{
-					message = "操作记录接口出问题了";
-					System.out.println("操作记录接口出问题了");
+					message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+					System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 					e.printStackTrace();
 				}
 			}
@@ -1105,19 +1105,19 @@ public class BankInsuredItem extends BankBasicBL
 				break;
 			}
 
-			System.out.println((new StringBuilder("当前flags的值为===")).append(flags).toString());
+			System.out.println((new StringBuilder("褰撳墠flags鐨勫?间负===")).append(flags).toString());
 			if (!flags)
 			{
 				List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 				if (stateList.size() > 0)
 				{
-					System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+					System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 					changeStateflag = true;
 					contSchema.setState((String)stateList.get(0));
 					contSchema.setEditstate((String)stateList.get(1));
 				} else
 				{
-					System.out.println("当前操作不需要进行状态回滚");
+					System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 				}
 				contSchema.setInputOperator(tempGI.Operator);
 				contSchema.setModifyDate(date);
@@ -1136,8 +1136,8 @@ public class BankInsuredItem extends BankBasicBL
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					message = "投保事项信息保存错误！";
-					System.out.println("投保事项保存失败");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+					System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 					flagone = false;
 				} else
 				{
@@ -1148,20 +1148,20 @@ public class BankInsuredItem extends BankBasicBL
 						policyState = new BankPolicyState();
 						if (changeStateflag)
 							policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-						message = "投保事项信息保存成功！";
-						System.out.println("保存成功");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+						System.out.println("淇濆瓨鎴愬姛");
 					}
 					catch (Exception e)
 					{
-						message = "操作记录接口出问题了";
-						System.out.println("操作记录接口出问题了");
+						message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+						System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 						e.printStackTrace();
 					}
 				}
 			} else
 			{
-				System.out.println("本次操作没有修改数据");
-				message = "本次操作没有修改数据，不会进行数据库操作";
+				System.out.println("鏈鎿嶄綔娌℃湁淇敼鏁版嵁");
+				message = "鏈鎿嶄綔娌℃湁淇敼鏁版嵁锛屼笉浼氳繘琛屾暟鎹簱鎿嶄綔";
 				flagone = false;
 			}
 		}
@@ -1172,13 +1172,13 @@ public class BankInsuredItem extends BankBasicBL
 			List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 			if (stateList.size() > 0)
 			{
-				System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+				System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 				changeStateflag = true;
 				contSchema.setState((String)stateList.get(0));
 				contSchema.setEditstate((String)stateList.get(1));
 			} else
 			{
-				System.out.println("当前操作不需要进行状态回滚");
+				System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 			}
 			contSchema.setInputOperator(tempGI.Operator);
 			contSchema.setModifyDate(date);
@@ -1194,8 +1194,8 @@ public class BankInsuredItem extends BankBasicBL
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "投保事项信息保存错误！";
-				System.out.println("投保事项保存失败");
+				message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+				System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 				flagone = false;
 			} else
 			{
@@ -1206,13 +1206,13 @@ public class BankInsuredItem extends BankBasicBL
 					policyState = new BankPolicyState();
 					if (changeStateflag)
 						policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-					message = "投保事项信息保存成功！";
-					System.out.println("保存成功");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+					System.out.println("淇濆瓨鎴愬姛");
 				}
 				catch (Exception e)
 				{
-					message = "操作记录接口出问题了";
-					System.out.println("操作记录接口出问题了");
+					message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+					System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 					e.printStackTrace();
 				}
 			}
@@ -1222,7 +1222,7 @@ public class BankInsuredItem extends BankBasicBL
 
 	private boolean saveTypeTwo()
 	{
-		System.out.println("开始保存VUL险种------------------");
+		System.out.println("寮?濮嬩繚瀛榁UL闄╃------------------");
 		boolean flagtwo = false;
 		contSchema = getMyLNPContByContNo(contNo);
 		bonusInfoSchema = getBonusSchemaByContNo(contNo);
@@ -1276,7 +1276,7 @@ public class BankInsuredItem extends BankBasicBL
 			polsetpage.add(polSchema);
 		} else
 		{
-			System.out.println("---险种代码未录入，数据不会保存到数据库中---");
+			System.out.println("---闄╃浠ｇ爜鏈綍鍏ワ紝鏁版嵁涓嶄細淇濆瓨鍒版暟鎹簱涓?---");
 		}
 		System.out.println((new StringBuilder("polsetpage.size==================")).append(polsetpage.size()).toString());
 		newinvestSchema.setID(tIndex);
@@ -1342,15 +1342,15 @@ public class BankInsuredItem extends BankBasicBL
 			List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 			if (stateList.size() > 0)
 			{
-				System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+				System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 				changeStateflag = true;
 				contSchema.setState((String)stateList.get(0));
 				contSchema.setEditstate((String)stateList.get(1));
 			} else
 			{
-				System.out.println("当前操作不需要进行状态回滚");
+				System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 			}
-			System.out.println("开始保存VUL险种数据11111---------------");
+			System.out.println("寮?濮嬩繚瀛榁UL闄╃鏁版嵁11111---------------");
 			contSchema.setInputOperator(tempGI.Operator);
 			contSchema.setModifyDate(date);
 			contSchema.setModifyTime(time);
@@ -1369,8 +1369,8 @@ public class BankInsuredItem extends BankBasicBL
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "投保事项信息保存错误！";
-				System.out.println("投保事项保存失败");
+				message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+				System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 				flagtwo = false;
 			} else
 			{
@@ -1381,38 +1381,38 @@ public class BankInsuredItem extends BankBasicBL
 					policyState = new BankPolicyState();
 					if (changeStateflag)
 						policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-					message = "投保事项信息保存成功！";
-					System.out.println("保存成功");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+					System.out.println("淇濆瓨鎴愬姛");
 				}
 				catch (Exception e)
 				{
-					message = "操作记录接口出问题了";
-					System.out.println("操作记录接口出问题了");
+					message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+					System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 					e.printStackTrace();
 				}
 			}
 		} else
 		if (polsetpage.size() != 0 && polsetpage.size() == polsetbase.size())
 		{
-			System.out.println("开始保存VUL险种数据2222222222---------------");
+			System.out.println("寮?濮嬩繚瀛榁UL闄╃鏁版嵁2222222222---------------");
 			for (int i = 1; i <= polsetbase.size(); i++)
 				if (turnNullToString(polSchema.getRiskCode()).equals(turnNullToString(polsetbase.get(i).getRiskCode())) && turnNullToString(Double.valueOf(polSchema.getPrem())).equals(turnNullToString(Double.valueOf(polsetbase.get(i).getPrem()))) && turnNullToString(Double.valueOf(newinvestSchema.getMonthPlusPrem())).equals(turnNullToString(Double.valueOf(investSchema.getMonthPlusPrem()))) && turnNullToString(newinvestSchema.getTermInvestment()).equals(turnNullToString(investSchema.getTermInvestment())) && turnNullToString(newinvestSchema.getHesInvestment()).equals(turnNullToString(investSchema.getHesInvestment())) && checkaccount(infoSet, accountSet) && !turnNullToString(polSchema.getRiskCode()).equals(""))
 				{
-					message = "此时界面险种信息与数据库中信息一致无修改";
-					System.out.println("此时界面险种信息与数据库中信息一致无修改");
+					message = "姝ゆ椂鐣岄潰闄╃淇℃伅涓庢暟鎹簱涓俊鎭竴鑷存棤淇敼";
+					System.out.println("姝ゆ椂鐣岄潰闄╃淇℃伅涓庢暟鎹簱涓俊鎭竴鑷存棤淇敼");
 					flagtwo = false;
 				} else
 				{
 					List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 					if (stateList.size() > 0)
 					{
-						System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+						System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 						changeStateflag = true;
 						contSchema.setState((String)stateList.get(0));
 						contSchema.setEditstate((String)stateList.get(1));
 					} else
 					{
-						System.out.println("当前操作不需要进行状态回滚");
+						System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 					}
 					contSchema.setInputOperator(tempGI.Operator);
 					contSchema.setModifyDate(date);
@@ -1432,8 +1432,8 @@ public class BankInsuredItem extends BankBasicBL
 					vd.add(map);
 					if (!ps.submitData(vd, ""))
 					{
-						message = "投保事项信息保存错误！";
-						System.out.println("投保事项保存失败");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+						System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 						flagtwo = false;
 					} else
 					{
@@ -1444,13 +1444,13 @@ public class BankInsuredItem extends BankBasicBL
 							policyState = new BankPolicyState();
 							if (changeStateflag)
 								policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-							message = "投保事项信息保存成功！";
-							System.out.println("保存成功");
+							message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+							System.out.println("淇濆瓨鎴愬姛");
 						}
 						catch (Exception e)
 						{
-							message = "操作记录接口出问题了";
-							System.out.println("操作记录接口出问题了");
+							message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+							System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 							e.printStackTrace();
 						}
 					}
@@ -1463,15 +1463,15 @@ public class BankInsuredItem extends BankBasicBL
 				List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 				if (stateList.size() > 0)
 				{
-					System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+					System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 					changeStateflag = true;
 					contSchema.setState((String)stateList.get(0));
 					contSchema.setEditstate((String)stateList.get(1));
 				} else
 				{
-					System.out.println("当前操作不需要进行状态回滚");
+					System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 				}
-				System.out.println("开始保存VUL险种数据33333333---------------");
+				System.out.println("寮?濮嬩繚瀛榁UL闄╃鏁版嵁33333333---------------");
 				contSchema.setInputOperator(tempGI.Operator);
 				contSchema.setModifyDate(date);
 				contSchema.setModifyTime(time);
@@ -1486,8 +1486,8 @@ public class BankInsuredItem extends BankBasicBL
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					message = "投保事项信息保存错误！";
-					System.out.println("投保事项保存失败");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+					System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 					flagtwo = false;
 				} else
 				{
@@ -1498,19 +1498,19 @@ public class BankInsuredItem extends BankBasicBL
 						policyState = new BankPolicyState();
 						if (changeStateflag)
 							policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-						message = "投保事项信息保存成功！";
-						System.out.println("保存成功");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+						System.out.println("淇濆瓨鎴愬姛");
 					}
 					catch (Exception e)
 					{
-						message = "操作记录接口出问题了";
-						System.out.println("操作记录接口出问题了");
+						message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+						System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 						e.printStackTrace();
 					}
 				}
 			} else
 			{
-				System.out.println("数据库中无数据，页面也无数据，此时不对数据库进行操作");
+				System.out.println("鏁版嵁搴撲腑鏃犳暟鎹紝椤甸潰涔熸棤鏁版嵁锛屾鏃朵笉瀵规暟鎹簱杩涜鎿嶄綔");
 				flagtwo = false;
 			}
 		return flagtwo;
@@ -1559,17 +1559,17 @@ public class BankInsuredItem extends BankBasicBL
 		LNPBonusInfoSchema newbonusschema = new LNPBonusInfoSchema();
 		SysMaxNoMAPNP maxNoMap = new SysMaxNoMAPNP();
 		String tIndex = "";
-		System.out.println("---保存组合险----------------------------------------------------?");
+		System.out.println("---淇濆瓨缁勫悎闄?----------------------------------------------------?");
 		for (int i = 0; i < 6; i++)
 		{
-			System.out.println((new StringBuilder("---保存组合险----------------------------------------------------1")).append(combinationriskcode[i]).toString());
+			System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?----------------------------------------------------1")).append(combinationriskcode[i]).toString());
 			if (combinationriskcode[i] != null && !combinationriskcode[i].equals(""))
 			{
 				polSchema = new LNPPolSchema();
 				polSchema.setKindCode(poltype);
 				polSchema.setRiskVersion(combinationriskcode[i]);
 				polSchema.setSubFlag("M");
-				if (combinationyears[i].startsWith("终身"))
+				if (combinationyears[i].startsWith("缁堣韩"))
 				{
 					polSchema.setPayLocation("106");
 					polSchema.setPremToAmnt("A");
@@ -1623,7 +1623,7 @@ public class BankInsuredItem extends BankBasicBL
 				} else
 				{
 					polSchema.setUWCode(combinationtype[i]);
-					System.out.println((new StringBuilder("---保存组合险----------------------------------------------------2")).append(combinationtype[i]).toString());
+					System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?----------------------------------------------------2")).append(combinationtype[i]).toString());
 					System.out.println((new StringBuilder("combinationmoney[i]")).append(combinationmoney[i]).toString());
 					if (combinationtype[i].equals("01"))
 					{
@@ -1639,7 +1639,7 @@ public class BankInsuredItem extends BankBasicBL
 					} else
 					if (combinationtype[i].equals("02"))
 					{
-						System.out.println((new StringBuilder("---保存组合险----------------------------------------------------保费")).append(combinationtype[i]).toString());
+						System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?----------------------------------------------------淇濊垂")).append(combinationtype[i]).toString());
 						if (combinationmoney[i] == null || combinationmoney[i].equals(""))
 						{
 							polSchema.setAmnt(-1D);
@@ -1679,9 +1679,9 @@ public class BankInsuredItem extends BankBasicBL
 				polsetpage.add(polSchema);
 			} else
 			{
-				System.out.println("---组合险---险种代码未录入，数据不会保存到数据库中---");
+				System.out.println("---缁勫悎闄?---闄╃浠ｇ爜鏈綍鍏ワ紝鏁版嵁涓嶄細淇濆瓨鍒版暟鎹簱涓?---");
 			}
-			System.out.println((new StringBuilder("---保存组合险------------------------------------polsetpage.size=")).append(polsetpage.size()).toString());
+			System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?------------------------------------polsetpage.size=")).append(polsetpage.size()).toString());
 		}
 
 		newbonusschema.setGrpContNo("00000000000000000000");
@@ -1711,25 +1711,25 @@ public class BankInsuredItem extends BankBasicBL
 			String editState = stateOperate.updateEditStateUNDone(contSchema.getEditstate(), 2);
 			contSchema.setEditstate(editState);
 		}
-		System.out.println((new StringBuilder("---保存组合险------------------------------------3")).append(contSchema.getEditstate()).toString());
-		System.out.println((new StringBuilder("---保存组合险------------------------------------polsetpage.size()")).append(polsetpage.size()).toString());
-		System.out.println((new StringBuilder("---保存组合险------------------------------------polsetpage.get(1).getRiskCode()")).append(polsetpage.get(1).getRiskCode()).toString());
-		System.out.println((new StringBuilder("---保存组合险------------------------------------polsetpage.size()")).append(polsetpage.size()).toString());
+		System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?------------------------------------3")).append(contSchema.getEditstate()).toString());
+		System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?------------------------------------polsetpage.size()")).append(polsetpage.size()).toString());
+		System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?------------------------------------polsetpage.get(1).getRiskCode()")).append(polsetpage.get(1).getRiskCode()).toString());
+		System.out.println((new StringBuilder("---淇濆瓨缁勫悎闄?------------------------------------polsetpage.size()")).append(polsetpage.size()).toString());
 		if (polsetpage.size() != 0 && !polsetpage.get(1).getRiskVersion().equals("") && (polsetpage.size() != polsetbase.size() && (contSchema.getState().equals("01") || contSchema.getState().equals("02") || contSchema.getState().equals("04")) || polsetpage.size() + 1 != polsetbase.size() && !contSchema.getState().equals("01") && !contSchema.getState().equals("02") && !contSchema.getState().equals("04")))
 		{
-			System.out.println("--------开始保存组合险111111---------");
-			System.out.println((new StringBuilder("--------数据库中的数据与页面获取的数据条数不等 insert---------")).append(polsetpage.size()).toString());
+			System.out.println("--------寮?濮嬩繚瀛樼粍鍚堥櫓111111---------");
+			System.out.println((new StringBuilder("--------鏁版嵁搴撲腑鐨勬暟鎹笌椤甸潰鑾峰彇鐨勬暟鎹潯鏁颁笉绛? insert---------")).append(polsetpage.size()).toString());
 			System.out.println((new StringBuilder("gelic1:contSchema.getState()")).append(contSchema.getState()).toString());
 			List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 			if (stateList.size() > 0)
 			{
-				System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+				System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 				changeStateflag = true;
 				contSchema.setState((String)stateList.get(0));
 				contSchema.setEditstate((String)stateList.get(1));
 			} else
 			{
-				System.out.println("当前操作不需要进行状态回滚");
+				System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 			}
 			System.out.println((new StringBuilder("gelic2:contSchema.getState()")).append(contSchema.getState()).toString());
 			contSchema.setInputOperator(tempGI.Operator);
@@ -1746,8 +1746,8 @@ public class BankInsuredItem extends BankBasicBL
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "投保事项信息保存错误！";
-				System.out.println("投保事项保存失败");
+				message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+				System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 				flagthree = false;
 			} else
 			{
@@ -1758,13 +1758,13 @@ public class BankInsuredItem extends BankBasicBL
 					policyState = new BankPolicyState();
 					if (changeStateflag)
 						policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-					message = "投保事项信息保存成功！";
-					System.out.println("保存成功");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+					System.out.println("淇濆瓨鎴愬姛");
 				}
 				catch (Exception e)
 				{
-					message = "操作记录接口出问题了";
-					System.out.println("操作记录接口出问题了");
+					message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+					System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 					e.printStackTrace();
 				}
 			}
@@ -1784,19 +1784,19 @@ public class BankInsuredItem extends BankBasicBL
 
 			if (!MPolFlag)
 			{
-				System.out.println("--ZH------------------>未找到主险");
+				System.out.println("--ZH------------------>鏈壘鍒颁富闄?");
 				return flagthree = false;
 			}
 			boolean flags = false;
 			if (contSchema.getState().equals("01") || contSchema.getState().equals("02") || contSchema.getState().equals("04"))
 			{
-				System.out.println("-------------------->页面获取的数据与数据库的条数相同 update");
+				System.out.println("-------------------->椤甸潰鑾峰彇鐨勬暟鎹笌鏁版嵁搴撶殑鏉℃暟鐩稿悓 update");
 				for (int i = 1; i <= polsetbase.size(); i++)
 				{
 					if (turnNullToString(polsetpage.get(i).getRiskVersion()).equals(turnNullToString(polsetbase.get(i).getRiskVersion())) && turnNullToString(polsetpage.get(i).getPayLocation()).equals(turnNullToString(polsetbase.get(i).getPayLocation())) && turnNullToString(polsetpage.get(i).getPremToAmnt()).equals(turnNullToString(polsetbase.get(i).getPremToAmnt())) && turnNullToString(polsetpage.get(i).getPayMode()).equals(turnNullToString(polsetbase.get(i).getPayMode())) && turnNullToString(polsetpage.get(i).getAcciYearFlag()).equals(turnNullToString(polsetbase.get(i).getAcciYearFlag())) && turnNullToString(polsetpage.get(i).getRemark()).equals(turnNullToString(polsetbase.get(i).getRemark())) && turnNullToString(Double.valueOf(polsetpage.get(i).getAmnt())).equals(turnNullToString(Double.valueOf(polsetbase.get(i).getAmnt()))) && turnNullToString(Double.valueOf(polsetpage.get(i).getPrem())).equals(turnNullToString(Double.valueOf(polsetbase.get(i).getPrem()))) && turnNullToString(Integer.valueOf(polsetpage.get(i).getPayIntv())).equals(turnNullToString(Integer.valueOf(polsetbase.get(i).getPayIntv()))) && turnNullToString(polsetpage.get(i).getDeadGetMode()).equals(turnNullToString(polsetbase.get(i).getDeadGetMode())) && turnNullToString(polsetpage.get(i).getStandbyFlag3()).equals(turnNullToString(polsetbase.get(i).getStandbyFlag3())) && turnNullToString(newbonusschema.getBonusWay()).equals(turnNullToString(bonusInfoSchema.getBonusWay())) && turnNullToString(newbonusschema.getP1()).equals(turnNullToString(bonusInfoSchema.getP1())) && turnNullToString(newbonusschema.getP2()).equals(turnNullToString(bonusInfoSchema.getP2())))
 					{
-						message = "此时界面险种信息与数据库中信息一致无修改";
-						System.out.println("此时界面险种信息与数据库中信息一致无修改");
+						message = "姝ゆ椂鐣岄潰闄╃淇℃伅涓庢暟鎹簱涓俊鎭竴鑷存棤淇敼";
+						System.out.println("姝ゆ椂鐣岄潰闄╃淇℃伅涓庢暟鎹簱涓俊鎭竴鑷存棤淇敼");
 						flagthree = true;
 						continue;
 					}
@@ -1806,7 +1806,7 @@ public class BankInsuredItem extends BankBasicBL
 
 			} else
 			{
-				System.out.println("-------------------->页面获取的数据与数据库的条数不相同 update");
+				System.out.println("-------------------->椤甸潰鑾峰彇鐨勬暟鎹笌鏁版嵁搴撶殑鏉℃暟涓嶇浉鍚? update");
 				int i = 1;
 				for (int j = i; i <= polsetbase.size(); j++)
 				{
@@ -1819,8 +1819,8 @@ public class BankInsuredItem extends BankBasicBL
 							flagthree = false;
 							break;
 						}
-						message = "此时界面副险种信息与数据库中信息一致无修改";
-						System.out.println("此时界面副险种信息与数据库中信息一致无修改");
+						message = "姝ゆ椂鐣岄潰鍓櫓绉嶄俊鎭笌鏁版嵁搴撲腑淇℃伅涓?鑷存棤淇敼";
+						System.out.println("姝ゆ椂鐣岄潰鍓櫓绉嶄俊鎭笌鏁版嵁搴撲腑淇℃伅涓?鑷存棤淇敼");
 						flagthree = true;
 					} else
 					{
@@ -1831,19 +1831,19 @@ public class BankInsuredItem extends BankBasicBL
 				}
 
 			}
-			System.out.println((new StringBuilder("当前flagthree的值为===")).append(flags).toString());
+			System.out.println((new StringBuilder("褰撳墠flagthree鐨勫?间负===")).append(flags).toString());
 			if (!flagthree)
 			{
 				List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 				if (stateList.size() > 0)
 				{
-					System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+					System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 					changeStateflag = true;
 					contSchema.setState((String)stateList.get(0));
 					contSchema.setEditstate((String)stateList.get(1));
 				} else
 				{
-					System.out.println("当前操作不需要进行状态回滚");
+					System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 				}
 				contSchema.setInputOperator(tempGI.Operator);
 				contSchema.setModifyDate(date);
@@ -1861,8 +1861,8 @@ public class BankInsuredItem extends BankBasicBL
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					message = "投保事项信息保存错误！";
-					System.out.println("投保事项保存失败");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+					System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 					flagthree = false;
 				} else
 				{
@@ -1873,13 +1873,13 @@ public class BankInsuredItem extends BankBasicBL
 						policyState = new BankPolicyState();
 						if (changeStateflag)
 							policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-						message = "投保事项信息保存成功！";
-						System.out.println("保存成功");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+						System.out.println("淇濆瓨鎴愬姛");
 					}
 					catch (Exception e)
 					{
-						message = "操作记录接口出问题了";
-						System.out.println("操作记录接口出问题了");
+						message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+						System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 						e.printStackTrace();
 					}
 				}
@@ -1893,15 +1893,15 @@ public class BankInsuredItem extends BankBasicBL
 				List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 				if (stateList.size() > 0)
 				{
-					System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+					System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 					changeStateflag = true;
 					contSchema.setState((String)stateList.get(0));
 					contSchema.setEditstate((String)stateList.get(1));
 				} else
 				{
-					System.out.println("当前操作不需要进行状态回滚");
+					System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 				}
-				System.out.println("开始保存组合险种数据33333333---------------");
+				System.out.println("寮?濮嬩繚瀛樼粍鍚堥櫓绉嶆暟鎹?33333333---------------");
 				contSchema.setInputOperator(tempGI.Operator);
 				contSchema.setModifyDate(date);
 				contSchema.setModifyTime(time);
@@ -1915,8 +1915,8 @@ public class BankInsuredItem extends BankBasicBL
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					message = "投保事项信息保存错误！";
-					System.out.println("投保事项保存失败");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+					System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 					flagthree = false;
 				} else
 				{
@@ -1927,19 +1927,19 @@ public class BankInsuredItem extends BankBasicBL
 						policyState = new BankPolicyState();
 						if (changeStateflag)
 							policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-						message = "投保事项信息保存成功！";
-						System.out.println("保存成功");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+						System.out.println("淇濆瓨鎴愬姛");
 					}
 					catch (Exception e)
 					{
-						message = "操作记录接口出问题了";
-						System.out.println("操作记录接口出问题了");
+						message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+						System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 						e.printStackTrace();
 					}
 				}
 			} else
 			{
-				System.out.println("数据库中无数据，页面也无数据，此时不对数据库进行操作");
+				System.out.println("鏁版嵁搴撲腑鏃犳暟鎹紝椤甸潰涔熸棤鏁版嵁锛屾鏃朵笉瀵规暟鎹簱杩涜鎿嶄綔");
 				flagthree = false;
 			}
 		return flagthree;
@@ -1963,7 +1963,7 @@ public class BankInsuredItem extends BankBasicBL
 			polSchema.setKindCode(poltype);
 			polSchema.setRiskVersion(yearmoneychangeriskcode);
 			polSchema.setSubFlag("M");
-			if (yearmoneychangeyears.startsWith("终身"))
+			if (yearmoneychangeyears.startsWith("缁堣韩"))
 			{
 				polSchema.setPayLocation(String.valueOf(SpecialProductFun.getRiskPro(polSchema.getRiskCode())));
 				polSchema.setPremToAmnt("A");
@@ -2046,7 +2046,7 @@ public class BankInsuredItem extends BankBasicBL
 			polsetpage.add(polSchema);
 		} else
 		{
-			System.out.println("---年金转换险种---险种代码未录入，数据不会保存到数据库中---");
+			System.out.println("---骞撮噾杞崲闄╃---闄╃浠ｇ爜鏈綍鍏ワ紝鏁版嵁涓嶄細淇濆瓨鍒版暟鎹簱涓?---");
 		}
 		System.out.println((new StringBuilder("polsetpage.size==================")).append(polsetpage.size()).toString());
 		newbonusschema.setGrpContNo("00000000000000000000");
@@ -2081,7 +2081,7 @@ public class BankInsuredItem extends BankBasicBL
 		{
 			if (polsetbase.size() == 0)
 			{
-				System.out.println("--------开始保存年金转换险种---------");
+				System.out.println("--------寮?濮嬩繚瀛樺勾閲戣浆鎹㈤櫓绉?---------");
 				contSchema.setInputOperator(tempGI.Operator);
 				contSchema.setModifyDate(date);
 				contSchema.setModifyTime(time);
@@ -2094,8 +2094,8 @@ public class BankInsuredItem extends BankBasicBL
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					message = "投保事项信息保存错误！";
-					System.out.println("投保事项保存失败");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+					System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 					flagFour = false;
 				} else
 				{
@@ -2106,13 +2106,13 @@ public class BankInsuredItem extends BankBasicBL
 						policyState = new BankPolicyState();
 						if (changeStateflag)
 							policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-						message = "投保事项信息保存成功！";
-						System.out.println("保存成功");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+						System.out.println("淇濆瓨鎴愬姛");
 					}
 					catch (Exception e)
 					{
-						message = "操作记录接口出问题了";
-						System.out.println("操作记录接口出问题了");
+						message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+						System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 						e.printStackTrace();
 					}
 				}
@@ -2131,13 +2131,13 @@ public class BankInsuredItem extends BankBasicBL
 
 				if (!MPolFlag)
 				{
-					System.out.println("--ZH------------------>未找到主险");
+					System.out.println("--ZH------------------>鏈壘鍒颁富闄?");
 					return flagFour = false;
 				}
 				if (turnNullToString(polSchema.getUWTime()).equals(turnNullToString(polbaseschema.getUWTime())) && turnNullToString(polSchema.getRiskVersion()).equals(turnNullToString(polbaseschema.getRiskVersion())) && turnNullToString(polSchema.getPayLocation()).equals(turnNullToString(polbaseschema.getPayLocation())) && turnNullToString(polSchema.getPremToAmnt()).equals(turnNullToString(polbaseschema.getPremToAmnt())) && turnNullToString(polSchema.getPayMode()).equals(turnNullToString(polbaseschema.getPayMode())) && turnNullToString(polSchema.getAcciYearFlag()).equals(turnNullToString(polbaseschema.getAcciYearFlag())) && turnNullToString(polSchema.getRemark()).equals(turnNullToString(polbaseschema.getRemark())) && turnNullToString(Integer.valueOf(polSchema.getGetYear())).equals(turnNullToString(Integer.valueOf(polbaseschema.getGetYear()))) && turnNullToString(polSchema.getGetYearFlag()).equals(turnNullToString(polbaseschema.getGetYearFlag())) && turnNullToString(Integer.valueOf(polSchema.getPayIntv())).equals(turnNullToString(Integer.valueOf(polbaseschema.getPayIntv()))) && turnNullToString(polSchema.getDeadGetMode()).equals(turnNullToString(polbaseschema.getDeadGetMode())) && turnNullToString(polSchema.getStandbyFlag3()).equals(turnNullToString(polbaseschema.getStandbyFlag3())) && turnNullToString(newbonusschema.getBonusWay()).equals(turnNullToString(bonusInfoSchema.getBonusWay())) && turnNullToString(newbonusschema.getP1()).equals(turnNullToString(bonusInfoSchema.getP1())) && turnNullToString(newbonusschema.getP2()).equals(turnNullToString(bonusInfoSchema.getP2())))
 				{
-					message = "此时界面险种信息与数据库中信息一致无修改";
-					System.out.println("此时界面险种信息与数据库中信息一致无修改");
+					message = "姝ゆ椂鐣岄潰闄╃淇℃伅涓庢暟鎹簱涓俊鎭竴鑷存棤淇敼";
+					System.out.println("姝ゆ椂鐣岄潰闄╃淇℃伅涓庢暟鎹簱涓俊鎭竴鑷存棤淇敼");
 					flagFour = true;
 				} else
 				{
@@ -2174,13 +2174,13 @@ public class BankInsuredItem extends BankBasicBL
 					List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 					if (stateList.size() > 0)
 					{
-						System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+						System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 						changeStateflag = true;
 						contSchema.setState((String)stateList.get(0));
 						contSchema.setEditstate((String)stateList.get(1));
 					} else
 					{
-						System.out.println("当前操作不需要进行状态回滚");
+						System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 					}
 					contSchema.setInputOperator(tempGI.Operator);
 					contSchema.setModifyDate(date);
@@ -2199,8 +2199,8 @@ public class BankInsuredItem extends BankBasicBL
 					vd.add(map);
 					if (!ps.submitData(vd, ""))
 					{
-						message = "投保事项信息保存错误！";
-						System.out.println("投保事项保存失败");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+						System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 						flagFour = false;
 					} else
 					{
@@ -2211,13 +2211,13 @@ public class BankInsuredItem extends BankBasicBL
 							policyState = new BankPolicyState();
 							if (changeStateflag)
 								policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-							message = "投保事项信息保存成功！";
-							System.out.println("保存成功");
+							message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+							System.out.println("淇濆瓨鎴愬姛");
 						}
 						catch (Exception e)
 						{
-							message = "操作记录接口出问题了";
-							System.out.println("操作记录接口出问题了");
+							message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+							System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 							e.printStackTrace();
 						}
 					}
@@ -2230,15 +2230,15 @@ public class BankInsuredItem extends BankBasicBL
 				List stateList = stateOperate.changeMsgToModify(contSchema.getState(), contSchema.getEditstate(), tempGI.LNPRole);
 				if (stateList.size() > 0)
 				{
-					System.out.println("-------因为有保单信息被修改,将回滚保单状态值02待审核状态---------");
+					System.out.println("-------鍥犱负鏈変繚鍗曚俊鎭淇敼,灏嗗洖婊氫繚鍗曠姸鎬佸??02寰呭鏍哥姸鎬?---------");
 					changeStateflag = true;
 					contSchema.setState((String)stateList.get(0));
 					contSchema.setEditstate((String)stateList.get(1));
 				} else
 				{
-					System.out.println("当前操作不需要进行状态回滚");
+					System.out.println("褰撳墠鎿嶄綔涓嶉渶瑕佽繘琛岀姸鎬佸洖婊?");
 				}
-				System.out.println("开始保存年金转换险种---------------");
+				System.out.println("寮?濮嬩繚瀛樺勾閲戣浆鎹㈤櫓绉?---------------");
 				contSchema.setInputOperator(tempGI.Operator);
 				contSchema.setModifyDate(date);
 				contSchema.setModifyTime(time);
@@ -2252,8 +2252,8 @@ public class BankInsuredItem extends BankBasicBL
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					message = "投保事项信息保存错误！";
-					System.out.println("投保事项保存失败");
+					message = "鎶曚繚浜嬮」淇℃伅淇濆瓨閿欒锛?";
+					System.out.println("鎶曚繚浜嬮」淇濆瓨澶辫触");
 					flagFour = false;
 				} else
 				{
@@ -2264,19 +2264,19 @@ public class BankInsuredItem extends BankBasicBL
 						policyState = new BankPolicyState();
 						if (changeStateflag)
 							policyState.savePolicyState(contSchema.getContNo(), contSchema.getState(), "3", date, time);
-						message = "投保事项信息保存成功！";
-						System.out.println("保存成功");
+						message = "鎶曚繚浜嬮」淇℃伅淇濆瓨鎴愬姛锛?";
+						System.out.println("淇濆瓨鎴愬姛");
 					}
 					catch (Exception e)
 					{
-						message = "操作记录接口出问题了";
-						System.out.println("操作记录接口出问题了");
+						message = "鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡";
+						System.out.println("鎿嶄綔璁板綍鎺ュ彛鍑洪棶棰樹簡");
 						e.printStackTrace();
 					}
 				}
 			} else
 			{
-				System.out.println("数据库中无数据，页面也无数据，此时不对数据库进行操作");
+				System.out.println("鏁版嵁搴撲腑鏃犳暟鎹紝椤甸潰涔熸棤鏁版嵁锛屾鏃朵笉瀵规暟鎹簱杩涜鎿嶄綔");
 				flagFour = false;
 			}
 		return flagFour;
@@ -2285,14 +2285,14 @@ public class BankInsuredItem extends BankBasicBL
 	private boolean checkAllCompelte(LNPPolSet polsetpage, LNPBonusInfoSchema infoschema, LNPInvestmentInfoSchema newinvestSchema)
 	{
 		boolean checkflag;
-		System.out.println("-----开始调用必录项校验-------");
+		System.out.println("-----寮?濮嬭皟鐢ㄥ繀褰曢」鏍￠獙-------");
 		checkflag = false;
 		if (polsetpage == null || polsetpage.size() == 0)
 			checkflag = false;
 		else
 		if (polsetpage.get(1).getKindCode().equals("01"))
 		{
-			System.out.println("------传统险(01)必录项校验------");
+			System.out.println("------浼犵粺闄?(01)蹇呭綍椤规牎楠?------");
 			for (int i = 1; i <= polsetpage.size(); i++)
 			{
 				if (!polsetpage.get(i).getRiskCode().equals("") && polsetpage.get(i).getGetYear() >= 0 && polsetpage.get(i).getPayIntv() != -1 && !infoschema.getP1().equals("") && infoschema.getP1() != null && !infoschema.getP2().equals(""))
@@ -2307,7 +2307,7 @@ public class BankInsuredItem extends BankBasicBL
 		} else
 		if (polsetpage.get(1).getKindCode().equals("02"))
 		{
-			System.out.println("------VUL险(02)必录项校验------");
+			System.out.println("------VUL闄?(02)蹇呭綍椤规牎楠?------");
 			for (int i = 1; i <= polsetpage.size(); i++)
 			{
 				if (!polsetpage.get(i).getRiskCode().equals("") && polsetpage.get(i).getPrem() != 0.0D)
@@ -2322,19 +2322,19 @@ public class BankInsuredItem extends BankBasicBL
 		} else
 		if (polsetpage.get(1).getKindCode().equals("03"))
 		{
-			System.out.println((new StringBuilder("------组合险(03)必录项校验------==")).append(polsetpage.size()).toString());
+			System.out.println((new StringBuilder("------缁勫悎闄?(03)蹇呭綍椤规牎楠?------==")).append(polsetpage.size()).toString());
 			for (int i = 1; i <= polsetpage.size(); i++)
 			{
-				System.out.println((new StringBuilder("------组合险(03)必录项校验------==》")).append(i).append("==>").append(polsetpage.get(i).getRnewFlag()).toString());
+				System.out.println((new StringBuilder("------缁勫悎闄?(03)蹇呭綍椤规牎楠?------==銆?")).append(i).append("==>").append(polsetpage.get(i).getRnewFlag()).toString());
 				System.out.println((new StringBuilder("polsetpage.get(i)====")).append(polsetpage.get(i).getRnewFlag().equals("1")).toString());
 				if (polsetpage.get(i).getRnewFlag() == null || polsetpage.get(i).getRnewFlag().equals("") || !polsetpage.get(i).getRnewFlag().equals("1") || i != 1)
 					continue;
-				System.out.println("==================开始校验=================================");
-				System.out.println((new StringBuilder("polsetpage.get(i).getRiskVersion()结果：")).append(polsetpage.get(i).getRiskVersion()).toString());
-				System.out.println((new StringBuilder("polsetpage.get(i).getRemark()结果：")).append(polsetpage.get(i).getRemark()).toString());
-				System.out.println((new StringBuilder("polsetpage.get(i).getPayIntv()结果：")).append(polsetpage.get(i).getPayIntv()).toString());
-				System.out.println((new StringBuilder("polsetpage.get(i).getP1()结果：")).append(infoschema.getP1()).toString());
-				System.out.println((new StringBuilder("polsetpage.get(i).getP2()结果：")).append(infoschema.getP2()).toString());
+				System.out.println("==================寮?濮嬫牎楠?=================================");
+				System.out.println((new StringBuilder("polsetpage.get(i).getRiskVersion()缁撴灉锛?")).append(polsetpage.get(i).getRiskVersion()).toString());
+				System.out.println((new StringBuilder("polsetpage.get(i).getRemark()缁撴灉锛?")).append(polsetpage.get(i).getRemark()).toString());
+				System.out.println((new StringBuilder("polsetpage.get(i).getPayIntv()缁撴灉锛?")).append(polsetpage.get(i).getPayIntv()).toString());
+				System.out.println((new StringBuilder("polsetpage.get(i).getP1()缁撴灉锛?")).append(infoschema.getP1()).toString());
+				System.out.println((new StringBuilder("polsetpage.get(i).getP2()缁撴灉锛?")).append(infoschema.getP2()).toString());
 				if (!polsetpage.get(i).getRiskVersion().equals("") && !polsetpage.get(i).getRemark().equals("") && polsetpage.get(i).getPayIntv() != -1 && !infoschema.getP1().equals("") && infoschema.getP1() != null && !infoschema.getP2().equals(""))
 				{
 					checkflag = true;
@@ -2343,13 +2343,13 @@ public class BankInsuredItem extends BankBasicBL
 					checkflag = false;
 					break;
 				}
-				System.out.println((new StringBuilder("------组合险(03)必录项校验------1结果")).append(checkflag).toString());
+				System.out.println((new StringBuilder("------缁勫悎闄?(03)蹇呭綍椤规牎楠?------1缁撴灉")).append(checkflag).toString());
 			}
 
 		} else
 		if (polsetpage.get(1).getKindCode().equals("04"))
 		{
-			System.out.println("------年金转换(04)必录项校验------");
+			System.out.println("------骞撮噾杞崲(04)蹇呭綍椤规牎楠?------");
 			for (int i = 1; i <= polsetpage.size(); i++)
 			{
 				if (polsetpage.get(i).getRnewFlag() == null || polsetpage.get(i).getRnewFlag().equals("") || !polsetpage.get(i).getRnewFlag().equals("2"))
@@ -2364,12 +2364,12 @@ public class BankInsuredItem extends BankBasicBL
 			}
 
 		}
-		System.out.println((new StringBuilder("----校验结束-----checkflag====")).append(checkflag).toString());
+		System.out.println((new StringBuilder("----鏍￠獙缁撴潫-----checkflag====")).append(checkflag).toString());
 		return checkflag;
 		RuntimeException e;
 		e;
 		e.printStackTrace();
-		System.out.println("进行了保存操作但是没有录入数据");
+		System.out.println("杩涜浜嗕繚瀛樻搷浣滀絾鏄病鏈夊綍鍏ユ暟鎹?");
 		return false;
 	}
 

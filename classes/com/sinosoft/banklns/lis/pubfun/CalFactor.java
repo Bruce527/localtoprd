@@ -24,9 +24,9 @@ public class CalFactor
 	public String getV(String FCode)
 	{
 		String strReturn = "";
-		if (FCode.equals("±£¶î"))
+		if (FCode.equals("ä¿é¢"))
 			strReturn = data1;
-		if (FCode.equals("ÄêÁä"))
+		if (FCode.equals("å¹´é¾„"))
 			strReturn = data2;
 		return strReturn;
 	}
@@ -35,12 +35,12 @@ public class CalFactor
 	{
 		if (FCode.equals(""))
 			return false;
-		if (FCode.equals("±£¶î"))
+		if (FCode.equals("ä¿é¢"))
 			if (FValue != null && !FValue.equals(""))
 				data1 = FValue.trim();
 			else
 				data1 = null;
-		if (FCode.equals("ÄêÁä"))
+		if (FCode.equals("å¹´é¾„"))
 			if (FValue != null && !FValue.equals(""))
 				data1 = FValue.trim();
 			else

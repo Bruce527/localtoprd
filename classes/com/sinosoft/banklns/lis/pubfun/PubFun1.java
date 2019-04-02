@@ -198,7 +198,7 @@ public class PubFun1
 				serialLen = 10;
 			} else
 			{
-				System.out.println("错误的NoLimit");
+				System.out.println("閿欒鐨凬oLimit");
 				return tReturn;
 			}
 		cNoType = cNoType.toUpperCase();
@@ -517,10 +517,10 @@ public class PubFun1
 		tLNPCalModeDB.setType("F");
 		tLNPCalModeDB.setCalSQL(strSQL);
 		if (!tLNPCalModeDB.update())
-			throw new Exception("设置计算公式时出错");
+			throw new Exception("璁剧疆璁＄畻鍏紡鏃跺嚭閿?");
 		calculator.setCalCode("XXX");
 		if (strSQL.equals(""))
-			throw new Exception("解析SQL语句时出错");
+			throw new Exception("瑙ｆ瀽SQL璇彞鏃跺嚭閿?");
 		else
 			return strSQL.replace('@', '\'');
 	}

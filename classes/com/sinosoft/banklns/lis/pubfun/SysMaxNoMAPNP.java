@@ -32,7 +32,7 @@ public class SysMaxNoMAPNP
 		int tMaxNo;
 		if (cNoType == null || cNoType.trim().length() <= 0 || cNoLimit == null)
 		{
-			System.out.println("NoType³¤¶È´íÎó»òÕßNoLimitÎª¿Õ");
+			System.out.println("NoTypeé•¿åº¦é”™è¯¯æˆ–è?…NoLimitä¸ºç©º");
 			return null;
 		}
 		serialLen = 20;
@@ -57,7 +57,7 @@ public class SysMaxNoMAPNP
 			catch (SQLException e1)
 			{
 				e1.printStackTrace();
-				CError.buildErr(this, "Êý¾Ý¿âÁ¬½ÓÊ§°Ü");
+				CError.buildErr(this, "æ•°æ®åº“è¿žæŽ¥å¤±è´?");
 				return null;
 			}
 		if (conn == null)
@@ -79,7 +79,7 @@ public class SysMaxNoMAPNP
 		result = exeSQL.getOneValue(tSBql.toString());
 		if (!exeSQL.mErrors.needDealError())
 			break MISSING_BLOCK_LABEL_238;
-		System.out.println("²éÑ¯LNPMaxNo³ö´í£¬ÇëÉÔºó!");
+		System.out.println("æŸ¥è¯¢LNPMaxNoå‡ºé”™ï¼Œè¯·ç¨åŽ!");
 		conn.rollback();
 		conn.close();
 		return null;
@@ -100,7 +100,7 @@ label0:
 				exeSQL = new ExeSQL(conn);
 				if (exeSQL.execUpdateSQL(tSBql.toString()))
 					break label0;
-				System.out.println("CreateMaxNo ²åÈëÊ§°Ü£¬ÇëÖØÊÔ!");
+				System.out.println("CreateMaxNo æ’å…¥å¤±è´¥ï¼Œè¯·é‡è¯•!");
 				conn.rollback();
 				conn.close();
 			}
@@ -131,7 +131,7 @@ label0:
 		exeSQL = new ExeSQL(conn);
 		if (exeSQL.execUpdateSQL(tSBql.toString()))
 			break MISSING_BLOCK_LABEL_455;
-		System.out.println("CreateMaxNo ¸üÐÂÊ§°Ü£¬ÇëÖØÊÔ!");
+		System.out.println("CreateMaxNo æ›´æ–°å¤±è´¥ï¼Œè¯·é‡è¯•!");
 		conn.rollback();
 		conn.close();
 		return null;
@@ -151,7 +151,7 @@ label0:
 		int tMaxNo;
 		if (cNoType == null || cNoType.trim().length() <= 0 || cNoLimit == null)
 		{
-			System.out.println("NoType³¤¶È´íÎó»òÕßNoLimitÎª¿Õ");
+			System.out.println("NoTypeé•¿åº¦é”™è¯¯æˆ–è?…NoLimitä¸ºç©º");
 			return null;
 		}
 		serialLen = 20;
@@ -171,7 +171,7 @@ label0:
 		result = exeSQL.getOneValue(tSBql.toString());
 		if (!exeSQL.mErrors.needDealError())
 			break MISSING_BLOCK_LABEL_145;
-		System.out.println("²éÑ¯LNPMaxNo³ö´í£¬ÇëÉÔºó!");
+		System.out.println("æŸ¥è¯¢LNPMaxNoå‡ºé”™ï¼Œè¯·ç¨åŽ!");
 		return null;
 		if (result != null && !result.equals(""))
 			break MISSING_BLOCK_LABEL_249;
@@ -184,7 +184,7 @@ label0:
 		ExeSQL exeSQL = new ExeSQL(conn);
 		if (exeSQL.execUpdateSQL(tSBql.toString()))
 			break MISSING_BLOCK_LABEL_243;
-		System.out.println("CreateMaxNo ²åÈëÊ§°Ü£¬ÇëÖØÊÔ!");
+		System.out.println("CreateMaxNo æ’å…¥å¤±è´¥ï¼Œè¯·é‡è¯•!");
 		return null;
 		tMaxNo = 1;
 		break MISSING_BLOCK_LABEL_363;
@@ -197,7 +197,7 @@ label0:
 		ExeSQL exeSQL = new ExeSQL(conn);
 		if (exeSQL.execUpdateSQL(tSBql.toString()))
 			break MISSING_BLOCK_LABEL_332;
-		System.out.println("CreateMaxNo ¸üÐÂÊ§°Ü£¬ÇëÖØÊÔ!");
+		System.out.println("CreateMaxNo æ›´æ–°å¤±è´¥ï¼Œè¯·é‡è¯•!");
 		return null;
 		try
 		{
@@ -230,7 +230,7 @@ label0:
 		StringBuffer tSBql = null;
 		if (cNoType == null || cNoType.trim().length() <= 0 || cNoLength <= 0)
 		{
-			System.out.println("NoType³¤¶È´íÎó»òNoLength´íÎó");
+			System.out.println("NoTypeé•¿åº¦é”™è¯¯æˆ–NoLengthé”™è¯¯");
 			return null;
 		}
 		cNoType = cNoType.toUpperCase();
@@ -245,9 +245,9 @@ label0:
 		if (cNoType.equals("COMMISIONSN") || cNoType.equals("GRPNO") || cNoType.equals("CUSTOMERNO") || cNoType.equals("SUGDATAITEMCODE") || cNoType.equals("SUGITEMCODE") || cNoType.equals("SUGMODELCODE") || cNoType.equals("SUGCODE"))
 		{
 			tSBql = new StringBuffer(128);
-			tSBql.append("¸ÃÀàÐÍÁ÷Ë®ºÅ£¬Çë²ÉÓÃCreateMaxNo('");
+			tSBql.append("è¯¥ç±»åž‹æµæ°´å·ï¼Œè¯·é‡‡ç”¨CreateMaxNo('");
 			tSBql.append(cNoType);
-			tSBql.append("','SN')·½Ê½Éú³É");
+			tSBql.append("','SN')æ–¹å¼ç”Ÿæˆ");
 			System.out.println(tSBql.toString());
 			return null;
 		}
@@ -266,7 +266,7 @@ label0:
 		result = exeSQL.getOneValue(tSBql.toString());
 		if (result != null && !exeSQL.mErrors.needDealError())
 			break MISSING_BLOCK_LABEL_294;
-		System.out.println("CreateMaxNo ×ÊÔ´Ã¦£¬ÇëÉÔºó!");
+		System.out.println("CreateMaxNo èµ„æºå¿™ï¼Œè¯·ç¨å?!");
 		conn.rollback();
 		conn.close();
 		return null;
@@ -287,7 +287,7 @@ label0:
 				exeSQL = new ExeSQL(conn);
 				if (exeSQL.execUpdateSQL(tSBql.toString()))
 					break label0;
-				System.out.println("CreateMaxNo ²åÈëÊ§°Ü£¬ÇëÖØÊÔ!");
+				System.out.println("CreateMaxNo æ’å…¥å¤±è´¥ï¼Œè¯·é‡è¯•!");
 				conn.rollback();
 				conn.close();
 			}
@@ -318,7 +318,7 @@ label0:
 		exeSQL = new ExeSQL(conn);
 		if (exeSQL.execUpdateSQL(tSBql.toString()))
 			break MISSING_BLOCK_LABEL_494;
-		System.out.println("CreateMaxNo ¸üÐÂÊ§°Ü£¬ÇëÖØÊÔ!");
+		System.out.println("CreateMaxNo æ›´æ–°å¤±è´¥ï¼Œè¯·é‡è¯•!");
 		conn.rollback();
 		conn.close();
 		return null;

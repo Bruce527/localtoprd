@@ -53,7 +53,7 @@ public class InsuCoreImpl
 		else
 			result = Double.parseDouble(resultstr);
 		if (ewLNPDutyGetDB.getZeroFlag().equals("N") && result == 0.0D)
-			throw new Exception("?????4????????0.");
+			throw new Exception("ï¿½ï¿½ï¿½ï¿½ï¿?4ï¿½Ä±ï¿½ï¿½î²»ï¿½ï¿½Îª0.");
 		else
 			return result;
 	}
@@ -485,7 +485,7 @@ public class InsuCoreImpl
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			throw new Exception("???›C????????.");
+			throw new Exception("ï¿½ï¿½ï¿½æ±£ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿?.");
 		}
 	}
 }

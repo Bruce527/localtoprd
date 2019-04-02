@@ -36,7 +36,7 @@ public class InterFaceCheck
 	public boolean checkUnderWritingPass(String contno)
 	{
 		boolean flag;
-		System.out.println("??????????--Start");
+		System.out.println("ï¿½Ë±ï¿½Ç°ï¿½ï¿½Ï¢ï¿½ï¿½ï¿?--Start");
 		message = null;
 		flag = false;
 		LNPContSchema lnpcont;
@@ -46,8 +46,8 @@ public class InterFaceCheck
 		flag = stateOperator.checkUnderWriteOperate(lnpcont.getState(), lnpcont.getEditstate());
 		if (flag)
 			break MISSING_BLOCK_LABEL_75;
-		message = "????????????§Ü????????????????????";
-		System.out.println("????????????§Ü????????????????????");
+		message = "ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½ÐºË±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿?";
+		System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½ÐºË±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿?");
 		return false;
 		boolean underWriteFlag;
 		ExeSQL tExeSql1 = new ExeSQL();
@@ -68,12 +68,12 @@ public class InterFaceCheck
 			break MISSING_BLOCK_LABEL_161;
 		message = errorMsg1;
 		return false;
-		message = "??????????";
+		message = "ï¿½Ë±ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿?";
 		return false;
 		flag = checkAgentExist(contno);
 		if (flag)
 			break MISSING_BLOCK_LABEL_179;
-		message = "???????????????????";
+		message = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿?";
 		return false;
 		String errorMsg2 = checkSpelDone(contno);
 		if (errorMsg2 == null)
@@ -114,7 +114,7 @@ public class InterFaceCheck
 		if (impartId != null && !"".equals(impartId.trim()))
 		{
 			String queSQL = (new StringBuilder("select distinct substring(questionid,5,2) from lnpcustimpque where impartid='")).append(impartId).append("' and ").append("checkflag='0' ").append("and  (p1<>'1' or p1 is null or p1='') ").append("and questiontype<>'0' ").append("and questionid not in(select questionid from lnpcustimpresult where contno='").append(contno).append("')").append("union ").append("select distinct substring(questionid,5,2) from  ").append("(select questionid,errormsg from lnpcustimpque where (p1<>'1' or p1 is null or p1='') and outqueid in ").append("(select questionid from lnpcustimpresult").append(" where contno='").append(contno).append("' and ").append("optionid ='1' and ").append("questionid in ").append("(select distinct outqueid from lnpcustimpque where impartid='").append(impartId).append("' and checkflag='1' ").append("and checkvalue='1' ").append("and p1<>'1'").append("and questiontype<>'0'))) c where   questionid not in").append("(select questionid from lnpcustimpresult where contno='").append(contno).append("')").append(";").toString();
-			System.out.println((new StringBuilder("??ðÕ??????sql--")).append(queSQL).toString());
+			System.out.println((new StringBuilder("ï¿½ï¿½é¹«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sql--")).append(queSQL).toString());
 			SSRS tSSRS2 = reExeSQL.execSQL(queSQL);
 			SSRS tSSRS3;
 			if (tSSRS2 != null && tSSRS2.MaxRow > 0)
@@ -123,7 +123,7 @@ public class InterFaceCheck
 					queSQL = (new StringBuilder("select * from lnpcustimpresult where impartid='")).append(impartId).append("' and contno='").append(contno).append("' and questionid='").append(impartId).append("050000' and optionid in ('1','2')").toString();
 					SSRS tSSRS3 = reExeSQL.execSQL(queSQL);
 					if (tSSRS3 == null || tSSRS3.MaxRow == 0)
-						errorMsg = "????5";
+						errorMsg = "ï¿½ï¿½ï¿½ï¿½5";
 				} else
 				{
 					for (int i = 1; i <= tSSRS2.MaxRow; i++)
@@ -132,18 +132,18 @@ public class InterFaceCheck
 							queSQL = (new StringBuilder("select * from lnpcustimpresult where impartid='")).append(impartId).append("' and contno='").append(contno).append("' and questionid='").append(impartId).append("050000' and optionid in ('1','2')").toString();
 							tSSRS3 = reExeSQL.execSQL(queSQL);
 							if (tSSRS3 == null || tSSRS3.MaxRow == 0)
-								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",????5").toString();
+								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",ï¿½ï¿½ï¿½ï¿½5").toString();
 						} else
 						if ("0301".equals(impartId) && ("13".equals(tSSRS2.GetText(i, 1)) || "14".equals(tSSRS2.GetText(i, 1))))
 						{
 							if ("13".equals(tSSRS2.GetText(i, 1)))
-								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",????????????1").toString();
+								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½1").toString();
 							else
 							if ("14".equals(tSSRS2.GetText(i, 1)))
-								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",????????????2").toString();
+								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½2").toString();
 						} else
 						{
-							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",????").append(Integer.parseInt(tSSRS2.GetText(i, 1))).toString();
+							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",ï¿½ï¿½ï¿½ï¿½").append(Integer.parseInt(tSSRS2.GetText(i, 1))).toString();
 						}
 
 					errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",").toString();
@@ -175,10 +175,10 @@ public class InterFaceCheck
 						if (trSSRS33 != null && trSSRS33.MaxRow > 0)
 							flag = false;
 						if (!flag)
-							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????,").toString();
+							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					} else
 					{
-						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????????,").toString();
+						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					}
 				}
 			}
@@ -209,10 +209,10 @@ public class InterFaceCheck
 						if (trSSRS33 != null && trSSRS33.MaxRow > 0)
 							flag = false;
 						if (!flag)
-							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????,").toString();
+							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					} else
 					{
-						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????????,").toString();
+						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					}
 				}
 			}
@@ -246,25 +246,25 @@ public class InterFaceCheck
 								flag = false;
 						}
 						if (!flag)
-							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????,").toString();
+							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					} else
 					{
-						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????????,").toString();
+						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					}
 				}
 			}
 			String squeSQL = (new StringBuilder("select distinct substring(questionid,5,2),checkvalue,errormsg from lnpcustimpque where impartid='")).append(impartId).append("' and checkflag='1' and checkvalue<>'1'  and questiontype not in('0')").append(" and ((outqueid is null or (outqueid is not null and '1'=(select optionid from lnpcustimpresult ").append("where questionid=outqueid and contno='").append(contno).append("')))").append(" and questionid not in(select questionid from lnpcustimpresult where contno='").append(contno).append("'));").toString();
-			System.out.println((new StringBuilder("???????????sql--")).append(squeSQL).toString());
+			System.out.println((new StringBuilder("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sql--")).append(squeSQL).toString());
 			tSSRS0301 = reExeSQL.execSQL(squeSQL);
 			if (tSSRS0301 != null && tSSRS0301.MaxRow > 0)
 			{
 				String spelImpartType = "";
 				String age = LNPPubFun.getAgeByBirthdayNew(contSch.getInsuredBirthday(), contSch.getPValiDate());
 				int ageInt;
-				if (age.indexOf("??") != -1)
+				if (age.indexOf("ï¿½ï¿½") != -1)
 					ageInt = 0;
 				else
-					ageInt = Integer.parseInt(age.substring(0, age.indexOf("??")));
+					ageInt = Integer.parseInt(age.substring(0, age.indexOf("ï¿½ï¿½")));
 				if (!"0101".equals(impartId))
 				{
 					if (contSch.getInsuredSex().equals("1") && ageInt >= 18)
@@ -324,11 +324,11 @@ public class InterFaceCheck
 		}
 		if (!errorMsg.equals(""))
 		{
-			reError = (new StringBuilder("????:")).append(errorMsg).append("¦Ä??§Õ????,????§Õ").toString();
+			reError = (new StringBuilder("ï¿½ï¿½ï¿½Ö?:")).append(errorMsg).append("Î´ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ð´").toString();
 			reError = reError.replaceAll(":,", ":");
 			reError = reError.replaceAll(",,", ",");
 		}
-		System.out.println((new StringBuilder("????¦Ê??§µ?ï“")).append(reError).toString());
+		System.out.println((new StringBuilder("ï¿½ï¿½Ò»ï¿½ÎºË±ï¿½Ð£ï¿½é£º")).append(reError).toString());
 		return reError;
 	}
 
@@ -345,7 +345,7 @@ public class InterFaceCheck
 		{
 			String impartId = tSSRS.GetText(1, 1);
 			String queSQL = (new StringBuilder("select distinct substring(questionid,5,2) from lnpcustimpque where questiontype='2' and impartid='")).append(impartId).append("' and ").append("checkflag='0' ").append("and  (p1<>'1' or p1 is null or p1='') ").append("and questiontype<>'0' ").append("and questionid not in(select questionid from lnpcustimpresult where contno='").append(contno).append("')").append("union ").append("select distinct substring(questionid,5,2) from  ").append("(select questionid,errormsg from lnpcustimpque where questiontype='2' and (p1<>'1' or p1 is null or p1='') and outqueid in ").append("(select questionid from lnpcustimpresult").append(" where contno='").append(contno).append("' and ").append("optionid ='1' and ").append("questionid in ").append("(select distinct outqueid from lnpcustimpque where impartid='").append(impartId).append("' and checkflag='1' ").append("and checkvalue='1' ").append("and p1<>'1'").append("and questiontype<>'0'))) c where   questionid not in").append("(select questionid from lnpcustimpresult where contno='").append(contno).append("')").append(";").toString();
-			System.out.println((new StringBuilder("??ðÕ??????sql--")).append(queSQL).toString());
+			System.out.println((new StringBuilder("ï¿½ï¿½é¹«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sql--")).append(queSQL).toString());
 			SSRS tSSRS2 = reExeSQL.execSQL(queSQL);
 			if (tSSRS2 != null && tSSRS2.MaxRow > 0 && (!"0101".equals(impartId) && !"0301".equals(impartId) || tSSRS2.MaxRow != 1 || !"05".equals(tSSRS2.GetText(1, 1))))
 			{
@@ -354,13 +354,13 @@ public class InterFaceCheck
 						if ("0301".equals(impartId) && ("13".equals(tSSRS2.GetText(i, 1)) || "14".equals(tSSRS2.GetText(i, 1))))
 						{
 							if ("13".equals(tSSRS2.GetText(i, 1)))
-								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",????????????1").toString();
+								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½1").toString();
 							else
 							if ("14".equals(tSSRS2.GetText(i, 1)))
-								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",????????????2").toString();
+								errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½2").toString();
 						} else
 						{
-							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",????").append(Integer.parseInt(tSSRS2.GetText(i, 1))).toString();
+							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",ï¿½ï¿½ï¿½ï¿½").append(Integer.parseInt(tSSRS2.GetText(i, 1))).toString();
 						}
 
 				errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append(",").toString();
@@ -392,10 +392,10 @@ public class InterFaceCheck
 						if (trSSRS33 != null && trSSRS33.MaxRow > 0)
 							flag = false;
 						if (!flag)
-							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????,").toString();
+							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					} else
 					{
-						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????????,").toString();
+						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					}
 				}
 			}
@@ -429,25 +429,25 @@ public class InterFaceCheck
 								flag = false;
 						}
 						if (!flag)
-							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????,").toString();
+							errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					} else
 					{
-						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("???????????,").toString();
+						errorMsg = (new StringBuilder(String.valueOf(errorMsg))).append("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?,").toString();
 					}
 				}
 			}
 			String squeSQL = (new StringBuilder("select distinct substring(questionid,5,2),checkvalue,errormsg from lnpcustimpque where questiontype='2' and impartid='")).append(impartId).append("' and checkflag='1' and checkvalue<>'1'  and questiontype not in('1','0')").append(" and (outqueid is null or (outqueid is not null and '1'=(select optionid from lnpcustimpresult ").append("where questionid=outqueid and contno='").append(contno).append("')))").append(" and questionid not in(select questionid from lnpcustimpresult where contno='").append(contno).append("');").toString();
-			System.out.println((new StringBuilder("???????????sql--")).append(squeSQL).toString());
+			System.out.println((new StringBuilder("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sql--")).append(squeSQL).toString());
 			SSRS tSSRS3 = reExeSQL.execSQL(squeSQL);
 			if (tSSRS3 != null && tSSRS3.MaxRow > 0)
 			{
 				String spelImpartType = "";
 				String age = LNPPubFun.getAgeByBirthdayNew(contSch.getInsuredBirthday(), contSch.getPValiDate());
 				int ageInt;
-				if (age.indexOf("??") != -1)
+				if (age.indexOf("ï¿½ï¿½") != -1)
 					ageInt = 0;
 				else
-					ageInt = Integer.parseInt(age.substring(0, age.indexOf("??")));
+					ageInt = Integer.parseInt(age.substring(0, age.indexOf("ï¿½ï¿½")));
 				if (ageInt > 2)
 				{
 					if (contSch.getInsuredSex().equals("1") && ageInt >= 18)
@@ -466,11 +466,11 @@ public class InterFaceCheck
 		}
 		if (!errorMsg.equals(""))
 		{
-			reError = (new StringBuilder("????:")).append(errorMsg).append("¦Ä??§Õ????,????§Õ").toString();
+			reError = (new StringBuilder("ï¿½ï¿½ï¿½Ö?:")).append(errorMsg).append("Î´ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ð´").toString();
 			reError = reError.replaceAll(":,", ":");
 			reError = reError.replaceAll(",,", ",");
 		}
-		System.out.println((new StringBuilder("????¦Ê??§µ?ï“")).append(reError).toString());
+		System.out.println((new StringBuilder("ï¿½Ú¶ï¿½ï¿½ÎºË±ï¿½Ð£ï¿½é£º")).append(reError).toString());
 		return reError;
 	}
 
@@ -487,7 +487,7 @@ public class InterFaceCheck
 
 	private String checkSpelDone(String contno)
 	{
-		System.out.println("-- §µ?????????? --");
+		System.out.println("-- Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ --");
 		String reErrorMsg = "";
 		String sql = "select impartid,questionid,checkflag,checkvalue,errormsg,p1,p2,p3 from LNPSpelCheckConfig;";
 		ExeSQL tExeSQL = new ExeSQL();
@@ -508,7 +508,7 @@ public class InterFaceCheck
 		}
 		if (reErrorMsg.equals(""))
 			reErrorMsg = null;
-		System.out.println((new StringBuilder("-- §µ?????????? end--")).append(reErrorMsg).toString());
+		System.out.println((new StringBuilder("-- Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ end--")).append(reErrorMsg).toString());
 		return reErrorMsg;
 	}
 }

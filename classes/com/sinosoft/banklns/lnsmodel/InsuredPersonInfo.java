@@ -223,7 +223,7 @@ public class InsuredPersonInfo
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			message = "??????????????";
+			message = "�����˳�ʼ������";
 			operateResult = false;
 		}
 	}
@@ -280,7 +280,7 @@ public class InsuredPersonInfo
 			operateResult = true;
 			occupationCode = "";
 			occupationName = "";
-			message = "?????????????";
+			message = "��ְҵ���벻���ڣ�";
 		}
 	}
 
@@ -299,7 +299,7 @@ public class InsuredPersonInfo
 			operateResult = true;
 			partOccupationCode = "";
 			partOccupationName = "";
-			message = "?\374?????????????";
+			message = "�ü�ְְҵ���벻���ڣ�";
 		}
 	}
 
@@ -326,7 +326,7 @@ public class InsuredPersonInfo
 		operateResult = true;
 		if (infoSource.equals("undo") || contSch == null)
 		{
-			message = "?????????????";
+			message = "Ͷ������Ϣ��ʧ��";
 			operateResult = true;
 			return;
 		}
@@ -360,14 +360,14 @@ public class InsuredPersonInfo
 		String ageType = "";
 		agePer = LNPPubFun.getAgeByBirthdayNew(insuredSchema.getBirthday(), contSch.getPValiDate());
 		age = agePer;
-		if (agePer.indexOf("??") > -1)
+		if (agePer.indexOf("��") > -1)
 		{
 			ageType = "D";
-			agePer = agePer.substring(0, agePer.indexOf("??"));
+			agePer = agePer.substring(0, agePer.indexOf("��"));
 		} else
 		{
 			ageType = "Y";
-			agePer = agePer.substring(0, agePer.indexOf("??"));
+			agePer = agePer.substring(0, agePer.indexOf("��"));
 		}
 		insuredSchema.setAppAge(agePer);
 		insuredSchema.setAppAgeType(ageType);
@@ -385,26 +385,26 @@ public class InsuredPersonInfo
 				{
 					if (modifyInusPeople())
 					{
-						message = "?????????????????";
+						message = "��������Ϣ����ɹ���?";
 						operateResult = true;
 					}
 				} else
 				if (addInusByNewCustomer())
 				{
-					message = "?????????????????";
+					message = "��������Ϣ����ɹ���?";
 					operateResult = true;
 				}
 			} else
 			if (infoSource.equals("modify") && modifyInusPeople())
 			{
-				message = "?????????????????";
+				message = "��������Ϣ����ɹ���?";
 				operateResult = true;
 			}
 		}
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			message = "?????????????????";
+			message = "��������Ϣ����ʧ�ܣ�";
 			operateResult = false;
 		}
 		return;
@@ -522,7 +522,7 @@ public class InsuredPersonInfo
 		vd.add(map);
 		if (!ps.submitData(vd, ""))
 		{
-			message = "????????????????";
+			message = "��������Ϣ�������?";
 			flag = false;
 		} else
 		{
@@ -635,13 +635,13 @@ public class InsuredPersonInfo
 				map.put(lnpContSch, "UPDATE");
 			} else
 			{
-				message = "??????��????????????????";
+				message = "��ݿ���δ��ѯ����������Ϣ��?";
 			}
 			VData vd = new VData();
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "????????????????";
+				message = "��������Ϣ�������?";
 				flag = false;
 			} else
 			{
@@ -656,7 +656,7 @@ public class InsuredPersonInfo
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			message = "????????????????";
+			message = "��������Ϣ�������?";
 			flag = false;
 		}
 		return flag;
@@ -664,7 +664,7 @@ public class InsuredPersonInfo
 
 	private boolean afterupdateInsured(String contno)
 	{
-		System.out.println("-----?��??? ?????????? ???????????????? ----");
+		System.out.println("-----��??�� �޸ı����˹��? ɾ��˱����۶�������? ----");
 		boolean flag = false;
 		try
 		{
@@ -796,48 +796,48 @@ public class InsuredPersonInfo
 	{
 		if (insuredSchema.getName() == null || insuredSchema.getName().equals(""))
 		{
-			message = "????????????????";
+			message = "������������Ϊ�գ�";
 			return false;
 		}
 		if (!ValidateTools.isValidString1(insuredSchema.getName()))
 		{
-			message = "??????????\274??????????";
+			message = "�밴����ȷ��ʽ¼�뱻��������";
 			insuredSchema.setName("");
 			return false;
 		}
 		if (insuredSchema.getSex() == null || insuredSchema.getSex().equals("-1") || insuredSchema.getSex().equals(""))
 		{
-			message = "???????????????";
+			message = "�������Ա���Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getBirthday() == null || insuredSchema.getBirthday().equals(""))
 		{
-			message = "???????????????";
+			message = "�������ڲ���Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getBirthday() == null || insuredSchema.getBirthday().equals(""))
 		{
-			message = "????????????????";
+			message = "���������䲻��Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getMarriage() == null || insuredSchema.getMarriage().equals("-1") || insuredSchema.getMarriage().equals(""))
 		{
-			message = "?????????????";
+			message = "����״����Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getNativePlace() == null || insuredSchema.getNativePlace().equals("-1") || insuredSchema.getNativePlace().equals(""))
 		{
-			message = "????????";
+			message = "����Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getIDType() == null || insuredSchema.getIDType().equals("-1") || insuredSchema.getIDType().equals(""))
 		{
-			message = "??????????????";
+			message = "֤�����Ͳ���Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getIDNo() == null || insuredSchema.getIDNo().equals(""))
 		{
-			message = "?????????????";
+			message = "֤�����벻��Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getIDType().equals("1"))
@@ -852,81 +852,81 @@ public class InsuredPersonInfo
 		}
 		if (insuredSchema.getIDPerpetual().equals("0") && (insuredSchema.getIDValidity() == null || insuredSchema.getIDValidity().equals("")))
 		{
-			message = "?????��???????????";
+			message = "֤����Ч���ڲ���Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getOccupationCode() == null || insuredSchema.getOccupationCode().equals(""))
 		{
-			message = "????????????";
+			message = "ְҵ���벻��Ϊ�գ�";
 			return false;
 		}
 		if (insuredSchema.getSignCity() == null || insuredSchema.getSignCity().equals("-1") || insuredSchema.getSignCity().equals(""))
 		{
-			message = "???????????";
+			message = "ǩ��ز���Ϊ�գ�?";
 			return false;
 		}
-		System.out.println((new StringBuilder("---- ��????? lnpAddressSchema  --")).append(lnpAddressSchema).toString());
-		System.out.println((new StringBuilder("---- ��????? lnpAddressSchema getPostalAddress --")).append(lnpAddressSchema.getPostalAddress()).toString());
+		System.out.println((new StringBuilder("---- У��Ϊ�� lnpAddressSchema  --")).append(lnpAddressSchema).toString());
+		System.out.println((new StringBuilder("---- У��Ϊ�� lnpAddressSchema getPostalAddress --")).append(lnpAddressSchema.getPostalAddress()).toString());
 		if (lnpAddressSchema.getPostalAddress() == null || lnpAddressSchema.getPostalAddress().equals(""))
 		{
-			message = "?????????????";
+			message = "�շѵ�ַ����Ϊ�գ�";
 			return false;
 		}
 		if (lnpAddressSchema.getPhone() == null || lnpAddressSchema.getPhone().equals(""))
 		{
-			message = "???��????????";
+			message = "�շѵ绰����Ϊ�գ�";
 			return false;
 		}
 		if (lnpAddressSchema.getZipCode() == null || lnpAddressSchema.getZipCode().equals(""))
 		{
-			message = "????????????";
+			message = "�շ��ʱ಻��Ϊ�գ�";
 			return false;
 		}
 		if (lnpAddressSchema.getGrpName() != null && !lnpAddressSchema.getGrpName().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getGrpName()))
 		{
-			message = "??????????\274????��??";
+			message = "�밴����ȷ��ʽ¼�빤��λ��";
 			lnpAddressSchema.setGrpName("");
 			return false;
 		}
 		if (lnpAddressSchema.getCompanyZipCode() != null && !lnpAddressSchema.getCompanyZipCode().equals("") && !ValidateTools.isValidZipCode(lnpAddressSchema.getCompanyZipCode()))
 		{
-			message = "??????????\274??��???";
+			message = "�밴����ȷ��ʽ¼�뵥λ�ʱ࣡";
 			lnpAddressSchema.setCompanyZipCode("");
 			return false;
 		}
 		if (lnpAddressSchema.getCompanyAddress() != null && !lnpAddressSchema.getCompanyAddress().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getCompanyAddress()))
 		{
-			message = "??????????\274??��?????";
+			message = "�밴����ȷ��ʽ¼�뵥λ��ַ��";
 			lnpAddressSchema.setCompanyAddress("");
 			return false;
 		}
 		if (lnpAddressSchema.getCompanyMail() != null && !lnpAddressSchema.getCompanyMail().equals("") && !ValidateTools.isValidString4(lnpAddressSchema.getCompanyMail()))
 		{
-			message = "??????????\274??��?????";
+			message = "�밴����ȷ��ʽ¼�뵥λ���ʣ�";
 			lnpAddressSchema.setCompanyMail("");
 			return false;
 		}
 		if (lnpAddressSchema.getHomeAddress() != null && !lnpAddressSchema.getHomeAddress().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getHomeAddress()))
 		{
-			message = "??????????\274??????";
+			message = "�밴����ȷ��ʽ¼��סַ��";
 			lnpAddressSchema.setHomeAddress("");
 			return false;
 		}
 		if (lnpAddressSchema.getHomeZipCode() != null && !lnpAddressSchema.getHomeZipCode().equals("") && !ValidateTools.isValidZipCode(lnpAddressSchema.getHomeZipCode()))
 		{
-			message = "??????????\274?????";
+			message = "�밴����ȷ��ʽ¼���ʱ࣡";
 			lnpAddressSchema.setHomeZipCode("");
 			return false;
 		}
 		if (lnpAddressSchema.getPostalAddress() != null && !lnpAddressSchema.getPostalAddress().equals("") && !ValidateTools.isValidString3(lnpAddressSchema.getPostalAddress()))
 		{
-			message = "??????????\274?????????";
+			message = "�밴����ȷ��ʽ¼���շѵ�ַ��";
 			lnpAddressSchema.setPostalAddress("");
 			return false;
 		}
 		if (lnpAddressSchema.getZipCode() != null && !lnpAddressSchema.getZipCode().equals("") && !ValidateTools.isValidZipCode(lnpAddressSchema.getZipCode()))
 		{
-			message = "??????????\274????????";
+			message = "�밴����ȷ��ʽ¼���շ��ʱ࣡";
 			lnpAddressSchema.setZipCode("");
 			return false;
 		} else

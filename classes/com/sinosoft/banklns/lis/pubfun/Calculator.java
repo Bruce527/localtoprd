@@ -33,7 +33,7 @@ public class Calculator
 			CError tError = new CError();
 			tError.moduleName = "Calculator";
 			tError.functionName = "checkCalculate";
-			tError.errorMessage = "计算时必须有计算编码。";
+			tError.errorMessage = "璁＄畻鏃跺繀椤绘湁璁＄畻缂栫爜銆?";
 			mErrors.addOneError(tError);
 			return false;
 		} else

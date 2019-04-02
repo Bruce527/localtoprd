@@ -45,7 +45,7 @@ public class LNPContBDB extends LNPContBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPContBDB";
 			tError.functionName = "insert";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "����ʧ��!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -63,7 +63,7 @@ public class LNPContBDB extends LNPContBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPContBDB";
 			tError.functionName = "update";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "����ʧ��!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -81,7 +81,7 @@ public class LNPContBDB extends LNPContBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPContBDB";
 			tError.functionName = "deleteSQL";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "����ʧ��!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -99,7 +99,7 @@ public class LNPContBDB extends LNPContBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPContBDB";
 			tError.functionName = "delete";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "����ʧ��!";
 			mErrors.addOneError(tError);
 			return false;
 		} else
@@ -118,7 +118,7 @@ public class LNPContBDB extends LNPContBSchema
 			CError tError = new CError();
 			tError.moduleName = "LNPContBDB";
 			tError.functionName = "getCount";
-			tError.errorMessage = "???????!";
+			tError.errorMessage = "����ʧ��!";
 			mErrors.addOneError(tError);
 			return -1;
 		} else
@@ -151,7 +151,7 @@ public class LNPContBDB extends LNPContBSchema
 		CError tError = new CError();
 		tError.moduleName = "LNPContBDB";
 		tError.functionName = "getInfo";
-		tError.errorMessage = "??????!";
+		tError.errorMessage = "ȡ��ʧ��!";
 		mErrors.addOneError(tError);
 		try
 		{
@@ -189,7 +189,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPContBDB";
 				tError.functionName = "getInfo";
-				tError.errorMessage = "��?????????!";
+				tError.errorMessage = "δ�ҵ�������!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try
@@ -324,7 +324,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPContBDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql??????????????????????!";
+					tError.errorMessage = "sql���������鿴�����ֶ�����Ϣ!";
 					mErrors.addOneError(tError);
 				}
 			}
@@ -467,7 +467,7 @@ label0:
 					CError tError = new CError();
 					tError.moduleName = "LNPContBDB";
 					tError.functionName = "executeQuery";
-					tError.errorMessage = "sql??????????????????????!";
+					tError.errorMessage = "sql���������鿴�����ֶ�����Ϣ!";
 					mErrors.addOneError(tError);
 				}
 				aLNPContBSet.add(s1);
@@ -536,7 +536,7 @@ label0:
 				CError tError = new CError();
 				tError.moduleName = "LNPContBDB";
 				tError.functionName = "update";
-				tError.errorMessage = "??????????!";
+				tError.errorMessage = "�������ʧ��?!";
 				mErrors.addOneError(tError);
 				if (!mflag)
 					try

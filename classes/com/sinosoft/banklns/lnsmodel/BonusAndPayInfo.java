@@ -66,7 +66,7 @@ public class BonusAndPayInfo
 			} else
 			{
 				hasBonusAndPaytag = false;
-				message = " ???????????????? ";
+				message = " пїЅпїЅЗ°пїЅпїЅЖ·пїЅЮєпїЅпїЅпїЅпїЅпїЅПўпїЅпїЅ ";
 			}
 		}
 		catch (Exception e)
@@ -129,9 +129,9 @@ public class BonusAndPayInfo
 				VData vd = new VData();
 				vd.add(map);
 				if (ps.submitData(vd, ""))
-					message = " ?????????????! ";
+					message = " пїЅпїЅпїЅпїЅпїЅпїЅПўпїЅпїЅпїЅпїЅЙ№пї?! ";
 				else
-					message = " ?????????????? ! ";
+					message = " пїЅпїЅпїЅпїЅпїЅпїЅПўпїЅпїЅпїЅпїЅК§пїЅпїЅ ! ";
 			}
 			catch (Exception e)
 			{
@@ -191,17 +191,17 @@ public class BonusAndPayInfo
 		message = "";
 		if (lnpBonusInfoSchema.getBonusWay() == null || "".equals(lnpBonusInfoSchema.getBonusWay().trim()) || "-1".equals(lnpBonusInfoSchema.getBonusWay().trim()))
 		{
-			message = " ???????????\367????????—ћ";
+			message = " пїЅпїЅСЎпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅГ·пїЅКЅпїЅпїЅпїЅЩ±пїЅпїЅжЈ?";
 			return false;
 		}
 		if (lnpBonusInfoSchema.getAutoRepaid() == null || "".equals(lnpBonusInfoSchema.getAutoRepaid().trim()) || "-1".equals(lnpBonusInfoSchema.getAutoRepaid().trim()))
 		{
-			message = " ???????????ќ©????????—ћ";
+			message = " пїЅпїЅСЎпїЅс±Ј·пїЅпїЅФ¶пїЅпїЅжЅ»пїЅпїЅпїЅпїЅпїЅЩ±пїЅпїЅжЈЎ";
 			return false;
 		}
 		if (lnpBonusInfoSchema.getCutPayAll() == null || "".equals(lnpBonusInfoSchema.getCutPayAll().trim()) || "-1".equals(lnpBonusInfoSchema.getCutPayAll().trim()))
 		{
-			message = " ????????еп??????????—ћ";
+			message = " пїЅпїЅСЎпїЅпїЅпїЅоЅ»пїЅе±ЈпїЅпїЅпїЅпїЅпїЅпїЅпїЅЩ±пїЅпїЅжЈЎ";
 			return false;
 		} else
 		{

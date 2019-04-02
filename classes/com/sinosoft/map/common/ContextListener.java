@@ -42,7 +42,7 @@ public class ContextListener
 
 	public void contextDestroyed(ServletContextEvent event)
 	{
-		System.out.println("...sessionDestroyed...");
+		System.out.println("...�ر�Ӧ��...");
 	}
 
 	public void sessionCreated(HttpSessionEvent event)

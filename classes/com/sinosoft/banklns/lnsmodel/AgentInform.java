@@ -136,12 +136,12 @@ public class AgentInform
 				vd.add(map);
 				if (ps.submitData(vd, ""))
 				{
-					message = "代理人信息保存成功";
+					message = "浠ｇ悊浜轰俊鎭繚瀛樻垚鍔?";
 					getLNPAgentInfoSchemaList(lnpAgentInfoSchema.getContNo());
 					showMesFlag = false;
 				} else
 				{
-					message = "代理人信息保存失败";
+					message = "浠ｇ悊浜轰俊鎭繚瀛樺け璐?";
 					showMesFlag = true;
 				}
 				setpageEditTagWithSet();
@@ -212,12 +212,12 @@ public class AgentInform
 					vd.add(map);
 					if (ps.submitData(vd, ""))
 					{
-						message = "代理人信息删除成功";
+						message = "浠ｇ悊浜轰俊鎭垹闄ゆ垚鍔?";
 						getLNPAgentInfoSchemaList(lnpAgentInfoSchema.getContNo());
 						showMesFlag = false;
 					} else
 					{
-						message = "代理人信息删除失败";
+						message = "浠ｇ悊浜轰俊鎭垹闄ゅけ璐?";
 						showMesFlag = true;
 					}
 					setpageEditTagWithSet();
@@ -362,7 +362,7 @@ public class AgentInform
 				if (hasExistSameAgentCode(agentCode))
 				{
 					doClearTag = true;
-					message = " 不允许录入相同的代理人信息 ！ ";
+					message = " 涓嶅厑璁稿綍鍏ョ浉鍚岀殑浠ｇ悊浜轰俊鎭? 锛? ";
 				} else
 				if (tSSRSfromDB.MaxRow > 0)
 				{
@@ -374,7 +374,7 @@ public class AgentInform
 				} else
 				{
 					doClearTag = true;
-					message = " 此代理人的相关信息不允许录入 ！ ";
+					message = " 姝や唬鐞嗕汉鐨勭浉鍏充俊鎭笉鍏佽褰曞叆 锛? ";
 				}
 			}
 			catch (Exception e)
@@ -396,12 +396,12 @@ public class AgentInform
 		message = "";
 		if (lnpAgentInfoSchema.getAgentCode() == null || "".equals(lnpAgentInfoSchema.getAgentCode().trim()))
 		{
-			message = " 请填写代理人信息后再进行设置！";
+			message = " 璇峰～鍐欎唬鐞嗕汉淇℃伅鍚庡啀杩涜璁剧疆锛?";
 			return false;
 		}
 		if (!ValidateTools.isExistUselessChar(lnpAgentInfoSchema.getAgentCode()))
 		{
-			message = " 代理人编码只能是数字，请更正后再进行设置！";
+			message = " 浠ｇ悊浜虹紪鐮佸彧鑳芥槸鏁板瓧锛岃鏇存鍚庡啀杩涜璁剧疆锛?";
 			return false;
 		} else
 		{

@@ -79,7 +79,7 @@ public class DBConn
 			bIsPool = true;
 			if (getJBOSSPoolConnection())
 				return true;
-			System.out.println("/banklns--------------------jboos conPool is failed，con get from jdbcurlbak-------------------------------");
+			System.out.println("/banklns--------------------jboos conPool is failed锛宑on get from jdbcurlbak-------------------------------");
 			JdbcUrlBackUp tJdbcUrlBackUp = new JdbcUrlBackUp();
 			JUrl.setDBName(tJdbcUrlBackUp.getDBName());
 			JUrl.setDBType(tJdbcUrlBackUp.getDBType());
@@ -164,13 +164,13 @@ _L7:
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		break; /* Loop/switch isn't completed */
 _L1:
-		System.out.println("目前暂不支持此种类型的数据库!");
+		System.out.println("鐩墠鏆備笉鏀寔姝ょ绫诲瀷鐨勬暟鎹簱!");
 		return false;
 		e;
 		return false;
 		try
 		{
-			System.out.println("程序中创建连接。。。。。。。。。。");
+			System.out.println("绋嬪簭涓垱寤鸿繛鎺ャ?傘?傘?傘?傘?傘?傘?傘?傘?傘??");
 			switch (dbType)
 			{
 			case 1: // '\001'
@@ -209,7 +209,7 @@ _L1:
 		// Misplaced declaration of an exception variable
 		catch (Properties props)
 		{
-			System.out.println("创建连接失败...");
+			System.out.println("鍒涘缓杩炴帴澶辫触...");
 			return false;
 		}
 		return true;

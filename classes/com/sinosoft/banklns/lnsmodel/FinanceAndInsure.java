@@ -113,7 +113,7 @@ public class FinanceAndInsure
 				IGlobalInput tempGI = (IGlobalInput)session.getAttribute("NPGI");
 				if (tempGI == null)
 				{
-					message = "???????????????";
+					message = "���񼰱��վ�������";
 					operateResult = false;
 				}
 				lnpInsureHistorySchema.setOperator(tempGI.Operator);
@@ -139,12 +139,12 @@ public class FinanceAndInsure
 					vd.add(map);
 					if (!ps.submitData(vd, ""))
 					{
-						message = "???????????????";
+						message = "���񼰱��վ�������";
 						operateResult = false;
 						showMesFlag = true;
 					} else
 					{
-						message = "??????????????";
+						message = "���񼰱��վ����ɹ�";
 						operateResult = true;
 						showMesFlag = false;
 						getLnpInsureHistorySchemaList(lnpInsureHistorySchema.getContNo());
@@ -179,12 +179,12 @@ public class FinanceAndInsure
 					vd.add(map);
 					if (!ps.submitData(vd, ""))
 					{
-						message = "?????????????\264???";
+						message = "���񼰱��վ�����´���?";
 						operateResult = false;
 						showMesFlag = true;
 					} else
 					{
-						message = "?????????????\263??";
+						message = "���񼰱��վ�����³ɹ�?";
 						operateResult = true;
 						showMesFlag = true;
 						getLnpInsureHistorySchemaList(lnpInsureHistorySchema.getContNo());
@@ -249,12 +249,12 @@ public class FinanceAndInsure
 			vd.add(map);
 			if (!ps.submitData(vd, ""))
 			{
-				message = "?????????????????";
+				message = "���񼰱��վ���ɾ��ʧ��";
 				operateResult = false;
 				showMesFlag = true;
 			} else
 			{
-				message = "????????????????";
+				message = "���񼰱��վ���ɾ��ɹ�?";
 				operateResult = true;
 				showMesFlag = false;
 				pageEditTag = true;
@@ -402,37 +402,37 @@ public class FinanceAndInsure
 		message = "";
 		if (lnpInsureHistorySchema.getComName() == null || "".equals(lnpInsureHistorySchema.getComName().trim()))
 		{
-			message = " ??\274??????????????��";
+			message = " ��¼�뱣�չ�˾��ƺ��ٱ���?";
 			return false;
 		}
 		if (!ValidateTools.isExistUselessChar(lnpInsureHistorySchema.getComName()))
 		{
-			message = " ???????????????????????????????? ??_?????????";
+			message = " ���չ�˾���ֻ�������ġ���ĸ�����ּ��ַ�? ��_���������?";
 			return false;
 		}
 		if (0.0D > lnpInsureHistorySchema.getSumInsuredDeath())
 		{
-			message = "??\274?????????????????��";
+			message = "��¼��������ܱ�����ٱ��棡";
 			return false;
 		}
 		if (0.0D > lnpInsureHistorySchema.getSumInsuredDisease())
 		{
-			message = "??\274?????????????????��";
+			message = "��¼���ش󼲲��ܱ�����ٱ���?";
 			return false;
 		}
 		if (!ValidateTools.isExistUselessChar(String.valueOf(lnpInsureHistorySchema.getSumInsuredDeath())))
 		{
-			message = " ??????????????????????????????��";
+			message = " ������ܱ���ֻ�������֣��������ٱ���?";
 			return false;
 		}
 		if (!ValidateTools.isExistUselessChar(String.valueOf(lnpInsureHistorySchema.getSumInsuredDisease())))
 		{
-			message = " ??????????????????????????????��";
+			message = " �ش󼲲��ܱ���ֻ�������֣��������ٱ��棡";
 			return false;
 		}
 		if (lnpInsureHistorySchema.getPolicyState() == null || "".equals(lnpInsureHistorySchema.getPolicyState().trim()) || "-1".equals(lnpInsureHistorySchema.getPolicyState().trim()))
 		{
-			message = " ??\274????????????��";
+			message = " ��¼�뱣��״̬���ٱ��棡";
 			return false;
 		} else
 		{

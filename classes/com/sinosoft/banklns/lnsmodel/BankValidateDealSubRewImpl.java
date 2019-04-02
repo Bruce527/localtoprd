@@ -45,9 +45,9 @@ public class BankValidateDealSubRewImpl
 		String temp = null;
 		for (int i = 1; errors != null && i <= errors.size(); i++)
 			if (i <= 1)
-				temp = (new StringBuilder(String.valueOf(temp))).append("校验未通过项如下:\n").append(i).append("、").append((String)errors.get(i)).append("\n").toString();
+				temp = (new StringBuilder(String.valueOf(temp))).append("鏍￠獙鏈?氳繃椤瑰涓?:\n").append(i).append("銆?").append((String)errors.get(i)).append("\n").toString();
 			else
-				temp = (new StringBuilder(String.valueOf(temp))).append(i).append("、").append((String)errors.get(i)).append("\n").toString();
+				temp = (new StringBuilder(String.valueOf(temp))).append(i).append("銆?").append((String)errors.get(i)).append("\n").toString();
 
 		return temp;
 	}

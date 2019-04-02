@@ -29,11 +29,11 @@ public class DBConnPool
 		dbConn = null;
 		DBConn dbconn;
 		JdbcUrl JUrl = new JdbcUrl();
-		if (!JUrl.getDBType().toUpperCase().equals("WEBLOGICPOOL") && !JUrl.getDBType().toUpperCase().equals("COMMONSDBCP") && !JUrl.getDBType().toUpperCase().equals("WEBSPHERE") && !JUrl.getDBType().toUpperCase().equals("JBOSS") && !JUrl.getDBType().toUpperCase().equals("SQLSERVER2012"))
-			break MISSING_BLOCK_LABEL_390;
+		if (!JUrl.getDBType().toUpperCase().equals("WEBLOGICPOOL") && !JUrl.getDBType().toUpperCase().equals("COMMONSDBCP") && !JUrl.getDBType().toUpperCase().equals("WEBSPHERE") && !JUrl.getDBType().toUpperCase().equals("JBOSS"))
+			break MISSING_BLOCK_LABEL_375;
 		DBConn tDBConn = new DBConn();
 		if (!tDBConn.createConnection())
-			break MISSING_BLOCK_LABEL_248;
+			break MISSING_BLOCK_LABEL_233;
 		dbconn = tDBConn;
 		try
 		{
@@ -78,7 +78,7 @@ public class DBConnPool
 		try
 		{
 			DBSemaphore.Lock();
-			break MISSING_BLOCK_LABEL_543;
+			break MISSING_BLOCK_LABEL_528;
 		}
 		catch (Exception ex)
 		{
@@ -242,7 +242,7 @@ _L4:
 		{
 			e.printStackTrace();
 		}
-		break MISSING_BLOCK_LABEL_1558;
+		break MISSING_BLOCK_LABEL_1543;
 		Exception exception;
 		exception;
 		try

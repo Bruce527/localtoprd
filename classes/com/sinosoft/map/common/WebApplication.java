@@ -98,7 +98,7 @@ public class WebApplication
 		initDefaultPassword();
 	}
 
-	public void initConnection()
+	private void initConnection()
 	{
 		try
 		{

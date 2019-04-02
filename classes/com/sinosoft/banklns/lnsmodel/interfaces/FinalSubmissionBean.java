@@ -10,6 +10,9 @@ import com.sinosoft.banklns.lis.pubfun.MMap;
 import com.sinosoft.banklns.lis.schema.*;
 import com.sinosoft.banklns.lis.vschema.*;
 import com.sinosoft.banklns.utility.*;
+import com.sinosoft.map.lis.db.MSysVarDB;
+import com.sinosoft.map.lis.db.MUserDB;
+import com.sinosoft.map.lis.schema.MSysVarSchema;
 import java.io.PrintStream;
 import java.util.List;
 import org.jdom.Element;
@@ -50,7 +53,7 @@ public class FinalSubmissionBean extends PublicInterfaces
 		tLNPInvestmentInfoSchema = null;
 	}
 
-	protected void initObject()
+	public void initObject()
 	{
 		modelFileName = "issue_in.xml";
 		sendFileName = "issue_in";
@@ -65,7 +68,7 @@ public class FinalSubmissionBean extends PublicInterfaces
 		tLNPBnfSet = null;
 	}
 
-	protected boolean dealReturn()
+	public boolean dealReturn()
 	{
 		LNPContSchema bakLNPContSchema;
 		Element returnN;
@@ -132,23 +135,31 @@ public class FinalSubmissionBean extends PublicInterfaces
 		return false;
 	}
 
-	protected boolean dealSend()
+	public boolean dealSend()
 	{
 		try
 		{
 			Element msgBody = getSendBody();
 			String company = mappingCode(tLNPContSchema.getManageCom(), "BankSigned");
 			Namespace msp = Namespace.getNamespace("http://www.csc.smart/msp/schemas/MSPContext");
-			List msgList = msgBody.getChildren();
-			Element mspContent = (Element)msgList.get(0);
-			Element userId = mspContent.getChild("UserId", msp);
-			userId.setText(userName);
-			Element uerPassword = mspContent.getChild("UserPassword", msp);
-			uerPassword.setText(password);
-			Element reqps = mspContent.getChild("RequestParameters", msp);
-			Element requestParameter = reqps.getChild("RequestParameter", msp);
-			requestParameter.setAttribute("name", "BRANCH").setAttribute("value", company);
-			Element policy = msgBody.getChild("POLST").getChild("POLICY");
+			if (NBFlag() && agentFlag())
+			{
+				msgBody = getSendBody();
+				List msgList = msgBody.getChildren();
+				Element mspContent = (Element)msgList.get(0);
+				Element userId = mspContent.getChild("UserId", msp);
+				userId.setText(userName);
+				Element uerPassword = mspContent.getChild("UserPassword", msp);
+				uerPassword.setText(password);
+				Element reqps = mspContent.getChild("RequestParameters", msp);
+				Element requestParameter = reqps.getChild("RequestParameter", msp);
+				requestParameter.setAttribute("name", "BRANCH").setAttribute("value", company);
+			}
+			Element policy = null;
+			if (NBFlag() && agentFlag())
+				policy = msgBody.getChild("POLICY");
+			else
+				policy = msgBody.getChild("POLST").getChild("POLICY");
 			updateText(policy, "ZNEXTSYS", "4");
 			updateText(policy, "PRT1OPT", "Y");
 			updateText(policy, "PRT2OPT", "Y");
@@ -156,11 +167,18 @@ public class FinalSubmissionBean extends PublicInterfaces
 			updateText(policy, "STATCODE", "PS");
 			updateText(policy, "CNTBRANCH", company);
 			updateText(policy, "TTMPRCNO", tLNPContSchema.getContNo());
-			updateText(policy, "CHDRNUM", "");
+			if (NBFlag() && agentFlag())
+				updateTextForNB(policy, "Chdrnum", "");
+			else
+				updateText(policy, "CHDRNUM", "");
 			updateText(policy, "OCCDATE", fomartDate(tLNPContSchema.getPValiDate()));
 			updateText(policy, "HPROPDTE", fomartDate(tLNPContSchema.getPSignDate()));
 			updateText(policy, "HPRRCVDT", fomartDate(tLNPAgentInfoSchema.getP1()));
-			Element policyOwner = policy.getChild("POLICYOWNER");
+			Element policyOwner = null;
+			if (NBFlag() && agentFlag())
+				policyOwner = policy.getChild("PolicyOwner");
+			else
+				policyOwner = policy.getChild("POLICYOWNER");
 			updateText(policyOwner, "OWNERSEL", tLNPAppntSchema.getAppntNo());
 			updateText(policyOwner, "SALUTL", "MR / MRS");
 			updateText(policyOwner, "LSURNAME", tLNPAppntSchema.getAppntName());
@@ -206,15 +224,27 @@ public class FinalSubmissionBean extends PublicInterfaces
 			updateText(policy, "CLTPCODE03", tAppntAddressSchema.getHomeZipCode());
 			updateText(policy, "ZNAGNTSEL", tLNPAgentInfoSchema.getP2());
 			updateText(policy, "AGCOMRT", "100");
-			Element subAgent = policy.getChild("SUBAGENTLIST");
+			Element subAgent = null;
+			if (NBFlag() && agentFlag())
+				subAgent = policy.getChild("SubAgnetList");
+			else
+				subAgent = policy.getChild("SUBAGENTLIST");
 			updateText(subAgent, "ZNAGNTSEL01", "");
 			updateText(subAgent, "SPLITC", "0");
 			updateText(policy, "ZNCSMNAME", tLNPAgentInfoSchema.getAgentCode());
 			if ("2".equals(tLNPPolSet.get(1).getRnewFlag()) && ("AGY".equals(tLNPPolSet.get(1).getUWTime()) || "TM".equals(tLNPPolSet.get(1).getUWTime())))
 				updateText(policy, "ZNCSMNAME", "");
-			Element insured = policy.getChild("INSLST").getChild("INSURED");
+			Element insured = null;
+			if (NBFlag() && agentFlag())
+				insured = policy.getChild("INSLST").getChild("Insured");
+			else
+				insured = policy.getChild("INSLST").getChild("INSURED");
 			updateText(insured, "Life", "01");
-			Element insuredInfo = insured.getChild("INSUREDINFO");
+			Element insuredInfo = null;
+			if (NBFlag() && agentFlag())
+				insuredInfo = insured.getChild("InsuredInfo");
+			else
+				insuredInfo = insured.getChild("INSUREDINFO");
 			updateText(insuredInfo, "LIFCNUM", tLNPInsuredSchema.getInsuredNo());
 			updateText(insuredInfo, "SALUTL02", "MR / MRS");
 			updateText(insuredInfo, "LSURNAME02", tLNPInsuredSchema.getName());
@@ -247,23 +277,15 @@ public class FinalSubmissionBean extends PublicInterfaces
 			updateText(insured, "WEIGHT", mappingQues("A06", "insur", tLNPContSchema.getContNo(), saleChannel));
 			updateText(insured, "SMOKING", "");
 			updateText(insured, "OCCUP", tLNPInsuredSchema.getOccupationCode());
-			Element questionArea = insured.getChild("QUESTIONARE");
+			Element questionArea = null;
+			if (NBFlag() && agentFlag())
+				questionArea = insured.getChild("Questionare");
+			else
+				questionArea = insured.getChild("QUESTIONARE");
 			if ("2".equals(saleChannel))
 				updateText(questionArea, "QUESTSET", "MTQTM");
 			else
 				updateText(questionArea, "QUESTSET", "MTQBA");
-			boolean isDoHiuTianShi = false;
-			int i = 1;
-			int j = 1;
-			for (; i <= tLNPPolSet.size(); i++)
-			{
-				LNPPolSchema tempPol1 = tLNPPolSet.get(i);
-				if ("MR12BQ".equals(tempPol1.getRiskCode()) || "MR12BR".equals(tempPol1.getRiskCode()))
-					isDoHiuTianShi = true;
-			}
-
-			if (isDoHiuTianShi)
-				updateText(questionArea, "QUESTSET", "MTQB1");
 			LNPCodeSet codeSet = new LNPCodeSet();
 			LNPCodeDB db = new LNPCodeDB(con);
 			db.setCodeType("QueCodeMapping");
@@ -278,12 +300,6 @@ public class FinalSubmissionBean extends PublicInterfaces
 				Element tempElement = (Element)question.clone();
 				updateText(tempElement, "QUESTIDF", codeSet.get(i).getCodeName());
 				updateText(tempElement, "ANSWER", mappingQues(codeSet.get(i).getCodeName(), codeSet.get(i).getOtherSign(), tLNPContSchema.getContNo(), saleChannel));
-				String qid = codeSet.get(i).getCodeName();
-				if (!isDoHiuTianShi && "B04".equals(qid))
-				{
-					updateText(tempElement, "QUESTIDF", "B03");
-					updateText(tempElement, "ANSWER", "");
-				}
 				questionList.addContent(tempElement);
 			}
 
@@ -298,7 +314,10 @@ public class FinalSubmissionBean extends PublicInterfaces
 			{
 				Element tempCoverage = (Element)coverageInfo.clone();
 				LNPPolSchema tempPol = tLNPPolSet.get(i);
-				updateText(tempCoverage, "Coverage", "01");
+				if (NBFlag() && agentFlag())
+					updateTextForNB(tempCoverage, "Coverage", "01");
+				else
+					updateText(tempCoverage, "Coverage", "01");
 				if (!"M".equalsIgnoreCase(tempPol.getSubFlag()))
 					updateText(tempCoverage, "RIDER", (new StringBuilder("0")).append(j++).toString());
 				else
@@ -356,7 +375,11 @@ public class FinalSubmissionBean extends PublicInterfaces
 				updateText(tempCoverage, "ZUNIT", "1");
 				updateText(tempCoverage, "LIVESNO", "1");
 				updateText(tempCoverage, "PAYCLT", tLNPAppntSchema.getAppntNo());
-				Element payBankInfor = tempCoverage.getChild("PAYBANKINFOR");
+				Element payBankInfor = null;
+				if (NBFlag() && agentFlag())
+					payBankInfor = tempCoverage.getChild("PayBankInfor");
+				else
+					payBankInfor = tempCoverage.getChild("PAYBANKINFOR");
 				if ("02".equals(tLNPPaymentSchema.getPayMent1()))
 				{
 					updateText(payBankInfor, "BANKCODE", "");
@@ -397,7 +420,11 @@ public class FinalSubmissionBean extends PublicInterfaces
 				updateText(tempCoverage, "NOMLIFE", "");
 				updateText(tempCoverage, "DTHPERCN", "0");
 				updateText(tempCoverage, "DTHPERCO", "0");
-				Element payment = tempCoverage.getChild("PAYMENT");
+				Element payment = null;
+				if (NBFlag() && agentFlag())
+					payment = tempCoverage.getChild("Payment");
+				else
+					payment = tempCoverage.getChild("PAYMENT");
 				updateText(payment, "PAYCLT02", "");
 				updateText(payment, "CLTYPE", "");
 				updateText(payment, "RGPYMOP", "");
@@ -431,16 +458,35 @@ public class FinalSubmissionBean extends PublicInterfaces
 						updateText(RGUFundList, (new StringBuilder("ZNSPLAMT")).append(x).toString(), turnNullToString(Double.valueOf(Arith.mul(tLNpInvestmentAccountInfoSet.get(x).getInvestAccountRate(), 100D))));
 					}
 
-				updateText(tempCoverage, "ZACOVBAK01", "");
-				updateText(tempCoverage, "ZACOVBAK02", "");
-				updateText(tempCoverage, "ZACOVBAK03", "");
-				updateText(tempCoverage, "ZACOVBAK04", "");
-				updateText(tempCoverage, "ZACOVBAK05", "");
+				if (NBFlag() && agentFlag())
+				{
+					updateTextForNB(tempCoverage, "CovField1", "");
+					updateTextForNB(tempCoverage, "CovField2", "");
+					updateTextForNB(tempCoverage, "CovField3", "");
+					updateTextForNB(tempCoverage, "CovField4", "");
+					updateTextForNB(tempCoverage, "CovField5", "");
+				} else
+				{
+					updateText(tempCoverage, "ZACOVBAK01", "");
+					updateText(tempCoverage, "ZACOVBAK02", "");
+					updateText(tempCoverage, "ZACOVBAK03", "");
+					updateText(tempCoverage, "ZACOVBAK04", "");
+					updateText(tempCoverage, "ZACOVBAK05", "");
+				}
 				coverageList.addContent(tempCoverage);
 			}
 
-			Element bnfList = policy.getChild("BENEFICIARYLIST");
-			Element bnf = bnfList.getChild("BENEFICIARY");
+			Element bnfList = null;
+			Element bnf = null;
+			if (NBFlag() && agentFlag())
+			{
+				bnfList = policy.getChild("BeneficiaryList");
+				bnf = bnfList.getChild("Beneficiary");
+			} else
+			{
+				bnfList = policy.getChild("BENEFICIARYLIST");
+				bnf = bnfList.getChild("BENEFICIARY");
+			}
 			if (tLNPInsuredSchema.getInsuredPeoples() > 0)
 			{
 				bnfList.removeContent();
@@ -479,7 +525,11 @@ public class FinalSubmissionBean extends PublicInterfaces
 			}
 			if ("02".equals(tLNPPaymentSchema.getPayMent1()))
 			{
-				Element FRTRecBank = policy.getChild("FRTRECBANK");
+				Element FRTRecBank = null;
+				if (NBFlag() && agentFlag())
+					FRTRecBank = policy.getChild("FRTRecBank");
+				else
+					FRTRecBank = policy.getChild("FRTRECBANK");
 				updateText(FRTRecBank, "BANKKEY02", tLNPPaymentSchema.getBankCode());
 				updateText(FRTRecBank, "BANKACCKEY02", tLNPPaymentSchema.getAccount());
 				updateText(FRTRecBank, "BANKDESC02", tLNPAppntSchema.getAppntName());
@@ -490,7 +540,11 @@ public class FinalSubmissionBean extends PublicInterfaces
 			}
 			if ("02".equals(tLNPPaymentSchema.getPayMent2()))
 			{
-				Element SEQRecBank = policy.getChild("SEQRECBANK");
+				Element SEQRecBank = null;
+				if (NBFlag() && agentFlag())
+					SEQRecBank = policy.getChild("SEQRecBank");
+				else
+					SEQRecBank = policy.getChild("SEQRECBANK");
 				updateText(SEQRecBank, "BANKKEY03", tLNPPaymentSchema.getBankCode());
 				updateText(SEQRecBank, "BANKACCKEY03", tLNPPaymentSchema.getAccount());
 				updateText(SEQRecBank, "BANKDESC03", tLNPAppntSchema.getAppntName());
@@ -511,12 +565,26 @@ public class FinalSubmissionBean extends PublicInterfaces
 			LNPPolSet tset = (new LNPPolDB(con)).executeQuery((new StringBuilder("select * from lnppol where contno='")).append(tContNo).append("' and RiskVersion is not null and RiskVersion<>'' and RnewFlag in ('1','2')").toString());
 			if (tset.size() > 0)
 			{
-				Element packageInfo = policy.getChild("PACKAGEINFO");
-				updateText(packageInfo, "ZNPKGCODE", tset.get(1).getRiskVersion());
-				updateText(packageInfo, "TOTPRE", turnNullToString(tset.get(1).getRemark()));
-				updateText(packageInfo, "ZTOTSI", "0");
+				Element packageInfo = null;
+				if (NBFlag() && agentFlag())
+				{
+					packageInfo = policy.getChild("PackageInfo");
+					updateTextForNB(packageInfo, "PackageCode", tset.get(1).getRiskVersion());
+					updateTextForNB(packageInfo, "PackagePrem", turnNullToString(tset.get(1).getRemark()));
+					updateTextForNB(packageInfo, "PackageSI", "0");
+				} else
+				{
+					packageInfo = policy.getChild("PACKAGEINFO");
+					updateText(packageInfo, "ZNPKGCODE", tset.get(1).getRiskVersion());
+					updateText(packageInfo, "TOTPRE", turnNullToString(tset.get(1).getRemark()));
+					updateText(packageInfo, "ZTOTSI", "0");
+				}
 			}
-			Element remark = policy.getChild("GENERALREMARK");
+			Element remark = null;
+			if (NBFlag() && agentFlag())
+				remark = policy.getChild("GeneralRemark");
+			else
+				remark = policy.getChild("GENERALREMARK");
 			String remark01 = "";
 			String remark02 = "";
 			if (!turnNullToString(tLNPContSchema.getConsignNo()).trim().equals(""))
@@ -525,12 +593,19 @@ public class FinalSubmissionBean extends PublicInterfaces
 				remark02 = tLNPContSchema.getConsignNo().substring(tLNPContSchema.getConsignNo().length() / 2);
 				System.out.println((new StringBuilder(String.valueOf(remark01))).append("---").append(remark02).toString());
 			}
-			updateText(remark, "LINE01", remark01);
-			updateText(remark, "LINE02", remark02);
+			if (NBFlag() && agentFlag())
+			{
+				updateTextForNB(remark, "ALINE01", remark01);
+				updateTextForNB(remark, "ALINE02", remark02);
+			} else
+			{
+				updateText(remark, "LINE01", remark01);
+				updateText(remark, "LINE02", remark02);
+			}
 			updateText(policy, "SACSCODE", "");
 			updateText(policy, "CAMPAIGN", "");
 			updateText(policy, "ZNPRJTCD", "");
-			updateText(policy, "ZNEPOLFLG", tLNPAgentInfoSchema.getPolPrintType());
+			updateText(policy, "ZNEPOLFLG", "");
 			updateText(policy, "ZNDISPER", "0");
 			updateText(policy, "ZNSPCTYP", "");
 			updateText(policy, "ZNBILLNO", "");
@@ -577,7 +652,32 @@ public class FinalSubmissionBean extends PublicInterfaces
 		return true;
 	}
 
-	protected boolean getInputData(String tContNo)
+	private boolean agentFlag()
+	{
+		ExeSQL exeSql = new ExeSQL();
+		String sql_lnpCode = "SELECT code FROM lnpcode where codetype = 'agentCode'";
+		SSRS ssr1 = exeSql.execSQL(sql_lnpCode);
+		if (ssr1.getMaxRow() > 0)
+		{
+			MUserDB mUser = new MUserDB();
+			mUser.setUserCode(ssr1.GetText(1, 1));
+			boolean mUserFlag = mUser.getInfo();
+			String sql_laagent = (new StringBuilder("SELECT 'X' FROM LAAGENT WHERE AGENTCODE = '")).append(ssr1.GetText(1, 1)).append("'").toString();
+			SSRS ssr2 = exeSql.execSQL(sql_laagent);
+			if (mUserFlag || ssr2.getMaxRow() > 0)
+				return true;
+		}
+		return false;
+	}
+
+	private boolean NBFlag()
+	{
+		MSysVarDB msy = new MSysVarDB();
+		msy.setVarType("NBSwitch");
+		return msy.getInfo() && "Y".equalsIgnoreCase(msy.getSchema().getVarValue());
+	}
+
+	public boolean getInputData(String tContNo)
 	{
 		flag = false;
 		valiPassFlag = true;
@@ -706,7 +806,7 @@ _L2:
 		tContNo = "098765432111";
 		tContNo = "201603241559";
 		tContNo = "201703206002";
-		tContNo = "201901181723";
+		tContNo = "201505271129";
 		cal.calInterfaces(tContNo);
 	}
 }

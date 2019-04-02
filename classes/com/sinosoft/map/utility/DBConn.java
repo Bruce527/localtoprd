@@ -80,7 +80,7 @@ public class DBConn
 			bIsPool = true;
 			if (getJBOSSPoolConnection())
 				return true;
-			System.out.println("/mdes--------------------jboos conPool is failed con get from jdbcurlbak-------------------------------");
+			System.out.println("/map--------------------jboos conPool is failedï¿½ï¿½con get from jdbcurlbak-------------------------------");
 			JdbcUrlBackUp tJdbcUrlBackUp = new JdbcUrlBackUp();
 			JUrl.setDBName(tJdbcUrlBackUp.getDBName());
 			JUrl.setDBType(tJdbcUrlBackUp.getDBType());
@@ -171,7 +171,7 @@ _L1:
 		return false;
 		try
 		{
-			System.out.println("¿ªÊ¼»ñÈ¡Êý¾Ý¿âÁ¬½Ó......");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			switch (dbType)
 			{
 			case 1: // '\001'
@@ -210,7 +210,7 @@ _L1:
 		// Misplaced declaration of an exception variable
 		catch (Properties props)
 		{
-			System.out.println("»ñÈ¡Êý¾Ý¿âÁ¬½ÓÊ§°Ü...");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½...");
 			return false;
 		}
 		return true;

@@ -77,24 +77,24 @@ public class BankPolicyState extends BankBasicBL
 				policyStateList.clear();
 				System.out.println("--- queryPolicyState Start ---");
 				String sql = "select distinct top 200";
-				sql = (new StringBuilder(String.valueOf(sql))).append(" lc.codename as '保单状态',lnp.OperatorCode as '处理人员编码',lnp.OperatorName as '处理人员',convert(varchar(10),lnp.OperationDate,120) as date ,lnp.OperationTime as time  from LNPOperationRecord lnp inner join lnpcode lc on lnp.Varc2 = lc.code where lnp.contno='").append(contNo).append("' and lc.codetype='lnpLangState' ").toString();
+				sql = (new StringBuilder(String.valueOf(sql))).append(" lc.codename as '淇濆崟鐘舵??',lnp.OperatorCode as '澶勭悊浜哄憳缂栫爜',lnp.OperatorName as '澶勭悊浜哄憳',convert(varchar(10),lnp.OperationDate,120) as date ,lnp.OperationTime as time  from LNPOperationRecord lnp inner join lnpcode lc on lnp.Varc2 = lc.code where lnp.contno='").append(contNo).append("' and lc.codetype='lnpLangState' ").toString();
 				sql = (new StringBuilder(String.valueOf(sql))).append(" order by date desc,time desc").toString();
 				System.out.println((new StringBuilder("queryPolicyState SQL_c : ")).append(sql).toString());
 				SSRS tSSRS = new SSRS();
 				ExeSQL exeSQL = new ExeSQL();
 				tSSRS = exeSQL.execSQL(sql);
-				System.out.println("循环显示结果列表开始-------------");
+				System.out.println("寰幆鏄剧ず缁撴灉鍒楄〃寮?濮?-------------");
 				if (tSSRS == null || tSSRS.getMaxRow() < 1)
 				{
-					message = "查询无返回结果!";
-					ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "查询无返回结果!");
+					message = "鏌ヨ鏃犺繑鍥炵粨鏋?!";
+					ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "鏌ヨ鏃犺繑鍥炵粨鏋?!");
 					System.out.println(message);
 				} else
 				{
 					if (tSSRS.MaxRow == 200)
 					{
-						message = "查询记录多于200条，仅显示前200条！";
-						ECPubFun.addErrorMessage("com.sinosoft.map.international.resource.programresource", "查询记录多于200条，仅显示前200条！");
+						message = "鏌ヨ璁板綍澶氫簬200鏉★紝浠呮樉绀哄墠200鏉★紒";
+						ECPubFun.addErrorMessage("com.sinosoft.map.international.resource.programresource", "鏌ヨ璁板綍澶氫簬200鏉★紝浠呮樉绀哄墠200鏉★紒");
 						System.out.println(message);
 					}
 					for (int i = 1; i <= tSSRS.MaxRow; i++)
@@ -106,11 +106,11 @@ public class BankPolicyState extends BankBasicBL
 						policyStateList.add(resultInfo);
 					}
 
-					System.out.println("循环显示结果列表结束-------------");
+					System.out.println("寰幆鏄剧ず缁撴灉鍒楄〃缁撴潫-------------");
 				}
 			} else
 			{
-				buildError("全局投保书信息缺失!");
+				buildError("鍏ㄥ眬鎶曚繚涔︿俊鎭己澶?!");
 			}
 			break MISSING_BLOCK_LABEL_404;
 		}
@@ -149,7 +149,7 @@ public class BankPolicyState extends BankBasicBL
 		operRecordSchema.setOperationTime(time);
 		operRecordSchema.setOperation(recordFlag);
 		operRecordSchema.setVarc1((new StringBuilder(String.valueOf(date))).append(' ').append(time).toString());
-		operRecordSchema.setVarc3("03".equals(state) ? "保费计算成功" : "04".equals(state) ? "保费计算失败" : "06".equals(state) ? "发送成功" : "07".equals(state) ? "发送失败" : "--!");
+		operRecordSchema.setVarc3("03".equals(state) ? "淇濊垂璁＄畻鎴愬姛" : "04".equals(state) ? "淇濊垂璁＄畻澶辫触" : "06".equals(state) ? "鍙戦?佹垚鍔?" : "07".equals(state) ? "鍙戦?佸け璐?" : "--!");
 		System.out.println((new StringBuilder(String.valueOf(state))).append("<--->").append(operRecordSchema.getVarc3()).toString());
 		operRecordSchema.setVarc4(rstMsg);
 		operRecordSchema.setVarc2(state);

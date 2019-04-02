@@ -28,7 +28,7 @@ public class CheckTabCanBeUse
 		List list = new ArrayList();
 		if (!insuredExistFlag)
 		{
-			list.add("???????\361?????");
+			list.add("�������ñ�����");
 			list.add(null);
 		}
 		return list;
@@ -40,7 +40,7 @@ public class CheckTabCanBeUse
 		List list = new ArrayList();
 		if (!insuredExistFlag)
 		{
-			list.add("???????\361?????");
+			list.add("�������ñ�����");
 			list.add(null);
 		}
 		return list;
@@ -52,13 +52,13 @@ public class CheckTabCanBeUse
 		List list = new ArrayList();
 		if (!insuredExistFlag)
 		{
-			list.add("???????\361?????");
+			list.add("�������ñ�����");
 			list.add(null);
 		}
 		boolean appntExistFlag = appntExist(contNo);
 		if (!appntExistFlag)
 		{
-			list.add("?????????????");
+			list.add("��������Ͷ����");
 			list.add(null);
 		}
 		return list;
@@ -71,12 +71,12 @@ public class CheckTabCanBeUse
 		boolean policyInfoExistFlag = policyExist(contNo);
 		if (!insuredExistFlag)
 		{
-			list.add("???????\361?????");
+			list.add("�������ñ�����");
 			list.add(null);
 		}
 		if (insuredExistFlag && !policyInfoExistFlag)
 		{
-			list.add("???????\361???????");
+			list.add("�������ñ�������");
 			list.add(null);
 		}
 		return list;
@@ -88,7 +88,7 @@ public class CheckTabCanBeUse
 		List list = new ArrayList();
 		if (!insuredExistFlag)
 		{
-			list.add("???????\361?????");
+			list.add("�������ñ�����");
 			list.add(null);
 		}
 		return list;
@@ -101,12 +101,12 @@ public class CheckTabCanBeUse
 		List list = new ArrayList();
 		if (!insuredExistFlag)
 		{
-			list.add("???????\361?????");
+			list.add("�������ñ�����");
 			list.add(null);
 		}
 		if (insuredExistFlag && !policyInfoExistFlag)
 		{
-			list.add("???????\361???????");
+			list.add("�������ñ�������");
 			list.add(null);
 		}
 		return list;
@@ -118,7 +118,7 @@ public class CheckTabCanBeUse
 		List list = new ArrayList();
 		if (!insuredExistFlag)
 		{
-			list.add("???????\361?????");
+			list.add("�������ñ�����");
 			list.add(null);
 		}
 		return list;

@@ -437,7 +437,7 @@ _L16:
 			return Excelpath;
 		} else
 		{
-			ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "无法打印报表，没有查询到符合条件的数据！");
+			ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "鏃犳硶鎵撳嵃鎶ヨ〃锛屾病鏈夋煡璇㈠埌绗﹀悎鏉′欢鐨勬暟鎹紒");
 			return "";
 		}
 	}
@@ -455,7 +455,7 @@ _L16:
 		try
 		{
 			if (data == null)
-				ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "记录为空");
+				ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "璁板綍涓虹┖");
 			workbook.set("currentDate", PubFun.getCurrentDate());
 			workbook.add(data);
 			workbook = null;
@@ -504,8 +504,8 @@ _L16:
 		System.out.println(sql);
 		if (ssrs.MaxRow >= 200 && !isExcelExport)
 		{
-			System.out.println("查询记录多于200条，请您细化查询条件！");
-			ECPubFun.addErrorMessage("com.sinosoft.map.international.resource.programresource", "查询记录多于200条，请您细化查询条件！");
+			System.out.println("鏌ヨ璁板綍澶氫簬200鏉★紝璇锋偍缁嗗寲鏌ヨ鏉′欢锛?");
+			ECPubFun.addErrorMessage("com.sinosoft.map.international.resource.programresource", "鏌ヨ璁板綍澶氫簬200鏉★紝璇锋偍缁嗗寲鏌ヨ鏉′欢锛?");
 			showErrorFlag = true;
 		} else
 		{
@@ -514,8 +514,8 @@ _L16:
 		if (ssrs.MaxRow <= 0 && !isExcelExport)
 		{
 			dataNullFlag = true;
-			System.out.println("查询无返回结果,请录入其他查询条件重新查询!");
-			ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "查询无返回结果,请录入其他查询条件重新查询!");
+			System.out.println("鏌ヨ鏃犺繑鍥炵粨鏋?,璇峰綍鍏ュ叾浠栨煡璇㈡潯浠堕噸鏂版煡璇?!");
+			ECPubFun.addInfoMessage("com.sinosoft.map.international.resource.programresource", "鏌ヨ鏃犺繑鍥炵粨鏋?,璇峰綍鍏ュ叾浠栨煡璇㈡潯浠堕噸鏂版煡璇?!");
 		} else
 		{
 			dataNullFlag = false;

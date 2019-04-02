@@ -82,8 +82,8 @@ public class BankRelationContNo
 	{
 		try
 		{
-			System.out.println("相关联保单初始化");
-			System.out.println((new StringBuilder("当前单选项的值=====")).append(relationitem).toString());
+			System.out.println("鐩稿叧鑱斾繚鍗曞垵濮嬪寲");
+			System.out.println((new StringBuilder("褰撳墠鍗曢?夐」鐨勫??=====")).append(relationitem).toString());
 			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 			if (getInfoFromSession(session))
 			{
@@ -99,25 +99,25 @@ public class BankRelationContNo
 				relationitem = "";
 				if (contSchema != null && !"".equals(contSchema.getAgentCode1()) && contSchema.getAgentCode1() != null)
 				{
-					System.out.println((new StringBuilder("当前contSchema.getAgentCode1()的值====")).append(contSchema.getAgentCode1()).toString());
+					System.out.println((new StringBuilder("褰撳墠contSchema.getAgentCode1()鐨勫??====")).append(contSchema.getAgentCode1()).toString());
 					relationitem = "01";
 					relContList = getRellist(contSchema.getAgentCode1(), contNo);
 					relSize = relContList.size();
-					System.out.println((new StringBuilder("长度=========================")).append(relContList.size()).toString());
+					System.out.println((new StringBuilder("闀垮害=========================")).append(relContList.size()).toString());
 				} else
 				{
 					relationitem = "";
-					System.out.println("当前保单不存在关联组");
+					System.out.println("褰撳墠淇濆崟涓嶅瓨鍦ㄥ叧鑱旂粍");
 				}
 			} else
 			{
-				buildMsg("全局投保书信息缺失!");
+				buildMsg("鍏ㄥ眬鎶曚繚涔︿俊鎭己澶?!");
 			}
 		}
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			System.out.println("相关联保单界面初始化失败！");
+			System.out.println("鐩稿叧鑱斾繚鍗曠晫闈㈠垵濮嬪寲澶辫触锛?");
 			operateResult = false;
 		}
 	}
@@ -126,7 +126,7 @@ public class BankRelationContNo
 	{
 		try
 		{
-			System.out.println("----start-------进入生产相关联保单功能，此处生成关联组号，原则：已存在则继续使用，不存在则新生成----------------");
+			System.out.println("----start-------杩涘叆鐢熶骇鐩稿叧鑱斾繚鍗曞姛鑳斤紝姝ゅ鐢熸垚鍏宠仈缁勫彿锛屽師鍒欙細宸插瓨鍦ㄥ垯缁х画浣跨敤锛屼笉瀛樺湪鍒欐柊鐢熸垚----------------");
 			HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 			String contNo = (String)session.getAttribute("ContNo");
 			String date = PubFun.getCurrentDate();
@@ -134,12 +134,12 @@ public class BankRelationContNo
 			contSchema = getMyLNPContByContNo(contNo);
 			if (contSchema.getAgentCode1() != null && !contSchema.getAgentCode1().equals(""))
 			{
-				System.out.println((new StringBuilder("此时存在相关联保单组号“")).append(contSchema.getAgentCode1()).append("”，不必重新生成").toString());
+				System.out.println((new StringBuilder("姝ゆ椂瀛樺湪鐩稿叧鑱斾繚鍗曠粍鍙封??")).append(contSchema.getAgentCode1()).append("鈥濓紝涓嶅繀閲嶆柊鐢熸垚").toString());
 			} else
 			{
 				SysMaxNoMAPNP maxNoMap = new SysMaxNoMAPNP();
 				contSchema.setAgentCode1(maxNoMap.CreateMaxNo("CustomerNo", "").substring(12));
-				System.out.println((new StringBuilder("create new关联编号:")).append(contSchema.getAgentCode1()).toString());
+				System.out.println((new StringBuilder("create new鍏宠仈缂栧彿:")).append(contSchema.getAgentCode1()).toString());
 				contSchema.setModifyDate(date);
 				contSchema.setModifyTime(time);
 				contSchema.setInputOperator(tempGI.Operator);
@@ -150,28 +150,28 @@ public class BankRelationContNo
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					relmessage = "创建关联编号失败！";
+					relmessage = "鍒涘缓鍏宠仈缂栧彿澶辫触锛?";
 					operateResult = false;
 				} else
 				{
-					relmessage = "创建关联编号成功！";
+					relmessage = "鍒涘缓鍏宠仈缂栧彿鎴愬姛锛?";
 					operateResult = true;
 					addOneRel();
 				}
 			}
-			System.out.println("---end--------进入生产相关联保单功能，此处生成关联组号，原则：已存在则继续使用，不存在则新生成----------------");
+			System.out.println("---end--------杩涘叆鐢熶骇鐩稿叧鑱斾繚鍗曞姛鑳斤紝姝ゅ鐢熸垚鍏宠仈缁勫彿锛屽師鍒欙細宸插瓨鍦ㄥ垯缁х画浣跨敤锛屼笉瀛樺湪鍒欐柊鐢熸垚----------------");
 		}
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			relmessage = "创建关联编号失败！";
+			relmessage = "鍒涘缓鍏宠仈缂栧彿澶辫触锛?";
 			operateResult = false;
 		}
 	}
 
 	private List getRellist(String RelationNo, String contNo)
 	{
-		System.out.println("进入数据库查询数据相关联投保书------------");
+		System.out.println("杩涘叆鏁版嵁搴撴煡璇㈡暟鎹浉鍏宠仈鎶曚繚涔?------------");
 		List newRelList = new ArrayList();
 		String sql = (new StringBuilder("select agentCode1,contno from lnpcont where agentcode1='")).append(RelationNo).append("' and contno<>rtrim('").append(contNo).append("')").toString();
 		ExeSQL tExeSQL = new ExeSQL();
@@ -188,7 +188,7 @@ public class BankRelationContNo
 			newRelList.add(relbean);
 		}
 
-		System.out.println((new StringBuilder("这个时候relContList的长度")).append(newRelList.size()).toString());
+		System.out.println((new StringBuilder("杩欎釜鏃跺?檙elContList鐨勯暱搴?")).append(newRelList.size()).toString());
 		return newRelList;
 	}
 
@@ -196,7 +196,7 @@ public class BankRelationContNo
 	{
 		try
 		{
-			System.out.println("开始创建关联保单");
+			System.out.println("寮?濮嬪垱寤哄叧鑱斾繚鍗?");
 			PubSubmit ps = new PubSubmit();
 			MMap map = new MMap();
 			VData vd = new VData();
@@ -204,12 +204,12 @@ public class BankRelationContNo
 			String contNo = (String)session.getAttribute("ContNo");
 			String date = PubFun.getCurrentDate();
 			String time = PubFun.getCurrentTime();
-			System.out.println((new StringBuilder("创建保单时relContList.size()======")).append(relContList.size()).append(" | 创建保单时num============").append(num).toString());
+			System.out.println((new StringBuilder("鍒涘缓淇濆崟鏃秗elContList.size()======")).append(relContList.size()).append(" | 鍒涘缓淇濆崟鏃秐um============").append(num).toString());
 			String newcont = ((LNPRelBean)relContList.get(num)).getContno();
 			LNPContSchema NewContNo = getMyLNPContByContNo(newcont);
 			if (NewContNo == null)
 			{
-				System.out.println("没有录入编号的投保单，此时为增加");
+				System.out.println("娌℃湁褰曞叆缂栧彿鐨勬姇淇濆崟锛屾鏃朵负澧炲姞");
 				NewContNo = new LNPContSchema();
 				LNPContSchema contNew = getMyLNPContByContNo(contNo);
 				NewContNo.setState("01");
@@ -248,7 +248,7 @@ public class BankRelationContNo
 				map.put(contSchema, "UPDATE");
 			} else
 			{
-				System.out.println("有录入编号的投保单，此时为修改");
+				System.out.println("鏈夊綍鍏ョ紪鍙风殑鎶曚繚鍗曪紝姝ゆ椂涓轰慨鏀?");
 				NewContNo.setAgentCode1(contSchema.getAgentCode1());
 				NewContNo.setModifyDate(date);
 				NewContNo.setModifyTime(time);
@@ -264,11 +264,11 @@ public class BankRelationContNo
 				vd.add(map);
 				if (!ps.submitData(vd, ""))
 				{
-					relmessage = "关联投保单失败";
+					relmessage = "鍏宠仈鎶曚繚鍗曞け璐?";
 					operateResult = false;
 				} else
 				{
-					relmessage = "关联投保单成功";
+					relmessage = "鍏宠仈鎶曚繚鍗曟垚鍔?";
 					operateResult = true;
 					makecontNoflag = true;
 				}
@@ -279,7 +279,7 @@ public class BankRelationContNo
 		}
 		catch (RuntimeException e)
 		{
-			relmessage = "关联投保单失败";
+			relmessage = "鍏宠仈鎶曚繚鍗曞け璐?";
 			operateResult = false;
 		}
 	}
@@ -288,18 +288,18 @@ public class BankRelationContNo
 	{
 		try
 		{
-			relmessage = "->关联失败<-";
+			relmessage = "->鍏宠仈澶辫触<-";
 			String contno = ((LNPRelBean)relContList.get(relContList.size() - 1)).getContno();
-			System.out.println((new StringBuilder("-------开始进行投保编号")).append(contno).append("校验------").toString());
+			System.out.println((new StringBuilder("-------寮?濮嬭繘琛屾姇淇濈紪鍙?")).append(contno).append("鏍￠獙------").toString());
 			LNPContSchema contSel = getMyLNPContByContNo(contno);
 			if (!Pattern.matches("^[0-9]{12}", contno))
 			{
-				relmessage = "请按照正确格式填写投保书号";
+				relmessage = "璇锋寜鐓ф纭牸寮忓～鍐欐姇淇濅功鍙?";
 				checkflag = false;
 			} else
 			if (contSel != null && !contSchema.getSignCom().equals(contSel.getSignCom()))
 			{
-				relmessage = "录入的保单号不符合规则";
+				relmessage = "褰曞叆鐨勪繚鍗曞彿涓嶇鍚堣鍒?";
 				checkflag = false;
 			} else
 			if (contSchema.getState().equals("01"))
@@ -308,19 +308,19 @@ public class BankRelationContNo
 				{
 					if (contSel != null && contSel.getAgentCode1() != null && !contSel.getAgentCode1().equals(""))
 					{
-						relmessage = "当前录入保单号存在关联组,不能重复录入";
+						relmessage = "褰撳墠褰曞叆淇濆崟鍙峰瓨鍦ㄥ叧鑱旂粍,涓嶈兘閲嶅褰曞叆";
 						checkflag = false;
 					} else
 					{
-						relmessage = "创建成功";
+						relmessage = "鍒涘缓鎴愬姛";
 						checkflag = true;
-						System.out.println("--------------设置只读选项-------------------");
+						System.out.println("--------------璁剧疆鍙閫夐」-------------------");
 						((LNPRelBean)relContList.get(relContList.size() - 1)).setReadflag(true);
-						System.out.println((new StringBuilder("01状态：当前关联投保书创建成功flag：")).append(checkflag).toString());
+						System.out.println((new StringBuilder("01鐘舵?侊細褰撳墠鍏宠仈鎶曚繚涔﹀垱寤烘垚鍔焒lag锛?")).append(checkflag).toString());
 					}
 				} else
 				{
-					relmessage = "录入保单的状态不符合要求";
+					relmessage = "褰曞叆淇濆崟鐨勭姸鎬佷笉绗﹀悎瑕佹眰";
 					checkflag = false;
 				}
 			} else
@@ -330,39 +330,39 @@ public class BankRelationContNo
 				{
 					if ("05".equals(contSel.getState()) || "06".equals(contSel.getState()))
 					{
-						relmessage = "录入保单的状态不符合要求";
+						relmessage = "褰曞叆淇濆崟鐨勭姸鎬佷笉绗﹀悎瑕佹眰";
 						checkflag = false;
 					} else
 					if (contSel.getAgentCode1() != null && !contSel.getAgentCode1().equals(""))
 					{
-						relmessage = "当前录入保单号存在关联组,不能重复录入";
+						relmessage = "褰撳墠褰曞叆淇濆崟鍙峰瓨鍦ㄥ叧鑱旂粍,涓嶈兘閲嶅褰曞叆";
 						checkflag = false;
 					} else
 					{
-						relmessage = "创建成功";
+						relmessage = "鍒涘缓鎴愬姛";
 						checkflag = true;
-						System.out.println("--------------设置只读选项-------------------");
+						System.out.println("--------------璁剧疆鍙閫夐」-------------------");
 						((LNPRelBean)relContList.get(relContList.size() - 1)).setReadflag(true);
-						System.out.println((new StringBuilder("大于02状态：当前关联投保书创建成功flag：")).append(checkflag).toString());
+						System.out.println((new StringBuilder("澶т簬02鐘舵?侊細褰撳墠鍏宠仈鎶曚繚涔﹀垱寤烘垚鍔焒lag锛?")).append(checkflag).toString());
 					}
 				} else
 				{
-					relmessage = "创建成功";
+					relmessage = "鍒涘缓鎴愬姛";
 					checkflag = true;
-					System.out.println("--------------设置只读选项-------------------");
+					System.out.println("--------------璁剧疆鍙閫夐」-------------------");
 					((LNPRelBean)relContList.get(relContList.size() - 1)).setReadflag(true);
-					System.out.println((new StringBuilder("大于02状态：当前关联投保书创建成功flag：")).append(checkflag).toString());
+					System.out.println((new StringBuilder("澶т簬02鐘舵?侊細褰撳墠鍏宠仈鎶曚繚涔﹀垱寤烘垚鍔焒lag锛?")).append(checkflag).toString());
 				}
 			} else
 			{
-				relmessage = "创建失败,当前被关联投保书状态不符合要求";
+				relmessage = "鍒涘缓澶辫触,褰撳墠琚叧鑱旀姇淇濅功鐘舵?佷笉绗﹀悎瑕佹眰";
 				checkflag = false;
 			}
 		}
 		catch (RuntimeException e)
 		{
 			e.printStackTrace();
-			relmessage = "创建失败";
+			relmessage = "鍒涘缓澶辫触";
 			checkflag = false;
 		}
 	}
@@ -376,7 +376,7 @@ public class BankRelationContNo
 
 	public void saveData(MMap map1, LNPContSchema newContSchema)
 	{
-		System.out.println("进入数据同步功能");
+		System.out.println("杩涘叆鏁版嵁鍚屾鍔熻兘");
 		HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		String contNo = (String)session.getAttribute("ContNo");
 		String newcontno = ((LNPRelBean)relContList.get(num)).getContno();
@@ -388,19 +388,19 @@ public class BankRelationContNo
 		LNPInsuredSchema newsuredSchema = getSuredByContNo(newcontno);
 		LNPBnfSet bnfSet = getBnfByContNo(contNo);
 		LNPBnfSet newbnfSet = getBnfByContNo(newcontno);
-		System.out.println("受益人信息");
+		System.out.println("鍙楃泭浜轰俊鎭?");
 		LNPPaymentSchema paySchema = getPayByContNo(contNo);
 		LNPPaymentSchema newpaySchema = getPayByContNo(newcontno);
-		System.out.println("收付费信息");
+		System.out.println("鏀朵粯璐逛俊鎭?");
 		LNPAgentInfoSchema agentSchema = getAgentByContNo(contNo);
 		LNPAgentInfoSchema newagentSchema = getAgentByContNo(newcontno);
-		System.out.println("代理人信息");
+		System.out.println("浠ｇ悊浜轰俊鎭?");
 		LNPCustImpResultSet custImpSet = getCustImpByContNo(contNo);
 		LNPCustImpResultSet newcustImpSet = getCustImpByContNo(newcontno);
-		System.out.println("答案信息");
+		System.out.println("绛旀淇℃伅");
 		if (appntSchema != null && !appntSchema.equals(""))
 		{
-			System.out.println("开始同步投保人信息");
+			System.out.println("寮?濮嬪悓姝ユ姇淇濅汉淇℃伅");
 			LNPAddressSchema addressSchema = getAddressByID(appntSchema.getAppntId());
 			LNPPersonSchema personSchema = getPersonByID(appntSchema.getAppntId());
 			appntSchema.setContNo(newcontno);
@@ -432,7 +432,7 @@ public class BankRelationContNo
 		}
 		if (suredSchema != null && !suredSchema.equals(""))
 		{
-			System.out.println("开始同步被保人信息");
+			System.out.println("寮?濮嬪悓姝ヨ淇濅汉淇℃伅");
 			LNPAddressSchema addressSchema = getAddressByID(suredSchema.getInsuredId());
 			LNPPersonSchema personSchema = getPersonByID(suredSchema.getInsuredId());
 			suredSchema.setContNo(newcontno);
@@ -465,7 +465,7 @@ public class BankRelationContNo
 		}
 		if (bnfSet != null && bnfSet.size() > 0)
 		{
-			System.out.println("开始同步受益人信息");
+			System.out.println("寮?濮嬪悓姝ュ彈鐩婁汉淇℃伅");
 			SysMaxNoMAPNP maxNoMap = new SysMaxNoMAPNP();
 			for (int i = 1; i <= bnfSet.size(); i++)
 			{
@@ -490,7 +490,7 @@ public class BankRelationContNo
 		}
 		if (paySchema != null && !paySchema.equals(""))
 		{
-			System.out.println("开始同步收付费信息");
+			System.out.println("寮?濮嬪悓姝ユ敹浠樿垂淇℃伅");
 			paySchema.setContNo(newcontno);
 			paySchema.setMakeDate(date);
 			paySchema.setMakeTime(time);
@@ -513,7 +513,7 @@ public class BankRelationContNo
 		}
 		if (agentSchema != null && !agentSchema.equals(""))
 		{
-			System.out.println("开始同步代理人信息");
+			System.out.println("寮?濮嬪悓姝ヤ唬鐞嗕汉淇℃伅");
 			agentSchema.setContNo(newcontno);
 			agentSchema.setProposalContNo(newcontno);
 			agentSchema.setMakeDate(date);
@@ -529,7 +529,7 @@ public class BankRelationContNo
 		}
 		if (custImpSet != null && custImpSet.size() > 0)
 		{
-			System.out.println("开始同步答案信息");
+			System.out.println("寮?濮嬪悓姝ョ瓟妗堜俊鎭?");
 			SysMaxNoMAPNP maxNoMap = new SysMaxNoMAPNP();
 			String appresultid = maxNoMap.CreateMaxNo("CustomerNo", "");
 			String insresultid = maxNoMap.CreateMaxNo("CustomerNo", "");
@@ -553,15 +553,15 @@ public class BankRelationContNo
 		{
 			map1.put(newcustImpSet, "DELETE");
 		}
-		System.out.println("同步数据成功后，进行修改保单状态");
+		System.out.println("鍚屾鏁版嵁鎴愬姛鍚庯紝杩涜淇敼淇濆崟鐘舵??");
 		if (newContSchema != null)
 		{
 			BankOperateDeal stateOperate = new BankOperateDeal();
 			List list = stateOperate.relInfoOperate(contSchema, newContSchema);
 			newContSchema.setState((String)list.get(0));
 			newContSchema.setEditstate((String)list.get(1));
-			System.out.println((new StringBuilder("###############current policy：")).append(contSchema.getContNo()).append(" 被关联投保书 信息: state:").append(contSchema.getState()).append(" | editstate:").append(contSchema.getEditstate()).toString());
-			System.out.println((new StringBuilder("###############current policy：")).append(newContSchema.getContNo()).append(" 关联投保书 信息: state:").append(newContSchema.getState()).append(" | editstate:").append(newContSchema.getEditstate()).toString());
+			System.out.println((new StringBuilder("###############current policy锛?")).append(contSchema.getContNo()).append(" 琚叧鑱旀姇淇濅功 淇℃伅: state:").append(contSchema.getState()).append(" | editstate:").append(contSchema.getEditstate()).toString());
+			System.out.println((new StringBuilder("###############current policy锛?")).append(newContSchema.getContNo()).append(" 鍏宠仈鎶曚繚涔? 淇℃伅: state:").append(newContSchema.getState()).append(" | editstate:").append(newContSchema.getEditstate()).toString());
 			if (appntSchema != null)
 			{
 				newContSchema.setAppntId(appntSchema.getAppntId());
@@ -573,7 +573,7 @@ public class BankRelationContNo
 				newContSchema.setAppntSex(appntSchema.getAppntSex());
 			} else
 			{
-				System.out.println("此时无投保人信息");
+				System.out.println("姝ゆ椂鏃犳姇淇濅汉淇℃伅");
 			}
 			if (suredSchema != null)
 			{
@@ -586,7 +586,7 @@ public class BankRelationContNo
 				newContSchema.setInsuredSex(suredSchema.getSex());
 			} else
 			{
-				System.out.println("此时无被保人信息");
+				System.out.println("姝ゆ椂鏃犺淇濅汉淇℃伅");
 			}
 			if (agentSchema != null)
 			{
@@ -595,7 +595,7 @@ public class BankRelationContNo
 				newContSchema.setPValiDate(contSchema.getPValiDate());
 			} else
 			{
-				System.out.println("此时无代理人告知信息");
+				System.out.println("姝ゆ椂鏃犱唬鐞嗕汉鍛婄煡淇℃伅");
 			}
 			PubSubmit ps = new PubSubmit();
 			VData vd1 = new VData();
@@ -605,24 +605,24 @@ public class BankRelationContNo
 			vd1.add(map1);
 			if (!ps.submitData(vd1, ""))
 			{
-				relmessage = "关联保单失败";
+				relmessage = "鍏宠仈淇濆崟澶辫触";
 				operateResult = false;
 			} else
 			{
-				relmessage = "关联保单成功";
+				relmessage = "鍏宠仈淇濆崟鎴愬姛";
 				operateResult = true;
 			}
 		} else
 		{
-			relmessage = "关联保单失败";
+			relmessage = "鍏宠仈淇濆崟澶辫触";
 			operateResult = false;
-			System.out.println("LNPcont state， editstate关联失败~~~~~~~~~~~~~~~~\267\267");
+			System.out.println("LNPcont state锛? editstate鍏宠仈澶辫触~~~~~~~~~~~~~~~~路路");
 		}
 	}
 
 	public void addOneRel()
 	{
-		System.out.println("能够进入addonerel()中！");
+		System.out.println("鑳藉杩涘叆addonerel()涓紒");
 		System.out.println(relContList.size());
 		operateResult = true;
 		boolean check = false;
@@ -636,13 +636,13 @@ public class BankRelationContNo
 			if (!check)
 			{
 				operateResult = false;
-				relmessage = "本行信息录入后才可以添加下一行";
+				relmessage = "鏈淇℃伅褰曞叆鍚庢墠鍙互娣诲姞涓嬩竴琛?";
 				return;
 			}
-			System.out.println("进行下列添加程序代码1");
+			System.out.println("杩涜涓嬪垪娣诲姞绋嬪簭浠ｇ爜1");
 		} else
 		{
-			System.out.println("进行下列添加程序代码2");
+			System.out.println("杩涜涓嬪垪娣诲姞绋嬪簭浠ｇ爜2");
 		}
 		if (relContList.size() < 50)
 		{
@@ -664,18 +664,18 @@ public class BankRelationContNo
 			System.out.println(relContList.size());
 		} else
 		{
-			System.out.println("已达上限，不能再进行添加操作");
+			System.out.println("宸茶揪涓婇檺锛屼笉鑳藉啀杩涜娣诲姞鎿嶄綔");
 		}
 	}
 
 	public void delOneRel()
 	{
-		System.out.println((new StringBuilder("开始删除时relContList的size====")).append(relContList.size()).toString());
+		System.out.println((new StringBuilder("寮?濮嬪垹闄ゆ椂relContList鐨剆ize====")).append(relContList.size()).toString());
 		delflag = false;
 		operateResult = true;
 		HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		String contNo = (String)session.getAttribute("ContNo");
-		System.out.println((new StringBuilder("取得点击的删除按钮所在的位置==")).append(num).toString());
+		System.out.println((new StringBuilder("鍙栧緱鐐瑰嚮鐨勫垹闄ゆ寜閽墍鍦ㄧ殑浣嶇疆==")).append(num).toString());
 		String contnorel = ((LNPRelBean)relContList.get(num)).getContno();
 		if (!contnorel.equals("") && contnorel != null)
 		{
@@ -683,7 +683,7 @@ public class BankRelationContNo
 		} else
 		{
 			delflag = true;
-			System.out.println("当前行没有保单号");
+			System.out.println("褰撳墠琛屾病鏈変繚鍗曞彿");
 		}
 		if (delflag)
 		{
@@ -696,9 +696,9 @@ public class BankRelationContNo
 				relContList.remove(num);
 				delRelCode(contNo);
 				relationitem = "";
-				System.out.println("关联保单号，不能再进行删除操作");
+				System.out.println("鍏宠仈淇濆崟鍙凤紝涓嶈兘鍐嶈繘琛屽垹闄ゆ搷浣?");
 			}
-			System.out.println((new StringBuilder("删除结束时relContList的size====")).append(relContList.size()).toString());
+			System.out.println((new StringBuilder("鍒犻櫎缁撴潫鏃秗elContList鐨剆ize====")).append(relContList.size()).toString());
 			for (int i = 0; i < relContList.size(); i++)
 			{
 				if (!((LNPRelBean)relContList.get(i)).getContno().equals("") && ((LNPRelBean)relContList.get(i)).getContno() != null && !relContList.equals(""))
@@ -714,14 +714,14 @@ public class BankRelationContNo
 
 	private void delRelCode(String contno)
 	{
-		System.out.println("进入删除相关联编号方法");
+		System.out.println("杩涘叆鍒犻櫎鐩稿叧鑱旂紪鍙锋柟娉?");
 		PolicyMainInfo mainInfo = new PolicyMainInfo();
 		LNPContSchema aLNPContSchema = mainInfo.getContByContNo(contno);
 		if (aLNPContSchema != null)
 		{
 			if ("06".equals(aLNPContSchema.getState()))
 			{
-				relmessage = (new StringBuilder("关联投保单号“")).append(aLNPContSchema.getContNo()).append("”当前状态为 <已审核-发送成功>,不可再删除关联关系").toString();
+				relmessage = (new StringBuilder("鍏宠仈鎶曚繚鍗曞彿鈥?")).append(aLNPContSchema.getContNo()).append("鈥濆綋鍓嶇姸鎬佷负 <宸插鏍?-鍙戦?佹垚鍔?>,涓嶅彲鍐嶅垹闄ゅ叧鑱斿叧绯?").toString();
 				delflag = false;
 			} else
 			if (aLNPContSchema.getAgentCode1().equals(contSchema.getAgentCode1()))
@@ -735,18 +735,18 @@ public class BankRelationContNo
 				if (!ps.submitData(vd, ""))
 				{
 					delflag = false;
-					relmessage = "删除关联保单失败";
-					System.out.println("删除相关联编号失败");
+					relmessage = "鍒犻櫎鍏宠仈淇濆崟澶辫触";
+					System.out.println("鍒犻櫎鐩稿叧鑱旂紪鍙峰け璐?");
 				} else
 				{
 					delflag = true;
-					relmessage = "删除关联保单成功";
-					System.out.println("删除相关联编号成功");
+					relmessage = "鍒犻櫎鍏宠仈淇濆崟鎴愬姛";
+					System.out.println("鍒犻櫎鐩稿叧鑱旂紪鍙锋垚鍔?");
 				}
 			}
 		} else
 		{
-			System.out.println("此时lnpcont表中无此保单号信息");
+			System.out.println("姝ゆ椂lnpcont琛ㄤ腑鏃犳淇濆崟鍙蜂俊鎭?");
 		}
 	}
 
@@ -773,7 +773,7 @@ public class BankRelationContNo
 
 	public LNPBnfSet getBnfByContNo(String contNo)
 	{
-		System.out.println("获取受益人信息");
+		System.out.println("鑾峰彇鍙楃泭浜轰俊鎭?");
 		LNPBnfDB db = new LNPBnfDB();
 		db.setContNo(contNo);
 		LNPBnfSet bnfSet = db.query();

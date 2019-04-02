@@ -398,7 +398,6 @@ _L2:
 		try
 		{
 			String filePath = (new StringBuilder(String.valueOf(WebApplication.getInstance().getServletContextPath()))).append("/WEB-INF/config/dbconn/dbconnection.xml").toString();
-			filePath = "C:\\Kevin_File\\Java\\workspace\\MDES\\WebContent\\WEB-INF\\config\\dbconn\\dbconnection.xml";
 			Document doc = XmlParser.getDocument(filePath);
 			Element root = doc.getDocumentElement();
 			NodeList dbs = root.getElementsByTagName("database");

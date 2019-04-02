@@ -11,11 +11,13 @@ import com.sinosoft.banklns.lis.pubfun.*;
 import com.sinosoft.banklns.lis.schema.*;
 import com.sinosoft.banklns.lis.vschema.LNPCodeSet;
 import com.sinosoft.banklns.lis.vschema.LNPCustImpResultSet;
-import com.sinosoft.banklns.lnsmodel.util.JSONUtil;
 import com.sinosoft.banklns.lnsmodel.webservice.EAIProxy;
 import com.sinosoft.banklns.lnsmodel.webservice.XMLEncoder;
 import com.sinosoft.banklns.utility.*;
 import com.sinosoft.map.common.WebApplication;
+import com.sinosoft.map.lis.db.MSysVarDB;
+import com.sinosoft.map.lis.db.MUserDB;
+import com.sinosoft.map.lis.schema.MSysVarSchema;
 import java.io.File;
 import java.io.PrintStream;
 import java.sql.Connection;
@@ -42,15 +44,15 @@ public abstract class PublicInterfaces
 	protected Namespace ns3;
 	protected MMap map;
 	protected MMap bakMap;
-	protected String tContNo;
+	public String tContNo;
 	private static Map mapQuesKey = new Hashtable();
 	private static Map mapCodeKey = new Hashtable();
 	protected boolean valiPassFlag;
 	private String date;
 	private String time;
 	protected static Hashtable modelList = new Hashtable();
-	protected Document doc;
-	protected Document returnDoc;
+	public Document doc;
+	public Document returnDoc;
 	protected XMLByJDOM tXMLByJDOM;
 	protected Connection con;
 	protected ExeSQL exe;
@@ -197,7 +199,7 @@ _L5:
 		return false;
 	}
 
-	private boolean saveData()
+	public boolean saveData()
 	{
 		if (!map.keySet().isEmpty())
 		{
@@ -243,7 +245,6 @@ _L5:
 
 	private boolean sendXML()
 	{
-		System.out.println((new StringBuilder("+++++++JSON±¨ÎÄ£º")).append(JSONUtil.xml2JSON(doc)).toString());
 		saveCreatedXMLFile(doc, sendFileName, tContNo);
 		EAIProxy tTMAProxy = new EAIProxy();
 		try
@@ -275,11 +276,14 @@ _L5:
 	{
 		try
 		{
+			if ("dupli_in.xml".equals(modelFileName) && NBFlag() && agentFlag())
+				modelFileName = "dupliNB_in.xml";
+			else
+			if ("issue_in.xml".equals(modelFileName) && NBFlag() && agentFlag())
+				modelFileName = "issueNB_in.xml";
 			tXMLByJDOM = new XMLByJDOM();
 			String rootPath = WebApplication.getInstance().getServletContextPath();
-			rootPath = "C:";
 			String tranPath = (new StringBuilder(String.valueOf(rootPath != null ? ((Object) (rootPath)) : ""))).append(File.separator).append("templete").append(File.separator).append(modelFileName).toString();
-			System.out.println((new StringBuilder("tranPath:")).append(tranPath).toString());
 			if (!modelList.containsKey(modelFileName))
 				modelList.put(modelFileName, tXMLByJDOM.loadXMLFileByJDOM(tranPath));
 			doc = (Document)((Document)modelList.get(modelFileName)).clone();
@@ -292,6 +296,31 @@ _L5:
 		{
 			e.printStackTrace();
 		}
+	}
+
+	private boolean agentFlag()
+	{
+		ExeSQL exeSql = new ExeSQL();
+		String sql_lnpCode = "SELECT code FROM lnpcode where codetype = 'agentCode'";
+		SSRS ssr1 = exeSql.execSQL(sql_lnpCode);
+		if (ssr1.getMaxRow() > 0)
+		{
+			MUserDB mUser = new MUserDB();
+			mUser.setUserCode(ssr1.GetText(1, 1));
+			boolean mUserFlag = mUser.getInfo();
+			String sql_laagent = (new StringBuilder("SELECT 'X' FROM LAAGENT WHERE AGENTCODE = '")).append(ssr1.GetText(1, 1)).append("'").toString();
+			SSRS ssr2 = exeSql.execSQL(sql_laagent);
+			if (mUserFlag || ssr2.getMaxRow() > 0)
+				return true;
+		}
+		return false;
+	}
+
+	private boolean NBFlag()
+	{
+		MSysVarDB msy = new MSysVarDB();
+		msy.setVarType("NBSwitch");
+		return msy.getInfo() && "Y".equalsIgnoreCase(msy.getSchema().getVarValue());
 	}
 
 	public String getMessage()
@@ -353,6 +382,14 @@ _L5:
 				element.getChild(childName.toUpperCase()).setText(text);
 			else
 				element.getChild(childName).setText(text);
+	}
+
+	protected void updateTextForNB(Element element, String childName, String text)
+	{
+		if (element == null)
+			System.out.println("element is null!");
+		if (text != null)
+			element.getChild(childName).setText(text);
 	}
 
 	protected void setSaveTime(Schema aschema)
